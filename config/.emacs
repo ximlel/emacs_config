@@ -1,4 +1,4 @@
-(custom-set-variables
+﻿(custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
@@ -11,7 +11,7 @@
  ;; If there is more than one, they won't work right.
  )
 
- (setenv "HOME" "E:/emacs-24.1")
+ (setenv "HOME" "D:/tools/emacs-24.1")
  ;;(setenv "PATH" "D:/tools/emacs-24.1") ;; 会覆盖环境变量PATH
  ;;set the default file path
  (setq default-directory "D:/python_workspace")
@@ -240,7 +240,7 @@ interpreter-mode-alist))
 ;;;折叠和打开单个buffer的所有代码
 ;(define-key semantic-tag-folding-mode-map (kbd "C-_") 'semantic-tag-folding-fold-block)
 ;(define-key semantic-tag-folding-mode-map (kbd "C-+") 'semantic-tag-folding-show-block)
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;issue 2
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;(add-hook 'python-mode-hook 'my-python-hook)
 ;;(defun py-outline-level ()
 ;;"This is so that `current-column` DTRT in otherwise-hidden text"
@@ -265,3 +265,19 @@ interpreter-mode-alist))
 ;;(hide-body)
 ;;(show-paren-mode 1)
 ;;)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; 启动最大化窗口设置 - START    ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    (defun w32-restore-frame ()
+    "Restore a minimized frame"
+    (interactive)
+    (w32-send-sys-command 61728))
+    (defun w32-maximize-frame ()
+    "Maximize the current frame"
+    (interactive)
+    (w32-send-sys-command 61488))
+    ;;; Maximum Windows Frame
+    (w32-maximize-frame)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+      ;;; 启动最大化窗口设置 - END
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
