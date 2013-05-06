@@ -1,0 +1,8 @@
+﻿三个相同安装
+python setup.py install
+
+add to .emacs
+Ropmacs -- .emacs
+python setup.py install
+(pymacs-load "ropemacs" "rope-")
+(setq ropemacs-enable-autoimport t)

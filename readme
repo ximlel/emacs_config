@@ -1,0 +1,105 @@
+
+使用说明
+1.windows emacs-24.1-bin-i386.zip
+2.重定向配置文件到安装目录
+3.拷贝config 下的.emacs.d 和.emacs 到安装目录
+4.修改(setenv "HOME" "D:/tools/emacs-24.3") 指向安装目录
+5.python-mode 一些插件需要安装 python的插件才能生效
+===========================
+配置说明
+===========================
+1.
+http://wenku.baidu.com/view/d799dd070740be1e650e9a9b.html     --ok
+// 简单配置
+解压emacs 到目录
+运行 emacs-24.3\bin\addpm.exe
+运行 emacs.exe -> options -> 修改 配置-> save options
+C:\Documents and Settings\Administrator\Application Data\.emacs
+	添加 (load-file "E:/emacs-24.3/.emacs") 指定到安装目录方便工程配置
+将config目录下.emacs.d 和 .emacs 拷贝到安装目录 已做了简单配置
+
+2.
+http://www.cnblogs.com/coderzh/archive/2009/12/26/emacspythonide.html
+http://www.51testing.com/?uid-254066-action-viewspace-itemid-823103
+-----一些配置
+	http://blog.sina.com.cn/s/blog_7005b0de0100mz6g.html
+-----yasnippet 
+	安装yasnippet 注意不要从git 直接下载yasnippet-master.zip
+	http://yasnippet.googlecode.com/files/yasnippet-0.6.1c.tar.bz2
+	安装方法：
+	1.解压文件，将yasnippet-0.6.1c文件夹复制到（你的emacs主目录/.emacs.d/plugins/）下
+	2.添加以下内容到你的.emacs文件内：
+	(add-to-list'load-path
+
+	"~/.emacs.d/plugins/yasnippet-0.6.1c")
+
+	(require'yasnippet);; notyasnippet-bundle
+
+	(yas/initialize)
+
+	(yas/load-directory"~/.emacs.d/plugins/yasnippet-0.6.1c /snippets")
+
+	效果演示动画：http://yasnippet.googlecode.com/files/yasnippet.avi
+-----AutoComplete
+	http://cx4a.org/pub/auto-complete/auto-complete-1.3.1.zip
+	must emacs 24.1
+	Install to : ~\.emacs.d\elisp
+	change .emacs
+-----pycomplete
+	1.安装Pymacs
+	下载地址：
+	http://www.rwdev.eu/python/pycomplete/pymacs.tgz
+	（1）解压后进入pymacs文件夹
+	（2）复制文件pymacs.el到(你的emacs的安装目录\emacs-24.1\site-lisp)
+	（3）复制Pymacs文件夹到(你的python安装目录\Python27\Lib\site-packages
+	2.复制文件python-model.el和pycomplete.el到(你的emacs的安装目录\emacs-24.1\site-lisp)
+	python-mode.el下载地址：
+	http://www.rwdev.eu/python/pycomplete/python-mode.el
+	pycomplete.el下载地址
+	http://www.rwdev.eu/python/pycomplete/pycomplete.el
+	3.复制文件pycomplete.py到(你的python安装目录\Python27\Lib\site-packages)
+	pycomplete.py下载地址
+	http://www.rwdev.eu/python/pycomplete/pycomplete.py
+	4.复制以下内容到你的.emacs文件内：
+	;; python-mode settings
+	(setq auto-mode-alist (cons '("\\.py$" .python-mode) auto-mode-alist))
+	(setq interpreter-mode-alist(cons '("python" .python-mode)
+	interpreter-mode-alist))
+	;; path to the python interpreter, e.g.:~rw/python27/bin/python2.7
+	(setq py-python-command "python")
+	(autoload 'python-mode "python-mode""Python editing mode." t)
+	;; pymacs settings
+	(setq pymacs-python-command py-python-command)
+	(autoload 'pymacs-load "pymacs" nil t)
+	(autoload 'pymacs-eval "pymacs" nil t)
+	(autoload 'pymacs-apply "pymacs")
+	(autoload 'pymacs-call "pymacs")
+	(require 'pycomplete)
+	
+	
+// .emacs
+http://linux.chinaunix.net/techdoc/desktop/2008/10/14/1038131.shtml
+http://hi.baidu.com/tiger_tnt/item/f110bdc914a53e0b0ad93a9a
+https://code.google.com/p/wlife/source/browse/wiki/Emacs.wiki?spec=svn43&r=43
+-----python-mode.el
+http://blog.chinaunix.net/uid-24178755-id-60497.html		
+//==========download emacs 21/24==========
+http://ftp.gnu.org/pub/gnu/emacs/windows/
+http://ftp.gnu.org/pub/gnu/emacs/windows/emacs-24.1-bin-i386.zip
+// python
+http://www.python.org/ftp/python/2.7.3/python-2.7.3.msi
+
+//==========issue==========
+1.运行时，emacs把输出都重定向到自己的缓存里，和windows的输入输出有冲突
+	python -i 或 安装 pymacs、ropemacs 
+
+// 操作
+C-c C-c 运行
+M-x pdb 调试 python -i -m pdb test.py
+shell 下 python -i *.py
+
+2.
+Windows 下需要在注册表中设定 emacs 启动时载入配置文件的 HOME 目录，下面是注册表文件
+[HKEY_CURRENT_USER/Software/GNU]
+[HKEY_CURRENT_USER/Software/GNU/Emacs]
+"HOME"="D://GS//emacs_msw"
