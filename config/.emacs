@@ -3,7 +3,13 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(case-fold-search nil))
+ '(case-fold-search nil)
+ '(ecb-directories-menu-user-extension-function (quote ignore))
+ '(ecb-history-menu-user-extension-function (quote ignore))
+ '(ecb-methods-menu-user-extension-function (quote ignore))
+ '(ecb-options-version "2.40")
+ '(ecb-sources-menu-user-extension-function (quote ignore))
+ '(ede-project-directories (quote ("d:/python_workspace"))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -110,6 +116,9 @@
 ;; 设置光标为方块
 ;;(setq-default cursor-type 'box)
 
+;; 使用 C-k 删除整行
+(setq-default kill-whole-line t)
+
 ;; 让emacs可以直接打开和显示图片
 (auto-image-file-mode)
 
@@ -117,6 +126,11 @@
 ;; add these lines if you like color-based syntax highlighting
 (global-font-lock-mode t)
 (setq font-lock-maximum-decoration t)
+
+;;设置背景色为 黑色
+;(set-face-background 'default "black")
+ ;;设置前字体色为绿色
+(set-foreground-color "green")  
 
 ;; 高亮显示要拷贝的区域
 (transient-mark-mode t)
@@ -187,6 +201,40 @@
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/elisp/ac-dict")
 (ac-config-default)
 
+
+;;------------------------cedet+ecb---------------------
+;;--------cygwin
+;(setenv "PATH" (concat "c:/cygwin/bin;" (getenv "PATH"))) 
+;(setq exec-path (cons "c:/cygwin/bin" exec-path)) 
+;(require 'cygwin-mount) 
+;(cygwin-mount-activate) 
+
+;(add-hook 'comint-output-filter-functions                                       
+;                    'shell-strip-ctrl-m nil t)                                                  
+;(add-hook 'comint-output-filter-functions                                       
+;                    'comint-watch-for-password-prompt nil t)                                    
+;(setq explicit-shell-file-name "bash.exe")                                      
+;;; For subprocesses invoked via the shell                                       
+;;; (e.g., "shell -c command")                                                   
+;(setq shell-file-name explicit-shell-file-name) 
+
+
+(load-file "~/.emacs.d/install/cedet-1.1/common/cedet.el")
+(require 'cedet)
+;;===== cedet by emacs self
+
+;;===== cedet by emacs self
+
+;	(global-ede-mode 1)                      ; Enable the Project management system
+;(semantic-load-enable-code-helpers)      ; Enable prototype help and smart completion 
+;(global-srecode-minor-mode 1)            ; Enable template insertion menu
+;; Enable code helpers.
+;(semantic-load-enable-code-helpers)
+;(global-semantic-mru-bookmark-mode 1)
+;(add-to-list 'load-path "~/.emacs.d/install/ecb-new-cedet")
+;(require 'ecb)
+
+
 ;;;;;;;;;;python mode 设置
 ;; python-mode settings 文件关联，自动将py后缀的文件和pyhton-mode关联
 (setq auto-mode-alist (cons '("\\.py$" . python-mode) auto-mode-alist))
@@ -232,12 +280,12 @@ interpreter-mode-alist))
 ;需要cedet
 ;;http://blog.csdn.net/pfanaya/article/details/6939310
 ;;;代码折叠
-;;;(require 'semantic-tag-folding nil 'noerror)
+;(require 'semantic-tag-folding nil 'noerror)
 ;(global-semantic-tag-folding-mode 1)
-;;;折叠和打开整个buffer的所有代码
+;;折叠和打开整个buffer的所有代码
 ;(define-key semantic-tag-folding-mode-map (kbd "C--") 'semantic-tag-folding-fold-all)
 ;(define-key semantic-tag-folding-mode-map (kbd "C-=") 'semantic-tag-folding-show-all)
-;;;折叠和打开单个buffer的所有代码
+;;折叠和打开单个buffer的所有代码
 ;(define-key semantic-tag-folding-mode-map (kbd "C-_") 'semantic-tag-folding-fold-block)
 ;(define-key semantic-tag-folding-mode-map (kbd "C-+") 'semantic-tag-folding-show-block)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
