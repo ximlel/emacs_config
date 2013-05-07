@@ -1,15 +1,9 @@
-﻿(custom-set-variables
+(custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(case-fold-search nil)
- '(ecb-directories-menu-user-extension-function (quote ignore))
- '(ecb-history-menu-user-extension-function (quote ignore))
- '(ecb-methods-menu-user-extension-function (quote ignore))
- '(ecb-options-version "2.40")
- '(ecb-sources-menu-user-extension-function (quote ignore))
- '(ede-project-directories (quote ("d:/python_workspace"))))
+ '(case-fold-search nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -17,8 +11,8 @@
  ;; If there is more than one, they won't work right.
  )
 
- (setenv "HOME" "D:/tools/emacs-24.1")
- ;;(setenv "PATH" "D:/tools/emacs-24.1") ;; 会覆盖环境变量PATH
+ (setenv "HOME" "E:/emacs-23.2")
+ ;;(setenv "PATH" "D:/tools/emacs-23.2") ;; 会覆盖环境变量PATH
  ;;set the default file path
  (setq default-directory "D:/python_workspace")
  
@@ -219,21 +213,17 @@
 ;(setq shell-file-name explicit-shell-file-name) 
 
 
-(load-file "~/.emacs.d/install/cedet-1.1/common/cedet.el")
+(load-file "~/.emacs.d/install/cedet-1.0/common/cedet.el")
 (require 'cedet)
-;;===== cedet by emacs self
 
-;;===== cedet by emacs self
-
-;	(global-ede-mode 1)                      ; Enable the Project management system
-;(semantic-load-enable-code-helpers)      ; Enable prototype help and smart completion 
-;(global-srecode-minor-mode 1)            ; Enable template insertion menu
+(global-ede-mode 1)                      ; Enable the Project management system
 ;; Enable code helpers.
-;(semantic-load-enable-code-helpers)
-;(global-semantic-mru-bookmark-mode 1)
-;(add-to-list 'load-path "~/.emacs.d/install/ecb-new-cedet")
-;(require 'ecb)
+(semantic-load-enable-code-helpers)      ; Enable prototype help and smart completion 
+(global-srecode-minor-mode 1)            ; Enable template insertion menu
+(global-semantic-mru-bookmark-mode 1)
 
+(add-to-list 'load-path "~/.emacs.d/install/ecb-2.40")
+(require 'ecb)
 
 ;;;;;;;;;;python mode 设置
 ;; python-mode settings 文件关联，自动将py后缀的文件和pyhton-mode关联
@@ -281,13 +271,13 @@ interpreter-mode-alist))
 ;;http://blog.csdn.net/pfanaya/article/details/6939310
 ;;;代码折叠
 ;(require 'semantic-tag-folding nil 'noerror)
-;(global-semantic-tag-folding-mode 1)
+(global-semantic-tag-folding-mode 1)
 ;;折叠和打开整个buffer的所有代码
-;(define-key semantic-tag-folding-mode-map (kbd "C--") 'semantic-tag-folding-fold-all)
-;(define-key semantic-tag-folding-mode-map (kbd "C-=") 'semantic-tag-folding-show-all)
+(define-key semantic-tag-folding-mode-map (kbd "C--") 'semantic-tag-folding-fold-all)
+(define-key semantic-tag-folding-mode-map (kbd "C-=") 'semantic-tag-folding-show-all)
 ;;折叠和打开单个buffer的所有代码
-;(define-key semantic-tag-folding-mode-map (kbd "C-_") 'semantic-tag-folding-fold-block)
-;(define-key semantic-tag-folding-mode-map (kbd "C-+") 'semantic-tag-folding-show-block)
+(define-key semantic-tag-folding-mode-map (kbd "C-_") 'semantic-tag-folding-fold-block)
+(define-key semantic-tag-folding-mode-map (kbd "C-+") 'semantic-tag-folding-show-block)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;(add-hook 'python-mode-hook 'my-python-hook)
 ;;(defun py-outline-level ()
