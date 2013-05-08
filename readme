@@ -1,4 +1,4 @@
-
+﻿
 使用说明
 1.windows emacs-24.1-bin-i386.zip
 2.重定向配置文件到安装目录
@@ -21,6 +21,7 @@ C:\Documents and Settings\Administrator\Application Data\.emacs
 2.
 http://www.cnblogs.com/coderzh/archive/2009/12/26/emacspythonide.html
 http://www.51testing.com/?uid-254066-action-viewspace-itemid-823103
+http://guweigang.com/2010/09/gnu/%E4%BB%8A%E5%A4%A9%E5%9F%BA%E6%9C%AC%E9%85%8D%E5%A5%BD%E4%BA%86emacs%E4%BA%86%EF%BC%81.html
 -----一些配置
 	http://blog.sina.com.cn/s/blog_7005b0de0100mz6g.html
 -----yasnippet 
@@ -75,6 +76,9 @@ http://www.51testing.com/?uid-254066-action-viewspace-itemid-823103
 	(autoload 'pymacs-apply "pymacs")
 	(autoload 'pymacs-call "pymacs")
 	(require 'pycomplete)
+-----python-mode.el
+http://blog.chinaunix.net/uid-24178755-id-60497.html	
+	
 -----cedet ecb	
 http://hi.baidu.com/dapplehou/item/05f40eb411107a9619469708
 emacs 24.x only install cedet 1.1 (not cedet 1.0.x)
@@ -93,10 +97,8 @@ if failed download ecb from //https://github.com/alexott/ecb/tree/v2_24  (new-ce
 http://linux.chinaunix.net/techdoc/desktop/2008/10/14/1038131.shtml
 http://hi.baidu.com/tiger_tnt/item/f110bdc914a53e0b0ad93a9a
 https://code.google.com/p/wlife/source/browse/wiki/Emacs.wiki?spec=svn43&r=43
-
------python-mode.el
-http://blog.chinaunix.net/uid-24178755-id-60497.html		
-
+http://www.haogongju.net/art/1887571
+file:///C:/Documents%20and%20Settings/ygao/Desktop/emacs23%E7%9A%84%E4%BD%BF%E7%94%A8.htm
 
 =============================================
 			DOWNLOAD

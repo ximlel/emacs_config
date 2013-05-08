@@ -122,7 +122,7 @@
 (setq font-lock-maximum-decoration t)
 
 ;;设置背景色为 黑色
-;(set-face-background 'default "black")
+(set-face-background 'default "black")
  ;;设置前字体色为绿色
 (set-foreground-color "green")  
 
@@ -316,6 +316,7 @@ interpreter-mode-alist))
     (w32-send-sys-command 61488))
     ;;; Maximum Windows Frame
     (w32-maximize-frame)
+	(setq initial-frame-alist '((top . 0) (left . 0) (width . 1600) (height . 900)))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
       ;;; 启动最大化窗口设置 - END
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
