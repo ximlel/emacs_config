@@ -120,3 +120,30 @@ q(uit)，退出调试
 (Pdb)alias 以一个"别名"代替"一群除错命令",有点类似 c/c++ 的 macro(详情请参考 Python Library Reference)。
 (Pdb)unalias 取消某个 alias。
 (Pdb)[!]statement 在目前的环境(context)中执行叙述。
+
+====================
+h(elp)，会打印当前版本Pdb可用的命令，如果要查询某个命令，可以输入 h [command]，例如：“h l” — 查看list命令
+l(ist)，可以列出当前将要运行的代码块
+b(reak)， 设置断点，例如 “b 77″，就是在当前脚本的77行打上断点，还能输入函数名作为参数，断点就打到具体的函数入口，如果只敲b，会显示现有的全部断点
+			b 10 / b ots.py:20 
+condition bpnumber [condition]，设置条件断点，下面语句就是对第4个断点加上条件“a==3”
+cl(ear)，如果后面带有参数，就是清除指定的断点（我在Python2.4上从来没成功过！！！）；如果不带参数就是清除所有的断点
+disable/enable，禁用/激活断点
+	disable 取消所有断点的功能,但仍然保留这些断点。
+n(ext)，让程序运行下一行
+s(tep)，跟n相似，但是如果当前有一个函数调用，那么s会进入被调用的函数体中
+c(ont(inue))，让程序正常运行，直到遇到断点
+j(ump)，让程序跳转到指定的行数
+a(rgs)，打印当前函数的参数  ---  查看全部栈内变量
+p，最有用的命令之一，打印某个变量
+!，感叹号后面跟着语句，可以直接改变某个变量
+	[!]statement 在目前的环境(context)中执行叙述
+q(uit)，退出调试
+	pp 和 p 命令类似,但是使用 pprint module
+w 列出目前call stack 中的所在层
+d 在call stack中往下移一层
+u 在call stack中往上移一层。如果在上移一层之后按下 n ,则会在上移之后的一层执行下一个叙述,之前的 function call 就自动返回
+cl 清除指定的断点。如果没有带参数,则清除所有断点
+ignore 设定断点的忽略次数。如果没指定 count,其初始 为 0。当 count 为 0 时,断点会正常动作。若有指定 count,则每次执行到该中断, count 就少 1,直到 count 数为 0
+alias 以一个"别名"代替"一群除错命令",有点类似 c/c++ 的 macro
+unalias 取消某个 alias
