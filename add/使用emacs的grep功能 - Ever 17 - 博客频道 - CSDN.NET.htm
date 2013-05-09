@@ -1,0 +1,645 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>使用emacs的grep功能 - Ever 17 - 博客频道 - CSDN.NET</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="description" content="作者：winterTTr&#160;&#160;&#160;&#160; 转载请注明emacs中的grep功能对于使用emacs的人，都希望能将很多的文本相关操作集中到emacs中。那么，文本处理常常使用的一个功能就是查找。emacs中的常用的查找换功能，包括对当前buffer进行操作的一些，例如query-replace(M-%)，isearch-forward(C-s)等等。在这里" />
+<script src="http://static.blog.csdn.net/scripts/jquery.js" type="text/javascript"></script>
+<script type="text/javascript" src="http://static.blog.csdn.net/scripts/ad.js?v=1.1"></script>
+<link rel="Stylesheet" type="text/css" href="http://static.blog.csdn.net/skin/dark1/css/style.css?v=1.1" />
+<link id="RSSLink" title="RSS" type="application/rss+xml" rel="alternate" href="/winterTTr/rss/list" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link type="text/css" rel="stylesheet" href="http://static.blog.csdn.net/scripts/SyntaxHighlighter/styles/blue.css" />
+</head>
+<body>
+<script src="http://csdnimg.cn/pubnav/js/pub_topnav_2011.js"type="text/javascript"></script>
+
+<div id="container">
+<div id="header">
+    <div class="header">
+        <div id="blog_title">
+            <h1><a href="/winterTTr">Ever 17</a></h1>
+            <h2></h2>
+            <div class="clear"></div>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+<div id="navigator">
+    <div class="navigator_bg"></div>
+    <div class="navigator">
+        <ul>
+            <li id="btnContents"><a href="/winterTTr?viewmode=contents"><span><img src="http://static.blog.csdn.net/images/ico_list.gif">目录视图</span></a></li>
+            <li id="btnView"><a href="/winterTTr?viewmode=list"><span><img src="http://static.blog.csdn.net/images/ico_summary.gif">摘要视图</span></a></li>
+            <li id="btnRss"><a href="/winterTTr/rss/list"><span><img src="http://static.blog.csdn.net/images/ico_rss.gif">订阅</span></a></li>
+</ul>
+    </div>
+</div>
+<script type="text/javascript">
+    var username = "winterTTr";
+    var _blogger = username;
+    var blog_address = "http://blog.csdn.net/winterttr";
+    var static_host = "http://static.blog.csdn.net";
+    var currentUserName = "";
+</script>
+
+<div id="body">
+<div id="main">
+<div class="main">
+<div class="notice"> 
+
+<a href="http://events.csdn.net/DR2013/roadshow/index.html" target="_blank">
+<font color=red>【免费有礼】欧美最新网络营销技巧分享 
+   </font></a>
+
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+<a href="http://blog.csdn.net/l09196891/article/details/8845828" target="_blank"><font color=blue>博客导入工具
+</font></a>
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+
+<a href="http://blog.csdn.net/blogdevteam/article/details/8863634" target="_blank"><font color=red>【限时优惠】第五届云计算大会社区门票抢购
+
+
+
+
+</font></a>
+
+<br />
+
+
+
+
+
+<a href="http://events.csdn.net/wy/APC/invite.html
+"target="_blank">
+<font color=red>探究云计算数据中心节能增效之道
+
+
+ </font></a>
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+
+<a href="http://www.csdn.net/article/2013-05-02/2815118 "target="_blank">
+<font color=red>专访邓凡平：Android开发路上的快速学习之道
+ </font></a>
+
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+
+<a href="http://blog.csdn.net/blogdevteam/article/details/8853291"target="_blank">
+<font color=blue>CSDN博客第二期最佳移动开发博主评选
+ </font></a>
+
+
+
+
+</div>
+<div id="article_details" class="details">
+    <div class="article_title">
+    <span class="ico ico_type_Original"></span>
+    <h3>
+        <span class="link_title"><a href="/winterttr/article/details/7348279">
+        使用emacs的grep功能
+        </a></span>
+    </h3>
+</div>
+
+        
+    <div class="article_manage">
+        <span class="link_categories">
+        分类：
+            <a href="/winterTTr/article/category/1081035">emacs</a> 
+        </span>
+    <span class="link_postdate">2012-03-13 12:45</span>
+    <span class="link_view" title="阅读次数">762人阅读</span>
+    <span class="link_comments" title="评论次数"><a href="#comments">评论</a>(0)</span>
+    <span class="link_collect"><a href="javascript:void(0);" onclick="javascript:collectArticle('使用emacs的grep功能','7348279');return false;" title="收藏">收藏</a></span>
+    <span class="link_report"><a href="#report"  onclick="javascript:report(7348279,2);return false;" title="举报">举报</a></span>
+    
+</div>
+<div class="tag2box"><a href='http://blog.csdn.net/tag/details.html?tag=emacs' target=_blank>emacs</a><a href='http://blog.csdn.net/tag/details.html?tag=windows' target=_blank>windows</a><a href='http://blog.csdn.net/tag/details.html?tag=patch' target=_blank>patch</a><a href='http://blog.csdn.net/tag/details.html?tag=autoload' target=_blank>autoload</a><a href='http://blog.csdn.net/tag/details.html?tag=buffer' target=_blank>buffer</a><a href='http://blog.csdn.net/tag/details.html?tag=shell' target=_blank>shell</a></div>
+
+
+    
+<div id="article_content" class="article_content">
+
+<p>作者：winterTTr&nbsp;&nbsp;&nbsp;&nbsp; 转载请注明</p>
+<p><br>
+</p>
+<h3>emacs中的grep功能</h3>
+<p><br>
+</p>
+<p>对于使用emacs的人，都希望能将很多的文本相关操作集中到emacs中。那么，文<br>
+本处理常常使用的一个功能就是&quot;查找&quot;。<br>
+<br>
+emacs中的常用的查找换功能，包括对当前buffer进行操作的一些，例如<br>
+query-replace(M-%)，isearch-forward(C-s)等等。<br>
+<br>
+在这里，我们介绍的不是emacs中对当前buffer进行的查找和替换工作，而是介绍<br>
+对目录树中的多文件进行查找的功能，那就是grep系列的命令。<br>
+<br>
+我想任何一个使用过linux系列系统的人，对find和grep命令肯定不会陌生。在<br>
+emacs中的grep系列的命令，正是对find和grep命令的包装。配合这些函数，我们<br>
+能实现快捷的文件内容搜索功能。<br>
+<br>
+grep系列的命令包含很多个，这里简单介绍一些常用的：</p>
+<p><br>
+</p>
+<ul>
+<li>grep-find</li></ul>
+<p>这个命令是根据grep-find-command来调用find执行grep的。</p>
+<p>前面是调用的命令，运行时会将光标放在后面（34）标记的位置让你继续输入，然后执行相应的命令。<br>
+</p>
+<p></p>
+<pre name="code" class="plain">(&quot;find . -type f -exec grep -nH -e  {} \&quot;;\&quot;&quot; . 34)</pre><br>
+<br>
+<p></p>
+<ul>
+<li>rgrep</li></ul>
+<p>这个也是我个人使用的最多的一个，用来递归的对目录树进行文件内容查找。<br>
+它使用grep-find-template进行命令的调用，在我这里，template的内容为:</p>
+<p></p>
+<pre name="code" class="plain">&quot;find . &lt;X&gt; -type f &lt;F&gt; -exec grep &lt;C&gt; -nH -e &lt;R&gt; {} \&quot;;\&quot;&quot;</pre>之所以使用这个最多，主要问题是，emacs对这个命令的调用中，会附加非常丰<br>
+<p>富的过滤信息，这样可以过滤掉非常多的不必要的文件。例如：</p>
+<p><pre name="code" class="plain">find . &quot;(&quot; -path &quot;*/SCCS&quot; -o -path &quot;*/RCS&quot; -o -path &quot;*/CVS&quot; -o -path &quot;*/MCVS&quot; -o -path &quot;*/.svn&quot; -o -path &quot;*/.git&quot; -o -path &quot;*/.hg&quot; -o -path &quot;*/.bzr&quot; -o -path &quot;*/_MTN&quot; -o -path &quot;*/_darcs&quot; -o -path &quot;*/{arch}&quot; &quot;)&quot; -prune -o &quot;(&quot; -name &quot;.#*&quot; -o -name &quot;*.o&quot; -o -name &quot;*~&quot; -o -name &quot;*.bin&quot; -o -name &quot;*.bak&quot; -o -name &quot;*.obj&quot; -o -name &quot;*.map&quot; -o -name &quot;*.ico&quot; -o -name &quot;*.pif&quot; -o -name &quot;*.lnk&quot; -o -name &quot;*.a&quot; -o -name &quot;*.ln&quot; -o -name &quot;*.blg&quot; -o -name &quot;*.bbl&quot; -o -name &quot;*.dll&quot; -o -name &quot;*.drv&quot; -o -name &quot;*.vxd&quot; -o -name &quot;*.386&quot; -o -name &quot;*.elc&quot; -o -name &quot;*.lof&quot; -o -name &quot;*.glo&quot; -o -name &quot;*.idx&quot; -o -name &quot;*.lot&quot; -o -name &quot;*.fmt&quot; -o -name &quot;*.tfm&quot; -o -name &quot;*.class&quot; -o -name &quot;*.fas&quot; -o -name &quot;*.lib&quot; -o -name &quot;*.mem&quot; -o -name &quot;*.x86f&quot; -o -name &quot;*.sparcf&quot; -o -name &quot;*.dfsl&quot; -o -name &quot;*.pfsl&quot; -o -name &quot;*.d64fsl&quot; -o -name &quot;*.p64fsl&quot; -o -name &quot;*.lx64fsl&quot; -o -name &quot;*.lx32fsl&quot; -o -name &quot;*.dx64fsl&quot; -o -name &quot;*.dx32fsl&quot; -o -name &quot;*.fx64fsl&quot; -o -name &quot;*.fx32fsl&quot; -o -name &quot;*.sx64fsl&quot; -o -name &quot;*.sx32fsl&quot; -o -name &quot;*.wx64fsl&quot; -o -name &quot;*.wx32fsl&quot; -o -name &quot;*.fasl&quot; -o -name &quot;*.ufsl&quot; -o -name &quot;*.fsl&quot; -o -name &quot;*.dxl&quot; -o -name &quot;*.lo&quot; -o -name &quot;*.la&quot; -o -name &quot;*.gmo&quot; -o -name &quot;*.mo&quot; -o -name &quot;*.toc&quot; -o -name &quot;*.aux&quot; -o -name &quot;*.cp&quot; -o -name &quot;*.fn&quot; -o -name &quot;*.ky&quot; -o -name &quot;*.pg&quot; -o -name &quot;*.tp&quot; -o -name &quot;*.vr&quot; -o -name &quot;*.cps&quot; -o -name &quot;*.fns&quot; -o -name &quot;*.kys&quot; -o -name &quot;*.pgs&quot; -o -name &quot;*.tps&quot; -o -name &quot;*.vrs&quot; -o -name &quot;*.pyc&quot; -o -name &quot;*.pyo&quot; &quot;)&quot; -prune -o  -type f &quot;(&quot; -iname &quot;*.el&quot; &quot;)&quot; -exec grep -i -nH -e ^&quot;\^&quot;autoload\^&quot;^&quot; {} &quot;;&quot;</pre><br>
+<br>
+</p>
+<p></p>
+<p><br>
+</p>
+<h3>emacs中grep的一些相关配置</h3>
+<p>当然对于这些grep的使用中，我们常常会需要对很多特定的功能进行定制。最常<br>
+用的就是对find和grep命令执行路径的定制。<br>
+<br>
+grep中也提供了用来定制grep相关功能的命令，例如，我要制定grep和find命令的位置：</p>
+<p></p>
+<pre name="code" class="plain">(require 'grep)
+(setq grep-program &quot;C:\\some-path\\grep.exe&quot;)
+(setq find-program &quot;C:\\other-path\\find.exe&quot;)</pre><br>
+当然，我们可以按照自己的想法去定制单个命令的模板：
+<p></p>
+<p></p>
+<pre name="code" class="plain">(require 'grep)
+(grep-apply-setting
+ 'grep-find-command
+ '(&quot;E:/Tools/Emacs/bin/find.exe . -type f -exec E:/Tools/Emacs/bin/grep.exe -nH -ie  {} NUL \&quot;;\&quot;&quot; . 80 ) )
+(grep-apply-setting
+ 'grep-command
+ &quot;E:/Tools/Emacs/bin/grep.exe -nH -ie &quot;)
+(grep-apply-setting
+ 'grep-find-template
+ &quot;E:/Tools/Emacs/bin/find.exe . &lt;X&gt; -type f &lt;F&gt; -exec E:/Tools/Emacs/bin/grep.exe &lt;C&gt; -nH -ie &lt;R&gt; {} NUL \&quot;;\&quot;&quot; )</pre><br>
+其实，在这里我虽然列举了办法，我并不建议大家去改动这些默认模板的规则，<br>
+因为预定制的很多功能我感觉都非常的不错。而且，原本我需要改变这些规则的<br>
+原因，因为在windows下，他们无法找到相应的命令。
+<p></p>
+<p><br>
+</p>
+<h3>在windows下使用emacs中grep功能</h3>
+<p>下面介绍一下，我在windows中使用emacs功能的一些经验，希望为很多走弯路的朋友提供一些帮助。</p>
+<p><br>
+</p>
+<ul>
+<li>定制exec和PATH来代替改变grep|find-program</li></ul>
+<p></p>
+<p>当然，这条其实多少是一个我个人的习惯，我比较习惯尽量通过构造正确的环<br>
+境，让emacs的中的功能能够完整运行，而不是通过改变很多内部变量的设定。<br>
+<br>
+&nbsp; 所以，我推荐将find和grep命令加入emacs的命令查找路径中，这样我们就可以<br>
+&nbsp; 完全不用指定任何的find和grep命令的具体路径，就可以正确的调用grep的相<br>
+&nbsp; 关命令了。</p>
+<pre name="code" class="plain">(wttr/prepend-to-exec-path &quot;directory-of-your-grep-and-find&quot;)</pre><br>
+具体命令的实现，查看<a href="https://github.com/winterTTr/emacs-of-winterTTr/blob/master/.emacs.d/wttr-config/wttr-utils.el">我的一些工具函数</a>。
+<p>有关更多的环境变量的设置解释，可以参考这里<a href="http://blog.csdn.net/winterttr/article/details/7273283">emacs调用外部命令的环境设置</a> 。</p>
+<br>
+<ul>
+<li>使用特定的grep风&#26684;</li></ul>
+<p>关于使用哪种风&#26684;，其实没有什么特定的定论，但是在windows下，介于find配<br>
+&nbsp; 合xargs有时候常常出现各种各样的问题，例如：cannot fork等等。所以，我<br>
+&nbsp; 建议尽量使用exec的风&#26684;。</p>
+<p>所谓的风&#26684;就是运行grep的各种常用的方式，可以查看grep-find-use-xargs变量来</p>
+<p>得到更多的帮助。例如：</p>
+<p><pre name="code" class="plain">If `exec', use `find -exec {} ;'.
+If `exec-plus' use `find -exec {} +'.
+If `gnu', use `find -print0' and `xargs -0'.
+Any other value means to use `find -print' and `xargs'.</pre><br>
+<br>
+&nbsp; 我的设置如下：</p>
+<p></p>
+<pre name="code" class="plain">(require 'grep)
+(grep-apply-setting
+ 'grep-find-use-xargs 'exec)</pre>
+<p><span style="font-weight:bold">至于为什么使用这种设定，更多的是因为windows的原因</span>。在windows中，单独使用</p>
+<p>grep来进行查找存在俩个问题：</p>
+<p>1. grep查找是不能区分文件名的大小写的，我就遇到过怎么都找不到txt文件中的内容</p>
+<p>&nbsp;&nbsp;&nbsp; 然后发现，原来是因为实际的文件名是TXT。而find使用的是iname参数，可以使用</p>
+<p>&nbsp;&nbsp;&nbsp; 大小写不敏感的文件名。</p>
+<p>2. grep在windows下，shell对文件名通配符的解析是有问题的。</p>
+<p>&nbsp;&nbsp;&nbsp; 例如: grep -r -i -nH -e &quot;text&quot; *.html</p>
+<p>&nbsp;&nbsp;&nbsp; 即便子目录里面有*.html文件并且包含text，这样仍旧是会失败的，报错找不到文件。</p>
+<p>&nbsp;&nbsp;&nbsp; 原因我推荐是因为首先*.html被shell在当前目录下展开，结果没有任何文件符合。</p>
+<p>&nbsp;&nbsp;&nbsp; 然后再传给grep，结果grep发现没有任何输入文件，于是失败。这个问题，仍旧可以用</p>
+<p>&nbsp;&nbsp; find的结合grep的方式解决。</p>
+<p><br>
+</p>
+<p>当然，使用find&#43;grep的方式，也是有缺点的，那就是慢。这点非常的明显，可能是因为</p>
+<p>每个文件都需要fork一个grep子进程来进行查找的原因，不过，可用性和效率，非要选一个</p>
+<p>的话，我还是先选择可用吧，然后再说效率问题，呵呵。<br>
+</p>
+<p></p>
+<ul>
+<li>windows下的find和grep命令去哪里找</li></ul>
+<p>虽然这个本身并不是个大问题，但是在实际中，的确发现常常很多人去问这个问题。<br>
+<br>
+我建议使用unxUtils，里面包含了非常多的常用命令，基本上可以说一劳永逸。<br>
+而且，其他版本的find&#20284;乎存在一点问题，但是在这个版本中并没有存在。<br>
+下载地址 <a href="http://unxutils.sourceforge.net/">http://unxutils.sourceforge.net/</a></p>
+<p><br>
+</p>
+<ul>
+<li>我个人的一个patch<br>
+</li></ul>
+我的经验，在windows下使用find结合exec风&#26684;配合grep，偶尔总会出现问题。<br>
+&nbsp; 这让我对grep这个查找的结果常常非常怀疑，经过一段时间的调查，我想我发<br>
+&nbsp; 现了问题的所在。<br>
+<br>
+<p>&nbsp; 据个例子，例如我有如下的命令被emacs调用：</p>
+<p></p>
+<pre name="code" class="plain">find . -iname &quot;*.cpp&quot; -exec grep -i -nH -e &quot;text *&quot; {} ;</pre><br>
+当find找出文件名然后fork出来grep对文件进行查找的时候，fork出来的的<br>
+&nbsp; grep的命令行是如下的形式：
+<p></p>
+<p></p>
+<pre name="code" class="plain">grep -i -nH -e text * &lt;some-file-name-from-find&gt;</pre><br>
+我们可以发现，原本的命令行引号被省略掉了，但是这样会造成grep命令的<br>
+&nbsp; 调用结果不正确了。介于给出find本身的patch不知道是否会引起其他的调用问<br>
+&nbsp; 题，而且需要重新编译，所以我利用advise的功能，直接在emacs中hack它的调<br>
+&nbsp; 用方式，很简单，就是多给他一层引号。
+<p></p>
+<p><br>
+</p>
+<p></p>
+<pre name="code" class="plain">(defadvice grep-expand-template (around grep-expand-template-w32-around (template &amp;optional regexp files dir excl))
+  &quot;A patch for the windows system, as the [find . -iname \&quot;balabala\&quot; -exec grep \&quot;grep-bala\&quot; {} ;] will
+result as a seperate windows process [grep grep-balaba file-name-from-find].
+When grep-bala contains *, this will lead to very wierd result as the paramter is not quoted in new process.
+So I patch it.&quot;
+  (if (string-match-p &quot;find.*grep&quot; template)
+      (let ((regexp (format &quot;\&quot;%s\&quot;&quot; regexp)))
+        ad-do-it)
+      ad-do-it))
+(ad-activate 'grep-expand-template)</pre><br>
+<br>
+<p></p>
+<p>以上~~<br>
+</p>
+<p><br>
+</p>
+<p><br>
+</p>
+
+</div>
+
+<div class="share_buttons" id="sharePanel"></div>
+<!--192.168.1.237-->
+<div class="article_next_prev">
+    <li class="prev_article"><span>上一篇：</span><a href="/winterttr/article/details/7273345">emacs下使用clang补全C++</a></li>
+    <li class="next_article"><span>下一篇：</span><a href="/winterttr/article/details/7524336">emacs中使用auto-complete的详细设置</a></li>
+</div>
+
+
+            <div id="digg" ArticleId="7348279">
+            <dl id="btnDigg" class="digg digg_disable">
+                <dt>顶</dt>
+                <dd>0</dd>
+            </dl>
+            <dl id="btnBury" class="digg digg_disable">
+                <dt>踩</dt>
+                <dd>0</dd>
+            </dl>
+        </div>
+
+</div>
+<div id="ad_cen">
+<script type="text/javascript" >BAIDU_CLB_SLOT_ID = "117306";</script>
+<script type="text/javascript" src="http://cbjs.baidu.com/js/o.js"></script>
+</div>
+<script type="text/javascript">
+    //new Ad(4, 'ad_cen');
+</script>
+<div id="comment_title" class="panel_head">查看评论<a name="comments"></a></div>
+<div id="comment_list"></div>
+<div id="comment_bar"></div>
+<div id="comment_form"></div>
+<div class="announce">* 以上用户言论只代表其个人观点，不代表CSDN网站的观点或立场<a name="reply"></a><a name="quote"></a></div>
+<script type="text/javascript">
+    var fileName = '7348279';
+    var commentscount = 0;
+    var islock = false
+</script>
+<script type="text/javascript" src="http://static.blog.csdn.net/scripts/comment.js"></script>
+<div id="ad_bot"></div>
+<script type="text/javascript">
+    new Ad(5, 'ad_bot');
+</script>
+<div id="report_dialog"></div>
+
+<div id="d-top" style="display:none;">
+<a id="d-top-a" href="#" title="回到顶部">
+<img src="http://static.blog.csdn.net/images/top.png" alt="TOP" /></a>
+</div>
+<script type="text/javascript">
+    $(function(){
+        var d_top=$('#d-top');
+        document.onscroll=function(){
+            var scrTop=(document.body.scrollTop||document.documentElement.scrollTop);
+            if(scrTop>500){
+                d_top.show();
+            }else{
+                d_top.hide();
+            }
+        }
+        $('#d-top-a').click(function(){
+            scrollTo(0,0);
+            this.blur();
+            return false;
+        });
+    });
+</script>
+
+<div class="clear"></div>
+</div>
+</div>
+
+<div id="side">
+<div class="side">
+<div id="panel_Profile" class="panel">
+<ul class="panel_head"><span>个人资料</span></ul>
+<ul class="panel_body profile">
+<div id="blog_userface">
+    <a href="http://my.csdn.net/winterTTr" target="_blank">
+    <img src="http://avatar.csdn.net/2/5/0/1_winterttr.jpg" title="访问我的空间" style="max-width:90%"/>
+    </a>
+    <br />
+    <span><a href="http://my.csdn.net/winterTTr" class="user_name" target="_blank">winterTTr</a></span>
+</div>
+<div class="interact">
+<a href="javascript:void(0);" class="attent" id="span_add_follow" title="[加关注]"></a>
+<a href="javascript:void(0);" class="letter" onclick="loginto(1)" title="[发私信]"></a>
+</div>
+<div id="blog_medal">
+</div>
+<ul id="blog_rank">
+    <li>访问：<span>48407次</span></li>
+    <li>积分：<span>881分</span></li>
+    <li>排名：<span>第11921名</span></li>
+</ul>
+<ul id="blog_statistics">
+    <li>原创：<span>38篇</span></li>
+    <li>转载：<span>7篇</span></li>
+    <li>译文：<span>3篇</span></li>
+    <li>评论：<span>32条</span></li>
+</ul>
+</ul>
+</div>
+
+
+
+<div class="panel" id="panel_Search">
+    <ul class="panel_head"><span>文章搜索</span></ul>
+    <ul class="panel_body">
+        <form id="frmSearch" action="http://so.csdn.net/search" class="form_search" target="_blank">
+        <span><input id="inputSearch" type="text" class="blogsearch" title="请输入关键字" /></span>
+        <input id="btnSubmit" type="submit" value="搜索" title="search in blog" />
+        <input type="hidden" name="q" id="inputQ" />
+        <input type="hidden" name="t" value="blog" />
+        <a id="btnSearchBlog" target="_blank"></a>
+        </form>
+    </ul>
+</div><div id="panel_Category" class="panel">
+<ul class="panel_head"><span>文章分类</span></ul>
+<ul class="panel_body">
+<li>
+<a href="http://blog.csdn.net/winterttr/article/category/675430">C++</a><span>(17)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/winterttr/article/category/788048">javascript</a><span>(1)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/winterttr/article/category/803397">lisp</a><span>(3)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/winterttr/article/category/419043">python</a><span>(10)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/winterttr/article/category/698797">sqlite</a><span>(1)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/winterttr/article/category/580175">STL Boost</a><span>(10)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/winterttr/article/category/444899">Win32</a><span>(4)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/winterttr/article/category/736720">wxWidget</a><span>(2)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/winterttr/article/category/735539">工具使用</a><span>(1)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/winterttr/article/category/555637">模式模式</a><span>(0)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/winterttr/article/category/681406">汇编相关</a><span>(1)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/winterttr/article/category/731560">浏览器开发</a><span>(2)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/winterttr/article/category/1056746">git</a><span>(1)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/winterttr/article/category/1080395">F#</a><span>(1)</span>
+</li>
+<li>
+<a href="http://blog.csdn.net/winterttr/article/category/1081035">emacs</a><span>(4)</span>
+</li>
+</ul>
+</div><div id="panel_Archive" class="panel">
+<ul class="panel_head"><span>文章存档</span></ul>
+<ul class="panel_body">
+<div id="archive_list">
+<!--归档统计-->
+<li><a href="http://blog.csdn.net/winterttr/article/month/2012/04">2012年04月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/winterttr/article/month/2012/03">2012年03月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/winterttr/article/month/2012/02">2012年02月</a><span>(3)</span></li><li><a href="http://blog.csdn.net/winterttr/article/month/2011/12">2011年12月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/winterttr/article/month/2011/05">2011年05月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/winterttr/article/month/2011/04">2011年04月</a><span>(2)</span></li><li><a href="http://blog.csdn.net/winterttr/article/month/2011/03">2011年03月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/winterttr/article/month/2011/02">2011年02月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/winterttr/article/month/2010/09">2010年09月</a><span>(5)</span></li><li><a href="http://blog.csdn.net/winterttr/article/month/2010/07">2010年07月</a><span>(2)</span></li><li><a href="http://blog.csdn.net/winterttr/article/month/2010/06">2010年06月</a><span>(2)</span></li><li><a href="http://blog.csdn.net/winterttr/article/month/2010/05">2010年05月</a><span>(2)</span></li><li><a href="http://blog.csdn.net/winterttr/article/month/2010/04">2010年04月</a><span>(13)</span></li><li><a href="http://blog.csdn.net/winterttr/article/month/2009/08">2009年08月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/winterttr/article/month/2009/03">2009年03月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/winterttr/article/month/2009/02">2009年02月</a><span>(3)</span></li><li><a href="http://blog.csdn.net/winterttr/article/month/2008/08">2008年08月</a><span>(3)</span></li><li><a href="http://blog.csdn.net/winterttr/article/month/2008/07">2008年07月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/winterttr/article/month/2008/06">2008年06月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/winterttr/article/month/2005/10">2005年10月</a><span>(3)</span></li>
+</div>
+</ul>
+</div>
+<div id="hotarticls" class="panel">
+<ul class="panel_head"><span>阅读排行</span></ul>
+<ul class="panel_body itemlist">
+<li>
+<a href="/winterttr/article/details/2590741" title="Python的函数参数传递：传值？引用？">Python的函数参数传递：传值？引用？</a><span>(14702)</span>
+</li>
+<li>
+<a href="/winterttr/article/details/7273345" title="emacs下使用clang补全C++">emacs下使用clang补全C++</a><span>(3739)</span>
+</li>
+<li>
+<a href="/winterttr/article/details/4446860" title="C++ STL IO流 与 Unicode (UTF-16 UTF-8) 的协同工作（转载）">C++ STL IO流 与 Unicode (UTF-16 UTF-8) 的协同工作（转载）</a><span>(2288)</span>
+</li>
+<li>
+<a href="/winterttr/article/details/514027" title="修改右键菜单">修改右键菜单</a><span>(2007)</span>
+</li>
+<li>
+<a href="/winterttr/article/details/7524336" title="emacs中使用auto-complete的详细设置">emacs中使用auto-complete的详细设置</a><span>(1399)</span>
+</li>
+<li>
+<a href="/winterttr/article/details/5546832" title="C++菱形继承内存深度探究">C++菱形继承内存深度探究</a><span>(1298)</span>
+</li>
+<li>
+<a href="/winterttr/article/details/6329776" title="小议common lisp程序开发流程">小议common lisp程序开发流程</a><span>(1087)</span>
+</li>
+<li>
+<a href="/winterttr/article/details/2662995" title="Python+ctypes 列举进程信息">Python+ctypes 列举进程信息</a><span>(1082)</span>
+</li>
+<li>
+<a href="/winterttr/article/details/6290211" title="ccl命令行运行lisp脚本">ccl命令行运行lisp脚本</a><span>(1058)</span>
+</li>
+<li>
+<a href="/winterttr/article/details/7348279" title="使用emacs的grep功能">使用emacs的grep功能</a><span>(762)</span>
+</li>
+</ul>
+</div>
+<div id="hotarticls2" class="panel">
+<ul class="panel_head"><span>评论排行</span></ul>
+<ul class="panel_body itemlist">
+<li>
+<a href="/winterttr/article/details/2590741" title="Python的函数参数传递：传值？引用？">Python的函数参数传递：传值？引用？</a><span>(13)</span>
+</li>
+<li>
+<a href="/winterttr/article/details/7273345" title="emacs下使用clang补全C++">emacs下使用clang补全C++</a><span>(7)</span>
+</li>
+<li>
+<a href="/winterttr/article/details/4446860" title="C++ STL IO流 与 Unicode (UTF-16 UTF-8) 的协同工作（转载）">C++ STL IO流 与 Unicode (UTF-16 UTF-8) 的协同工作（转载）</a><span>(2)</span>
+</li>
+<li>
+<a href="/winterttr/article/details/6290211" title="ccl命令行运行lisp脚本">ccl命令行运行lisp脚本</a><span>(2)</span>
+</li>
+<li>
+<a href="/winterttr/article/details/5520133" title="初始化函数中的虚函数调用（ C++ vs python ）">初始化函数中的虚函数调用（ C++ vs python ）</a><span>(2)</span>
+</li>
+<li>
+<a href="/winterttr/article/details/6329776" title="小议common lisp程序开发流程">小议common lisp程序开发流程</a><span>(2)</span>
+</li>
+<li>
+<a href="/winterttr/article/details/7524336" title="emacs中使用auto-complete的详细设置">emacs中使用auto-complete的详细设置</a><span>(1)</span>
+</li>
+<li>
+<a href="/winterttr/article/details/6202182" title="js字符串和二进制列表的相互转换">js字符串和二进制列表的相互转换</a><span>(1)</span>
+</li>
+<li>
+<a href="/winterttr/article/details/6300536" title="clozure common lisp命令行运行脚本解决方案">clozure common lisp命令行运行脚本解决方案</a><span>(1)</span>
+</li>
+<li>
+<a href="/winterttr/article/details/5505599" title="STL学习笔记 ---- 神秘的auto_ptr">STL学习笔记 ---- 神秘的auto_ptr</a><span>(1)</span>
+</li>
+</ul>
+</div>
+<div id="homepageArticles" class="panel">
+<ul class="panel_head"><span>推荐文章</span></ul>
+<ul class="panel_body" id="ad_commend"></ul>
+</div>
+<script type="text/javascript">
+ new Ad(12, 'ad_commend');
+</script><div id="newcomments" class="panel">
+<ul class="panel_head"><span>最新评论</span></ul>
+<ul class="panel_body itemlist">
+    <li>
+    <a href="/winterTTr/article/details/6202182#comments">js字符串和二进制列表的相互转换</a>
+    <p style="margin:0px;"><a href="/xuanyewufeng" class="user_name">xuanyewufeng</a>:
+mark
+    </p>
+    </li>
+    <li>
+    <a href="/winterTTr/article/details/2590741#comments">Python的函数参数传递：传值？引用？</a>
+    <p style="margin:0px;"><a href="/ultrahook" class="user_name">ultrahook</a>:
+感谢分享！
+    </p>
+    </li>
+    <li>
+    <a href="/winterTTr/article/details/2590741#comments">Python的函数参数传递：传值？引用？</a>
+    <p style="margin:0px;"><a href="/laike9m" class="user_name">laike9m</a>:
+5555真后悔没早点看到这篇文章
+    </p>
+    </li>
+    <li>
+    <a href="/winterTTr/article/details/2590741#comments">Python的函数参数传递：传值？引用？</a>
+    <p style="margin:0px;"><a href="/sonyicn" class="user_name">sonyicn</a>:
+写得真好，解决了我的困惑
+    </p>
+    </li>
+    <li>
+    <a href="/winterTTr/article/details/7273345#comments">emacs下使用clang补全C++</a>
+    <p style="margin:0px;"><a href="/voiceofamerica" class="user_name">voiceofamerica</a>:
+按照你的方法设了，但补全的时候报下面这个错：apply: Invalid argument 3 of...
+    </p>
+    </li>
+    <li>
+    <a href="/winterTTr/article/details/7273345#comments">emacs下使用clang补全C++</a>
+    <p style="margin:0px;"><a href="/liuahai520" class="user_name">liuahai520</a>:
+你好，请问你的自动补全参数是怎么补全的，我的没有函数参数补全，请赐教
+    </p>
+    </li>
+    <li>
+    <a href="/winterTTr/article/details/2590741#comments">Python的函数参数传递：传值？引用？</a>
+    <p style="margin:0px;"><a href="/liushuaikobe" class="user_name">liushuaikobe</a>:
+写得好！！！
+    </p>
+    </li>
+    <li>
+    <a href="/winterTTr/article/details/2590741#comments">Python的函数参数传递：传值？引用？</a>
+    <p style="margin:0px;"><a href="/summer_lee" class="user_name">summer_lee</a>:
+楼主解答了我的困惑
+    </p>
+    </li>
+    <li>
+    <a href="/winterTTr/article/details/7273345#comments">emacs下使用clang补全C++</a>
+    <p style="margin:0px;"><a href="/maerceci" class="user_name">maerceci</a>:
+lz你的emacs颜色是怎么配的，貌似很好看啊
+    </p>
+    </li>
+    <li>
+    <a href="/winterTTr/article/details/7524336#comments">emacs中使用auto-complete的详细设置</a>
+    <p style="margin:0px;"><a href="/acaaka" class="user_name">acaaka</a>:
+关于与yasnippet相兼容它们的tab冲突你的意思是auto-complete 里面有处理这个问...
+    </p>
+    </li>
+</ul>
+</div>
+</div>
+<div class="clear"></div>
+</div>
+
+<div class="clear"></div>
+</div>
+
+<script type="text/javascript" src="http://static.blog.csdn.net/scripts/newblog.min.js?v=1.1"></script>
+<script type="text/javascript" src="http://medal.blog.csdn.net/showblogmedal.ashx?blogid=95070"></script>
+
+<script type="text/javascript">
+document.write('<script type="text/javascript" src="http://csdnimg.cn/pubfooter/js/publib_footer.js?' + Math.floor(new Date()/120000).toString(36) + '="></'+'script>');
+</script>
+
+<script type="text/javascript" src="http://passport.csdn.net/content/loginbox/login.js"></script>
+<script type="text/javascript">document.write("<img src=http://counter.csdn.net/pv.aspx?id=24 border=0 width=0 height=0>");</script>
+<script type="text/javascript" src="http://www.csdn.net/ui/scripts/Csdn/counter.js?v=1"></script>
+
+
+<script type="text/javascript" src="http://ad.csdn.net/scripts/ad-blog.js"></script>
+
+</div>
+</body>
+</html>
