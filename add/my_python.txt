@@ -1,0 +1,34 @@
+1.manual
+    example: shutil
+    help(shutil)    -- in pdb : pp help(shutil)
+    shutil.__all__  -- same in pdb
+    shutil.__doc__  -- same in pdb
+2.Queue
+    import Queue, threading
+    The Queue module implements multi-producer, multi-consumer queues.see the threading module.
+    FIFO,LIFO,PriorityQueue
+    Queue.get([block[, timeout]])
+    Queue.put(item[, block[, timeout]])
+    Queue.task_done()
+    Queue.join()
+
+3.lxml
+    import xml.etree.ElementTree as ET			-- error?
+    import xml.dom.minidom as minidom
+    from lxml import etree as ET
+    etree.parse()
+	doc = ET.parse(filename)
+	doc.getroot().attrib['width'] = '1600px';   -- change attribute
+	
+4.print class info
+    class Friend():
+    def __init__(self, name):
+    self.name = name
+
+    def __str__(self):
+    return "Friend : %s" % self.name
+
+    if __name__ == '__main__':
+    friend = Friend('Liang')
+    print friend
+    output >> Friend name : Liang

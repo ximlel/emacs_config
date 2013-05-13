@@ -43,7 +43,7 @@
 '(progn
 (color-theme-initialize)
 (color-theme-gnome2))) ;;what ever you like, I like color-theme-gnome2
-;;(color-theme-robin-hood)))
+;(color-theme-robin-hood)))
 
 ;; 关闭提示音
 (setq visible-bell t)
@@ -212,6 +212,7 @@
 ;;; For subprocesses invoked via the shell                                       
 ;;; (e.g., "shell -c command")                                                   
 ;(setq shell-file-name explicit-shell-file-name) 
+;(add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
 
 
 (load-file "~/.emacs.d/install/cedet-1.0/common/cedet.el")

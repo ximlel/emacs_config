@@ -93,6 +93,10 @@ if failed download ecb from //https://github.com/alexott/ecb/tree/v2_24  (new-ce
 (add-to-list 'load-path "D:\\emacs-22.3-bin-i386\\emacs-22.3\\myLisp\\ecb-2.32")
 (require 'ecb)
 
+----- cygwin
+Cygwin Customizations
+http://www.khngai.com/emacs/cygwin.php
+
 // .emacs
 http://linux.chinaunix.net/techdoc/desktop/2008/10/14/1038131.shtml
 http://hi.baidu.com/tiger_tnt/item/f110bdc914a53e0b0ad93a9a
