@@ -1,4 +1,4 @@
-(custom-set-variables
+﻿(custom-set-variables
   ;; custom-set-variables was added by Custom.
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
@@ -168,17 +168,34 @@
 (add-hook 'emacs-lisp-mode-hook 'hs-minor-mode)
 
 ;; 中文配置
-(set-language-environment 'Chinese-GB)
-(set-keyboard-coding-system 'euc-cn)
-(set-clipboard-coding-system 'euc-cn)
-(set-terminal-coding-system 'euc-cn)
-(set-buffer-file-coding-system 'euc-cn)
-(set-selection-coding-system 'euc-cn)
-(modify-coding-system-alist 'process "*" 'euc-cn)
-(setq default-process-coding-system 
-	'(euc-cn . euc-cn))
-(setq-default pathname-coding-system 'euc-cn)
-
+;(set-language-environment 'Chinese-GB)
+;(set-keyboard-coding-system 'euc-cn)
+;(set-clipboard-coding-system 'euc-cn)
+;;(set-terminal-coding-system 'euc-cn)
+;(set-buffer-file-coding-system 'euc-cn)
+;;(set-selection-coding-system 'euc-cn)
+;(modify-coding-system-alist 'process "*" 'euc-cn)
+;(setq default-process-coding-system 
+;	'(euc-cn . euc-cn))
+;===
+;(setq-default pathname-coding-system 'euc-cn)
+;(setq current-language-environment "UTF-8")
+;(setq default-input-method "chinese-py")
+;(setq locale-coding-system 'utf-8)
+;(prefer-coding-system 'utf-8)
+;==
+(set-language-environment 'UTF-8)
+(set-keyboard-coding-system 'utf-8)
+(set-clipboard-coding-system 'utf-8)
+(set-terminal-coding-system 'utf-8)
+(set-buffer-file-coding-system 'utf-8)
+(set-buffer-file-coding-system 'utf-8-unix)
+(set-default-coding-systems 'utf-8)
+(set-selection-coding-system 'utf-8)
+(modify-coding-system-alist 'process "*" 'utf-8)
+(setq default-process-coding-system '(utf-8 . utf-8))
+(setq-default pathname-coding-system 'utf-8)
+(set-file-name-coding-system 'utf-8)
 
 ;; YASnippet
 ;; 添加el的路径
