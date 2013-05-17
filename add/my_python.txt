@@ -1,4 +1,4 @@
-1.manual
+﻿1.manual
     example: shutil
     help(shutil)    -- in pdb : pp help(shutil)
     shutil.__all__  -- same in pdb
@@ -19,6 +19,7 @@
     etree.parse()
 	doc = ET.parse(filename)
 	doc.getroot().attrib['width'] = '1600px';   -- change attribute
+	在布尔上下文中，如果 ElementTree 元素对象不包含子元素（即如果 len(element) 为 0），则其值会被认为是 False 。这就意味着 if element.find('...') 并非在测试是否 find() 方法找到了匹配项；而是在测试匹配的元素是否包含子元素！想要测试 find() 方法是否返回了某个元素的话，需要使用 if element.find('...') is not None
 	
 4.print class info
     class Friend():

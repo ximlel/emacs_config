@@ -22,7 +22,7 @@ def test_1_1():
     
     #print ET.tostring(root, pretty_print = True)
     print [child.tag for child in root]
-    # elem list
+    # elem is list
     print "=====elem list====="
     child = root[0]
     print child.tag
@@ -84,7 +84,8 @@ def test_1_2():
     attributes["hello"] = "Guten Tag"
     print attributes.get("hello")
     print root.get("hello")
-
+    print root.attrib # {'interesting': 'somewhat', 'hello': 'Guten Tag'}
+    
     # elem have content
     root = ET.Element("root")
     root.text = "TEXT"
@@ -221,4 +222,4 @@ def test_1_5():
     root = parser.close()
     print ET.tostring(root)
 if __name__ == "__main__":
-    test_1_5()
+    test_1_4()
