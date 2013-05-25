@@ -5,6 +5,7 @@
 3.拷贝config 下的.emacs.d 和.emacs 到安装目录
 4.修改(setenv "HOME" "D:/tools/emacs-24.3") 指向安装目录
 5.python-mode 一些插件需要安装 python的插件才能生效
+6.为适应ecb和cedet 使用emacs 23.2
 ===========================
 配置说明
 ===========================
@@ -87,12 +88,19 @@ Solved this by changing these lines in ecb-upgrade.el
 	http://blog.csdn.net/cnsword/article/details/7474119
 	http://stackoverflow.com/questions/6240291/gnu-emacs-23-3-1-wont-load-cedet-1-0
 if failed download ecb from //https://github.com/alexott/ecb/tree/v2_24  (new-cedet branch)
+
+windows setup
+
 .emacs
 (load-file "D:\\emacs-22.3-bin-i386\\emacs-22.3\\myLisp\\cedet-1.0pre4\\common\\cedet.el")
 (semantic-load-enable-code-helpers)
 (add-to-list 'load-path "D:\\emacs-22.3-bin-i386\\emacs-22.3\\myLisp\\ecb-2.32")
 (require 'ecb)
-
+cedet	: cedet-build.el emacs -Q -l cedet-build.el -f cedet-build
+ecb	: 修改 make.bat 
+			set EMACS=E:/emacs-23.2/bin/emacs.exe
+			set CEDET=../cedet-1.0
+	  运行
 // .emacs
 http://linux.chinaunix.net/techdoc/desktop/2008/10/14/1038131.shtml
 http://hi.baidu.com/tiger_tnt/item/f110bdc914a53e0b0ad93a9a
