@@ -96,11 +96,20 @@ windows setup
 (semantic-load-enable-code-helpers)
 (add-to-list 'load-path "D:\\emacs-22.3-bin-i386\\emacs-22.3\\myLisp\\ecb-2.32")
 (require 'ecb)
+
+
 cedet	: cedet-build.el emacs -Q -l cedet-build.el -f cedet-build
 ecb	: 修改 make.bat 
 			set EMACS=E:/emacs-23.2/bin/emacs.exe
 			set CEDET=../cedet-1.0
 	  运行
+=======
+
+----- cygwin
+Cygwin Customizations
+http://www.khngai.com/emacs/cygwin.php
+
+>>>>>>> 22f9fd1d5a6a6a667b6277567f0adf9fd46e8200
 // .emacs
 http://linux.chinaunix.net/techdoc/desktop/2008/10/14/1038131.shtml
 http://hi.baidu.com/tiger_tnt/item/f110bdc914a53e0b0ad93a9a
