@@ -1,5 +1,0 @@
-// Emacs 中文化指南
-http://man.chinaunix.net/newsoft/Emac/book.html#AEN182
-
-终端模式
-// emacs -nw 
