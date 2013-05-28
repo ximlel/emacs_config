@@ -14,12 +14,24 @@
 (tabbar-mode)
 
 ;; 配色方案
+(load "~/.emacs.d/elisp/color-theme-molokai.el")
+(load "~/.emacs.d/elisp/color-theme-arjen.el")
 (require 'color-theme)
 (eval-after-load "color-theme"
 '(progn
 (color-theme-initialize)
 (color-theme-gnome2))) ;;what ever you like, I like color-theme-gnome2
+;(color-theme-midnight)))
+;(color-theme-arjen)))
+;(color-theme-molokai)))
 ;(color-theme-robin-hood)))
+
+;(color-theme-initialize)
+;(color-theme-molokai)
+;;设置背景色为 黑色
+(set-face-background 'default "black")
+;;设置前字体色为绿色
+;(set-foreground-color "green")  
 
 ;; 关闭提示音
 (setq visible-bell t)
@@ -98,10 +110,6 @@
 (global-font-lock-mode t)
 (setq font-lock-maximum-decoration t)
 
-;;设置背景色为 黑色
-;(set-face-background 'default "black")
-;;设置前字体色为绿色
-;(set-foreground-color "green")  
 
 ;; 高亮显示要拷贝的区域
 (transient-mark-mode t)
