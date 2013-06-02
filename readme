@@ -136,3 +136,9 @@ Windows 下需要在注册表中设定 emacs 启动时载入配置文件的 HOME
 [HKEY_CURRENT_USER/Software/GNU]
 [HKEY_CURRENT_USER/Software/GNU/Emacs]
 "HOME"="D://GS//emacs_msw"
+
+=============================================
+			COMMAND
+=============================================
+M-x woman 的命令可以高亮的察看manpage
+M-x info 的命令可以察看man所提供的所有命令并且以层次形式提供
