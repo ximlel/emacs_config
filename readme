@@ -20,10 +20,10 @@ C:\Documents and Settings\Administrator\Application Data\.emacs
 	添加 (load-file "E:/emacs-24.3/.emacs") 指定到安装目录方便工程配置
 将config目录下.emacs.d 和 .emacs 拷贝到安装目录 已做了简单配置
 
-2.
-http://www.cnblogs.com/coderzh/archive/2009/12/26/emacspythonide.html			--主要参考
-http://www.51testing.com/?uid-254066-action-viewspace-itemid-823103
-http://guweigang.com/2010/09/gnu/%E4%BB%8A%E5%A4%A9%E5%9F%BA%E6%9C%AC%E9%85%8D%E5%A5%BD%E4%BA%86emacs%E4%BA%86%EF%BC%81.html
+2.主要参考--windows python 所以也讲解了关于调试python的问题
+	http://www.cnblogs.com/coderzh/archive/2009/12/26/emacspythonide.html			--主要参考
+	http://www.51testing.com/?uid-254066-action-viewspace-itemid-823103
+	http://guweigang.com/2010/09/gnu/%E4%BB%8A%E5%A4%A9%E5%9F%BA%E6%9C%AC%E9%85%8D%E5%A5%BD%E4%BA%86emacs%E4%BA%86%EF%BC%81.html
 
 -----yasnippet 
 	安装yasnippet 注意不要从git 直接下载yasnippet-master.zip

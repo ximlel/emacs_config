@@ -183,9 +183,9 @@
     "Maximize the current frame"
     (interactive)
     (w32-send-sys-command 61488))
-    ;;; Maximum Windows Frame
+    ;;;; Maximum Windows Frame
     (w32-maximize-frame)
-	(setq initial-frame-alist '((top . 0) (left . 0) (width . 1600) (height . 900)))
+	;;(setq initial-frame-alist '((top . 0) (left . 0) (width . 1600) (height . 900)))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
       ;;; 启动最大化窗口设置 - END
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
