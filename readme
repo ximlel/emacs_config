@@ -22,6 +22,7 @@ C:\Documents and Settings\Administrator\Application Data\.emacs
 
 2.
 http://www.cnblogs.com/coderzh/archive/2009/12/26/emacspythonide.html			--主要参考
+http://blog.sina.com.cn/s/blog_a15aa56901017u0p.html					--Emacs Python IDE win7 x64
 http://www.51testing.com/?uid-254066-action-viewspace-itemid-823103
 http://guweigang.com/2010/09/gnu/%E4%BB%8A%E5%A4%A9%E5%9F%BA%E6%9C%AC%E9%85%8D%E5%A5%BD%E4%BA%86emacs%E4%BA%86%EF%BC%81.html
 
@@ -74,7 +75,15 @@ http://guweigang.com/2010/09/gnu/%E4%BB%8A%E5%A4%A9%E5%9F%BA%E6%9C%AC%E9%85%8D%E
 	(require 'pycomplete)
 -----python-mode.el
 	http://blog.chinaunix.net/uid-24178755-id-60497.html
-	
+-----ropemacs
+	rope-0.9.4.tar ropemacs-0.7.tar ropemode-0.2.tar
+	三个相同安装
+	python setup.py install
+	add to .emacs
+	Ropmacs -- .emacs
+	python setup.py install
+	(pymacs-load "ropemacs" "rope-")
+	(setq ropemacs-enable-autoimport t)
 -----cedet ecb	
 	http://hi.baidu.com/dapplehou/item/05f40eb411107a9619469708
 	emacs 24.x only install cedet 1.1 (not cedet 1.0.x)
