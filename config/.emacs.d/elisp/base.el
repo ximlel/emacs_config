@@ -1,7 +1,3 @@
-
-;; 设置工作目录
-(setq default-directory "D:/python_workspace")
-
 ;; 在标题栏显示buffer的名字
 (setq frame-title-format "emacs@%b")
 
@@ -13,21 +9,33 @@
 (require 'tabbar)
 (tabbar-mode)
 
-;; 配色方案
-(load "~/.emacs.d/elisp/color-theme-molokai.el")
-(load "~/.emacs.d/elisp/color-theme-arjen.el")
-(require 'color-theme)
-(eval-after-load "color-theme"
-'(progn
-(color-theme-initialize)
-(color-theme-gnome2))) ;;what ever you like, I like color-theme-gnome2
+;; ==============配色方案
+;(load "~/.emacs.d/elisp/si-color-theme/color-theme-molokai.el")
+;(load "~/.emacs.d/elisp/si-color-theme/color-theme-arjen.el")
+;(require 'color-theme)
+;(eval-after-load "color-theme"
+;'(progn
+;(color-theme-initialize)
+;(color-theme-gnome2))) ;;what ever you like, I like color-theme-gnome2
+
 ;(color-theme-midnight)))
 ;(color-theme-arjen)))
 ;(color-theme-molokai)))
 ;(color-theme-robin-hood)))
-
 ;(color-theme-initialize)
 ;(color-theme-molokai)
+
+;; ahei env
+(require 'ahei-misc)
+;; color theme Emacs主题,很多face文件
+(require 'color-theme-settings)
+(require 'ahei-face)
+(require 'color-theme-ahei)
+(require 'face-settings)
+
+;; 高亮当前行
+;(require 'hl-line-settings)
+
 ;;设置背景色为 黑色
 (set-face-background 'default "black")
 ;;设置前字体色为绿色

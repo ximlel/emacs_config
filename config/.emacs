@@ -21,12 +21,15 @@
 ;;(setenv "PATH" "D:/tools/emacs-23.2") ;; 会覆盖环境变量PATH
 ;;set the default file path
 
+;; 设置工作目录
+(setq default-directory "D:/python_workspace")
+
 ;; 设置 添加Emacs搜索路径
 (setq load-path (cons "~/.emacs.d/elisp" load-path)) 
 
 ;; 配色方案 ;; 添加el的路径
 (setq load-path (append load-path (list "~/.emacs.d/elisp/color-theme-6.6.0")))
-
+(setq load-path (append load-path (list "~/.emacs.d/elisp/si-color-theme")))
 ;; YASnippet 添加el的路径
 (setq load-path (append load-path (list "~/.emacs.d/elisp/yasnippet-0.6.1c")))
 
