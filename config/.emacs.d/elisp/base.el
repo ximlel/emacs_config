@@ -34,10 +34,10 @@
 (require 'face-settings)
 
 ;; 高亮当前行
-;(require 'hl-line-settings)
+(require 'hl-line-settings)
 
 ;;设置背景色为 黑色
-(set-face-background 'default "black")
+;(set-face-background 'default "black")
 ;;设置前字体色为绿色
 ;(set-foreground-color "green")  
 
