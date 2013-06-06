@@ -28,10 +28,10 @@
 ;; ahei env
 (require 'ahei-misc)
 ;; color theme Emacs主题,很多face文件
-(require 'color-theme-settings)
-(require 'ahei-face)
-(require 'color-theme-ahei)
-(require 'face-settings)
+;(require 'color-theme-settings)         ;;调色功能
+;(require 'ahei-face)                    ;;色彩模式定义
+;(require 'color-theme-ahei)             ;;基本色彩定义
+;(require 'face-settings)                ;;基本色彩定义
 
 ;; 高亮当前行
 (require 'hl-line-settings)
@@ -43,6 +43,9 @@
 
 ;; 关闭提示音
 (setq visible-bell t)
+
+;; 设置默认字体
+(set-default-font "Courier New-12") 
 
 ;; 简化工具条
 (tool-bar-mode -1)
