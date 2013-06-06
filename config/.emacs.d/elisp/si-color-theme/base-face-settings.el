@@ -42,8 +42,11 @@
   ;; 设置界面
   (if use-black-background
       (progn
-        (set-background-color "black")
-        (set-foreground-color "white")
+;; change by simon 用纯黑，纯白
+;;        (set-background-color "black")
+;;        (set-foreground-color "white")
+         (set-foreground-color "#F8F8F2")
+         (set-background-color "#1B1D1E")
         (set-cursor-color "green"))
     (set-background-color "white")
     (set-foreground-color "black")

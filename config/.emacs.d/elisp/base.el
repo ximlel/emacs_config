@@ -12,7 +12,7 @@
 ;; ==============配色方案
 ;(load "~/.emacs.d/elisp/si-color-theme/color-theme-molokai.el")
 ;(load "~/.emacs.d/elisp/si-color-theme/color-theme-arjen.el")
-;(require 'color-theme)
+(require 'color-theme)
 ;(eval-after-load "color-theme"
 ;'(progn
 ;(color-theme-initialize)
@@ -28,10 +28,10 @@
 ;; ahei env
 (require 'ahei-misc)
 ;; color theme Emacs主题,很多face文件
-;(require 'color-theme-settings)         ;;调色功能
-;(require 'ahei-face)                    ;;色彩模式定义
-;(require 'color-theme-ahei)             ;;基本色彩定义
-;(require 'face-settings)                ;;基本色彩定义
+(require 'color-theme-settings)         ;;调色功能
+(require 'ahei-face)                    ;;色彩模式定义
+(require 'color-theme-ahei)             ;;基本色彩定义
+(require 'face-settings)                ;;基本色彩定义
 
 ;; 高亮当前行
 (require 'hl-line-settings)
