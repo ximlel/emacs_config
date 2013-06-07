@@ -9,38 +9,6 @@
 (require 'tabbar)
 (tabbar-mode)
 
-;; ==============配色方案
-;(load "~/.emacs.d/elisp/si-color-theme/color-theme-molokai.el")
-;(load "~/.emacs.d/elisp/si-color-theme/color-theme-arjen.el")
-(require 'color-theme)
-;(eval-after-load "color-theme"
-;'(progn
-;(color-theme-initialize)
-;(color-theme-gnome2))) ;;what ever you like, I like color-theme-gnome2
-
-;(color-theme-midnight)))
-;(color-theme-arjen)))
-;(color-theme-molokai)))
-;(color-theme-robin-hood)))
-;(color-theme-initialize)
-;(color-theme-molokai)
-
-;; ahei env
-(require 'ahei-misc)
-;; color theme Emacs主题,很多face文件
-(require 'color-theme-settings)         ;;调色功能
-(require 'ahei-face)                    ;;色彩模式定义
-(require 'color-theme-ahei)             ;;基本色彩定义
-(require 'face-settings)                ;;基本色彩定义
-
-;; 高亮当前行
-(require 'hl-line-settings)
-
-;;设置背景色为 黑色
-;(set-face-background 'default "black")
-;;设置前字体色为绿色
-;(set-foreground-color "green")  
-
 ;; 关闭提示音
 (setq visible-bell t)
 
@@ -116,11 +84,6 @@
 ;; 让emacs可以直接打开和显示图片
 (auto-image-file-mode)
 
-;; 语法加亮
-;; add these lines if you like color-based syntax highlighting
-(global-font-lock-mode t)
-(setq font-lock-maximum-decoration t)
-
 
 ;; 高亮显示要拷贝的区域
 (transient-mark-mode t)
@@ -155,12 +118,7 @@
 (setq dired-recursive-copies 'top)
 (setq dired-recursive-deletes 'top)
 
-;; 代码折叠
-(load-library "hideshow")
-(add-hook 'java-mode-hook 'hs-minor-mode)
-(add-hook 'perl-mode-hook 'hs-minor-mode)
-(add-hook 'php-mode-hook 'hs-minor-mode)
-(add-hook 'emacs-lisp-mode-hook 'hs-minor-mode)
+
 
 ;; 中文配置
 ;(set-language-environment 'Chinese-GB)

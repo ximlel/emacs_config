@@ -56,13 +56,15 @@
 
 ;;cedet
 (load-file "~/.emacs.d/install/cedet-1.0/common/cedet.el")
-(require 'cedet)
+;(require 'cedet)
 
 ;;ecb
 (add-to-list 'load-path "~/.emacs.d/install/ecb-2.40")
-(require 'ecb)
+;(require 'ecb)
 
+(setq load-path (append load-path (list "~/.emacs.d/elisp/codepilot")))
 (load-file "~/.emacs.d/elisp/base.el")
+(load-file "~/.emacs.d/elisp/siexpand.el")
 (load-file "~/.emacs.d/elisp/sicode.el")
 (load-file "~/.emacs.d/elisp/sikey.el")
 (load-file "~/.emacs.d/elisp/sipython.el")
