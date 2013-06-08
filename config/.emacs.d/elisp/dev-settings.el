@@ -21,7 +21,7 @@
 (global-font-lock-mode t)
 
 ;; 增加自定义关键字
-(dolist (mode '(c-mode c++-mode java-mode lisp-mode emacs-lisp-mode
+(dolist (mode '(python-mode c-mode c++-mode java-mode lisp-mode emacs-lisp-mode
                        lisp-interaction-mode sh-mode sgml-mode))
   (font-lock-add-keywords
    mode
