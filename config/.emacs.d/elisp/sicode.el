@@ -3,10 +3,11 @@
 (yas/initialize)
 (yas/load-directory "~/.emacs.d/elisp/yasnippet-0.6.1c/snippets")
 
-;;auto-complete
-(require 'auto-complete-config)
-(add-to-list 'ac-dictionary-directories "~/.emacs.d/elisp/ac-dict")
-(ac-config-default)
+;; windows config
+;;auto-complete  delete by simon have problem in windows when edit c++
+;(require 'auto-complete-config)
+;(add-to-list 'ac-dictionary-directories "~/.emacs.d/elisp/ac-dict")
+;(ac-config-default)
 
 ;;cedet
 (require 'cedet)

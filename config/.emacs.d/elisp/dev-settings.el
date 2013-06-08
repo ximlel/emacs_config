@@ -28,9 +28,11 @@
    '(("\\<\\(FIXME\\|TODO\\|Todo\\|HACK\\):" 1 font-lock-warning-face prepend)
      ("\\<\\(and\\|or\\|not\\)\\>" . font-lock-keyword-face)
      ("(\\|)" . beautiful-blue-face)
-     ("\\[\\|]" . yellow-face)
-     ("<\\|>" . cyan-face)
-     ("{\\|}" . green-face))))
+     ;("\\[\\|]" . yellow-face)
+     ("<\\|>" . cyan-face) 
+     ("=" . beautiful-blue-face)
+     ("," . beautiful-blue-face))))
+     ;("{\\|}" . green-face))))
 
 (defun generate-tag-table ()
   "Generate tag tables under current directory(Linux)."
@@ -149,29 +151,31 @@
             "^#!\\s-*/.*/tclsh$"
             "^#!\\s-*/.*/expect$"
             "^#!\\s-*/bin/bash"))
-(add-hook
- 'after-save-hook
- (lambda ()
-   (if (not (= (shell-command (concat "test -x " (buffer-file-name))) 0))
-       (progn
-         ;; This puts message in *Message* twice, but minibuffer
-         ;; output looks better.
-         (message (concat "Wrote " (buffer-file-name)))
-         (save-excursion
-           (goto-char (point-min))
-           ;; Always checks every pattern even after
-           ;; match.  Inefficient but easy.
-           (dolist (my-shebang-pat my-shebang-patterns)
-             (if (looking-at my-shebang-pat)
-                 (if (= (shell-command
-                         (concat "chmod u+x " (buffer-file-name)))
-                        0)
-                     (message (concat
-                               "Wrote and made executable "
-                               (buffer-file-name))))))))
-     ;; This puts message in *Message* twice, but minibuffer output
-     ;; looks better.
-     (message (concat "Wrote " (buffer-file-name))))))
+;; windows config
+;; del by simon 不知道什么功能，但windows 下保存时会出现许多cmdproxy
+;(add-hook
+; 'after-save-hook
+; (lambda ()
+;   (if (not (= (shell-command (concat "test -x " (buffer-file-name))) 0))
+;       (progn
+;         ;; This puts message in *Message* twice, but minibuffer
+;         ;; output looks better.
+;         (message (concat "Wrote " (buffer-file-name)))
+;         (save-excursion
+;           (goto-char (point-min))
+;           ;; Always checks every pattern even after
+;           ;; match.  Inefficient but easy.
+;           (dolist (my-shebang-pat my-shebang-patterns)
+;             (if (looking-at my-shebang-pat)
+;                 (if (= (shell-command
+;                         (concat "chmod u+x " (buffer-file-name)))
+;                        0)
+;                     (message (concat
+;                               "Wrote and made executable "
+;                               (buffer-file-name))))))))
+;     ;; This puts message in *Message* twice, but minibuffer output
+;     ;; looks better.
+;     (message (concat "Wrote " (buffer-file-name))))))
 
 ;; 显示变量, 函数的声明
 (require 'eldoc-settings)

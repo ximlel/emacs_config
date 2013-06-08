@@ -5,6 +5,9 @@
 (setq user-full-name "simon")
 (setq user-mail-address "simon29rock@gmail.com")
 
+;; 关闭欢迎画面
+(setq inhibit-startup-message t)
+
 ;; 打开tabbar
 (require 'tabbar)
 (tabbar-mode)
