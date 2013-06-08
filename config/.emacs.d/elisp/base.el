@@ -8,6 +8,8 @@
 ;; 关闭欢迎画面
 (setq inhibit-startup-message t)
 
+(setq tool-bar-mode t)
+
 ;; 打开tabbar
 (require 'tabbar)
 (tabbar-mode)
@@ -16,13 +18,16 @@
 (setq visible-bell t)
 
 ;; 设置默认字体
-(set-default-font "Courier New-12") 
+(set-default-font "Courier New-11") 
 
 ;; 简化工具条
 (tool-bar-mode -1)
 
 ;; 显示时间
-(display-time)
+;(display-time)
+(display-time-mode 1);;启用时间显示设置，在minibuffer上面的那个杠上
+(setq display-time-24hr-format t);;时间使用24小时制
+(setq display-time-day-and-date t);;时间显示包括日期和具体时间
 
 ;; 显示行号
 (setq column-number-mode t)
@@ -143,16 +148,62 @@
 (set-language-environment 'UTF-8)
 (set-keyboard-coding-system 'utf-8)
 (set-clipboard-coding-system 'utf-8)
-(set-terminal-coding-system 'utf-8)
-(set-buffer-file-coding-system 'utf-8)
-(set-buffer-file-coding-system 'utf-8-unix)
+;(set-terminal-coding-system 'utf-8)
+(set-buffer-file-coding-system 'utf-8-unix)                     ;缓存文件编码
 (set-default-coding-systems 'utf-8)
 (set-selection-coding-system 'utf-8)
 (modify-coding-system-alist 'process "*" 'utf-8)
-(setq default-process-coding-system '(utf-8 . utf-8))
+;(setq default-process-coding-system '(utf-8 . utf-8))
+(setq default-process-coding-system '(utf-8-unix . utf-8-unix)) ;进程输出输入编码
 (setq-default pathname-coding-system 'utf-8)
-(set-file-name-coding-system 'utf-8)
+(set-file-name-coding-system 'utf-8-unix)                       ;文件名编码
+(setq default-sendmail-coding-system 'utf-8-unix)               ;发送邮件编码
+(setq default-terminal-coding-system 'utf-8-unix)               ;终端编码
 
+
+;;-------------ibuffer,查看bufer
+(require 'ibuffer)
+(global-set-key ( kbd "C-x C-b")' ibuffer)
+;;自动重载更改的文件
+(global-auto-revert-mode 1)
+
+;;ido的配置,这个可以使你在用C-x C-f打开文件的时候在后面有提示;
+;;这里是直接打开了ido的支持，在emacs23中这个是自带的.
+(ido-mode t)
+
+;;当你在shell、telnet、w3m等模式下时，必然碰到过要输入密码的情况,此时加密显出你的密码
+(add-hook 'comint-output-filter-functions
+      'comint-watch-for-password-prompt)
+
+;;允许emacs和外部其他程序的粘贴
+(setq x-select-enable-clipboard t)
+
+;; 自动的在文件末增加一新行
+(setq require-final-newline t)
+
+;;Non-nil if Transient-Mark mode is enabled.
+(setq-default transient-mark-mode t)
+
+;; 当光标在行尾上下移动的时候，始终保持在行尾。
+(setq track-eol t)
+
+;; 当浏览 man page 时，直接跳转到 man buffer。
+(setq Man-notify-method 'pushy)
+
+(setq speedbar-show-unknown-files t);;可以显示所有目录以及文件
+;;(setq dframe-update-speed nil);;不自动刷新，手动 g 刷新
+(setq speedbar-update-flag nil)
+(setq speedbar-use-images nil);;不使用 image 的方式
+(setq speedbar-verbosity-level 0)
+
+;;让 dired 可以递归的拷贝和删除目录。
+(setq dired-recursive-copies 'top)
+(setq dired-recursive-deletes 'top)
+
+;; 设置时间戳，标识出最后一次保存文件的时间。
+(setq time-stamp-active t)
+(setq time-stamp-warn-inactive t)
+(setq time-stamp-format "%:y-%02m-%02d %3a %02H:%02M:%02S chenyang")
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; 启动最大化窗口设置 - START    ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
     (defun w32-restore-frame ()

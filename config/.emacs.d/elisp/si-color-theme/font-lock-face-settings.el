@@ -40,7 +40,7 @@
 ;                      ((((type tty)) :bold t :foreground "green")
 ;                       (t (:foreground "green")))))
 ;                        ((t :foreground "#66D9EF"))))
-                        ((t :foreground "lime green"))))
+                        ((t :foreground "MediumSpringGreen"))))
   (custom-set-faces '(font-lock-regexp-grouping-backslash
 ;                      ((((type tty)) :foreground "red")
 ;                       (t (:foreground "red")))))

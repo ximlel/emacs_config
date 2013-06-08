@@ -27,11 +27,11 @@
    mode
    '(("\\<\\(FIXME\\|TODO\\|Todo\\|HACK\\):" 1 font-lock-warning-face prepend)
      ("\\<\\(and\\|or\\|not\\)\\>" . font-lock-keyword-face)
-     ("(\\|)" . beautiful-blue-face)
+     ("(\\|)" . yellow-face)
      ;("\\[\\|]" . yellow-face)
      ("<\\|>" . cyan-face) 
-     ("=" . beautiful-blue-face)
-     ("," . beautiful-blue-face))))
+     ("=" . yellow-face)
+     ("," . yellow-face))))
      ;("{\\|}" . green-face))))
 
 (defun generate-tag-table ()

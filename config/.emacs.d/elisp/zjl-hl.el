@@ -348,7 +348,8 @@
   "Enable c mode highlight when zjl-hl-enable-global-all is called"
   :type 'boolean :group 'zjl-hl)
 ;;;###autoload
-(defcustom zjl-hl-c++-mode-enable-flag nil
+;(defcustom zjl-hl-c++-mode-enable-flag nil
+(defcustom zjl-hl-c++-mode-enable-flag t
   "Enable c++ mode highlight when zjl-hl-enable-global-all is called.
 Currently only c style file but named as *.cpp is supported"
   :type 'boolean :group 'zjl-hl)

@@ -61,8 +61,12 @@
     (t :foreground "cornflower blue"))
   "我自定义的lightblue face")
 (defface yellow-face
-  '((t :foreground "yellow"))
+;;'((t :foreground "yellow"))
+  '((t :foreground "DodgerBlue"))
   "我自定义的yellow face")
+;(defface DodgerBlue-face
+;  '((t :foreground "DodgerBlue"))
+;  "我自定义的DodgerBlue face")
 (defface darkyellow-face
   '((((type tty pc)) :bold t :foreground "yellow") (t (:foreground "yellow")))
   "我自定义的dark yellow face")
