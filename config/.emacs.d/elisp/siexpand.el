@@ -104,7 +104,7 @@
 
 ;; 在Emacs里面使用shell
 (require 'term-settings)
-(require 'multi-term-settings)
+;;(require 'multi-term-settings)	;;影响python
 
 (define-key global-map (kbd "C-x M-c") 'describe-char)
 
