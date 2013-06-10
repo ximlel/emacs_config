@@ -18,7 +18,8 @@
 (setq visible-bell t)
 
 ;; 设置默认字体
-(set-default-font "Courier New-11") 
+;(set-default-font "Courier New-11") 
+(set-default-font "Monospace-11")
 
 ;; 简化工具条
 (tool-bar-mode -1)
