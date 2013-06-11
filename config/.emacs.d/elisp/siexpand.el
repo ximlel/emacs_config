@@ -124,3 +124,6 @@
  global-map
  `(("C-x M-k" Info-goto-emacs-key-command-node)
    ("C-x ESC ESC" repeat-complex-command-sb)))
+
+;; 关闭buffer的时候, 如果该buffer有对应的进程存在, 不提示, 烦
+(delq 'process-kill-buffer-query-function kill-buffer-query-functions)
