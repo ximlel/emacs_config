@@ -1,18 +1,24 @@
 ﻿
 使用说明
-windows
+-----windows：
 1.windows emacs-24.1-bin-i386.zip
 2.重定向配置文件到安装目录 (或在注册表中添加HKLM\SOFTWARE\GNU\Emacs\HOME变量)
 3.拷贝config 下的.emacs.d 和.emacs 到安装目录
 4.修改(setenv "HOME" "D:/tools/emacs-24.3") 指向安装目录
 5.python-mode 一些插件需要安装 python的插件才能生效
 6.为适应ecb和cedet 使用emacs 23.2
-linux
+-----linux：
 1.删除.emacs 中(setenv "HOME" "D:/tools/emacs-24.3")
 2.解压cedet 和 ecb ，安装cedet
 3.删除base.el 中关于编码的设置
 
-修改base.el的字体
+-----共同changelist：
+修改base.el中配置的字体
+删除了sicode.el                     auto-comple的配置，由于和windows c++有冲突，cedet 的补全alt+/更好
+删除了siexpand.el-dev-settings.el   关于保存的配置，windows下不能正常工作
+删除了siwxpand.el                   mulit-term-setting 配置，不能与python兼容
+删除了siexpand.el                   高亮当前行
+修改了颜色，增加了一些符号到关键字
 ===========================
 配置说明
 ===========================
