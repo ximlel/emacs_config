@@ -14,7 +14,7 @@
 
 -----共同changelist：
 修改base.el中配置的字体
-删除了sicode.el                     auto-comple的配置，由于和windows c++有冲突，cedet 的补全alt+/更好(cedet补全此功能在windows下保存python时emacs 卡)
+删除了sicode.el                     auto-comple的配置，由于和windows c++有冲突，cedet 的补全alt+/更好(cedet补全此功能在windows下保存python时emacs 卡，生成.ropeproject后)
 删除了siexpand.el-dev-settings.el   关于保存的配置，windows下不能正常工作
 删除了siwxpand.el                   mulit-term-setting 配置，不能与python兼容
 删除了siexpand.el                   高亮当前行
