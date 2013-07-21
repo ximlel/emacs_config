@@ -5,14 +5,17 @@
 2.重定向配置文件到安装目录 : C:\Documents and Settings\Administrator\Application Data\.emacs 中添加(load-file "D:/tools/emacs-24.3/.emacs")
     (或在注册表中添加HKLM\SOFTWARE\GNU\Emacs\HOME变量)
 3.拷贝config 下的.emacs.d 和.emacs 到安装目录
-4.修改(setenv "HOME" "D:/tools/emacs-24.3") 指向安装目录
+4.修改(setenv "HOME" "D:/tools/emacs-24.3") 指向安装目录,如果上面通过修改注册表方式则忽略此步
 5.python-mode 一些插件需要安装 python的插件才能生效
 6.为适应ecb和cedet 使用emacs 23.2
 -----linux：
 1.删除.emacs 中(setenv "HOME" "D:/tools/emacs-24.3")
 2.解压cedet 和 ecb ，安装cedet
-3.删除base.el 中关于编码的设置
-
+3.修改base.el 中关于编码的设置
+    (setq default-process-coding-system '(utf-8 . utf-8))            ;windows 可以使用这个 
+    (setq default-process-coding-system '(utf-8-unix . utf-8-unix))  ;进程输出输入编码 -- affect pdb on windows,linux 可以使用这个 
+5.python-mode 一些插件需要安装 python的插件才能生效
+6.为适应ecb和cedet 使用emacs 23.2
 -----共同changelist：
 修改base.el中配置的字体
 删除了sicode.el                     auto-comple的配置，由于和windows c++有冲突，cedet 的补全alt+/更好,但对于python auto-comple的补全更方便
