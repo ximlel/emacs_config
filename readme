@@ -2,7 +2,8 @@
 使用说明
 -----windows：
 1.windows emacs-24.1-bin-i386.zip
-2.重定向配置文件到安装目录 (或在注册表中添加HKLM\SOFTWARE\GNU\Emacs\HOME变量)
+2.重定向配置文件到安装目录 : C:\Documents and Settings\Administrator\Application Data\.emacs 中添加(load-file "D:/tools/emacs-24.3/.emacs")
+    (或在注册表中添加HKLM\SOFTWARE\GNU\Emacs\HOME变量)
 3.拷贝config 下的.emacs.d 和.emacs 到安装目录
 4.修改(setenv "HOME" "D:/tools/emacs-24.3") 指向安装目录
 5.python-mode 一些插件需要安装 python的插件才能生效
@@ -14,7 +15,7 @@
 
 -----共同changelist：
 修改base.el中配置的字体
-删除了sicode.el                     auto-comple的配置，由于和windows c++有冲突，cedet 的补全alt+/更好
+删除了sicode.el                     auto-comple的配置，由于和windows c++有冲突，cedet 的补全alt+/更好,但对于python auto-comple的补全更方便
 删除了siexpand.el-dev-settings.el   关于保存的配置，windows下不能正常工作
 删除了siwxpand.el                   mulit-term-setting 配置，不能与python兼容
 删除了siexpand.el                   高亮当前行
