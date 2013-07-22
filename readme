@@ -9,6 +9,7 @@
 5.python-mode 一些插件需要安装 python的插件才能生效
 6.为适应ecb和cedet 使用emacs 23.2
 7.(setq default-directory "D:/python_workspace")
+8.修改 base.el 中 set-default-font
 -----linux：
 1.删除.emacs 中(setenv "HOME" "D:/tools/emacs-23.2")
 2.解压cedet 和 ecb ，安装cedet
@@ -18,6 +19,7 @@
 5.python-mode 一些插件需要安装 python的插件才能生效
 6.为适应ecb和cedet 使用emacs 23.2
 7.(setq default-directory "~/workspace")
+8.修改 base.el 中 set-default-font
 当前可用版本
     commit f33b7d89981a6f2b74bd2d72ca5a66b9b69ca50f
     Author: simon-rock <simon29rock@gmail.com>
