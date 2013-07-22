@@ -154,7 +154,7 @@
 (set-default-coding-systems 'utf-8)
 (set-selection-coding-system 'utf-8)
 (modify-coding-system-alist 'process "*" 'utf-8)
-(setq default-process-coding-system '(utf-8 . utf-8))
+(setq default-process-coding-system '(utf-8 . utf-8))            ;linux 可以使用这个 
 ;(setq default-process-coding-system '(utf-8-unix . utf-8-unix)) ;进程输出输入编码 -- affect pdb on windows
 (setq-default pathname-coding-system 'utf-8)
 (set-file-name-coding-system 'utf-8-unix)                       ;文件名编码

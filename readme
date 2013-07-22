@@ -2,19 +2,31 @@
 使用说明
 -----windows：
 1.windows emacs-24.1-bin-i386.zip
-2.重定向配置文件到安装目录 (或在注册表中添加HKLM\SOFTWARE\GNU\Emacs\HOME变量)
+2.重定向配置文件到安装目录 : C:\Documents and Settings\Administrator\Application Data\.emacs 中添加(load-file "D:/tools/emacs-24.3/.emacs")
+    (或在注册表中添加HKLM\SOFTWARE\GNU\Emacs\HOME变量)
 3.拷贝config 下的.emacs.d 和.emacs 到安装目录
-4.修改(setenv "HOME" "D:/tools/emacs-24.3") 指向安装目录
+4.修改(setenv "HOME" "D:/tools/emacs-24.3") 指向安装目录,如果上面通过修改注册表方式则忽略此步
 5.python-mode 一些插件需要安装 python的插件才能生效
 6.为适应ecb和cedet 使用emacs 23.2
+7.(setq default-directory "D:/python_workspace")
 -----linux：
-1.删除.emacs 中(setenv "HOME" "D:/tools/emacs-24.3")
+1.删除.emacs 中(setenv "HOME" "D:/tools/emacs-23.2")
 2.解压cedet 和 ecb ，安装cedet
-3.删除base.el 中关于编码的设置
+3.修改base.el 中关于编码的设置
+    (setq default-process-coding-system '(utf-8 . utf-8))            ;windows 可以使用这个 
+    (setq default-process-coding-system '(utf-8-unix . utf-8-unix))  ;进程输出输入编码 -- affect pdb on windows,linux 可以使用这个 
+5.python-mode 一些插件需要安装 python的插件才能生效
+6.为适应ecb和cedet 使用emacs 23.2
+7.(setq default-directory "~/workspace")
+当前可用版本
+    commit f33b7d89981a6f2b74bd2d72ca5a66b9b69ca50f
+    Author: simon-rock <simon29rock@gmail.com>
+    Date:   Sun Jun 9 09:01:39 2013 +0800
+        del mulit-term setting config, because it impact python mode
 
 -----共同changelist：
 修改base.el中配置的字体
-删除了sicode.el                     auto-comple的配置，由于和windows c++有冲突，cedet 的补全alt+/更好(cedet补全此功能在windows下保存python时emacs 卡，生成.ropeproject后)
+删除了sicode.el                     auto-comple的配置，由于和windows c++有冲突，cedet 的补全alt+/更好(cedet补全此功能在windows下保存python时emacs 卡，生成.ropeproject后),但对于python auto-comple的补全更方便建议使用
 删除了siexpand.el-dev-settings.el   关于保存的配置，windows下不能正常工作,导致保存时出现许多cmdproxy.exe进程
 删除了siwxpand.el                   mulit-term-setting 配置，不能与python兼容，提示错误
 删除了siexpand.el                   高亮当前行
