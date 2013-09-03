@@ -16,13 +16,16 @@
   ;; If there is more than one, they won't work right.
  )
 
-;; windows linux different
-(setenv "HOME" "E:/emacs-23.2")
-;;(setenv "PATH" "D:/tools/emacs-23.2") ;; 会覆盖环境变量PATH
+;; windows only
+;(setenv "HOME" "E:/emacs-23.2")
+;;(setenv "PATH" "D:/tools/emacs-23.2") ;; 会覆盖环境变量PATH,不能添加
 ;;set the default file path
 
 ;; 设置工作目录
-(setq default-directory "D:/python_workspace")
+;;windows
+;(setq default-directory "D:/python_workspace")
+;;linux
+(setq default-directory "~/workspace")
 
 ;; 设置 添加Emacs搜索路径
 (setq load-path (cons "~/.emacs.d/elisp" load-path)) 
@@ -34,8 +37,8 @@
 (setq load-path (append load-path (list "~/.emacs.d/elisp/yasnippet-0.6.1c")))
 
 ;;auto-complete
-(add-to-list 'load-path "~/.emacs.d/elisp")
-
+;(add-to-list 'load-path "~/.emacs.d/elisp")
+(add-to-list 'load-path "~/.emacs.d/elisp/auto-complete-1.3.1")
 
 ;;------------------------cedet+ecb---------------------
 ;;--------cygwin
