@@ -18,8 +18,8 @@
 (setq visible-bell t)
 
 ;; 设置默认字体
-;(set-default-font "Courier New-11") 
-(set-default-font "Monospace-11")
+;(set-default-font "Courier New-11") 	; windows
+(set-default-font "Monospace-11")	; linux
 
 ;; 简化工具条
 (tool-bar-mode -1)
@@ -154,8 +154,8 @@
 (set-default-coding-systems 'utf-8)
 (set-selection-coding-system 'utf-8)
 (modify-coding-system-alist 'process "*" 'utf-8)
-(setq default-process-coding-system '(utf-8 . utf-8))            ;linux 可以使用这个 
-;(setq default-process-coding-system '(utf-8-unix . utf-8-unix)) ;进程输出输入编码 -- affect pdb on windows
+(setq default-process-coding-system '(utf-8 . utf-8))            ;windows 可以使用这个 
+;(setq default-process-coding-system '(utf-8-unix . utf-8-unix)) ;进程输出输入编码 -- affect pdb on windows, linux 使用这个
 (setq-default pathname-coding-system 'utf-8)
 (set-file-name-coding-system 'utf-8-unix)                       ;文件名编码
 (setq default-sendmail-coding-system 'utf-8-unix)               ;发送邮件编码

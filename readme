@@ -10,6 +10,7 @@
 6.为适应ecb和cedet 使用emacs 23.2
 7.(setq default-directory "D:/python_workspace")
 8.base.el 初始最大化
+9.修改 base.el 中 set-default-font
 -----linux：
 1.删除.emacs 中(setenv "HOME" "D:/tools/emacs-23.2")
 2.解压cedet 和 ecb ，安装cedet
@@ -20,6 +21,7 @@
 6.为适应ecb和cedet 使用emacs 23.2
 7.(setq default-directory "~/workspace")
 8.base.el 初始最大化
+9.修改 base.el 中 set-default-font
 当前可用版本
     commit f33b7d89981a6f2b74bd2d72ca5a66b9b69ca50f
     Author: simon-rock <simon29rock@gmail.com>
@@ -28,9 +30,9 @@
 
 -----共同changelist：
 修改base.el中配置的字体
-删除了sicode.el                     auto-comple的配置，由于和windows c++有冲突，cedet 的补全alt+/更好,但对于python auto-comple的补全更方便
-删除了siexpand.el-dev-settings.el   关于保存的配置，windows下不能正常工作
-删除了siwxpand.el                   mulit-term-setting 配置，不能与python兼容
+删除了sicode.el                     auto-comple的配置，由于和windows c++有冲突，cedet 的补全alt+/更好(cedet补全此功能在windows下保存python时emacs 卡，生成.ropeproject后),但对于python auto-comple的补全更方便建议使用
+删除了siexpand.el-dev-settings.el   关于保存的配置，windows下不能正常工作,导致保存时出现许多cmdproxy.exe进程
+删除了siwxpand.el                   mulit-term-setting 配置，不能与python兼容，提示错误
 删除了siexpand.el                   高亮当前行
 修改了颜色，增加了一些符号到关键字
 ===========================
@@ -185,6 +187,8 @@ Windows 下需要在注册表中设定 emacs 启动时载入配置文件的 HOME
 HKEY_CLASSES_ROOT\*\shell\Edit with Emacs\command
 将其default的值设为
 "path\to\emacsclientw.exe" --no-wait --alternate-editor="path\to\runemacs.exe" "%1"
+
+4.cedet 补全需要配置目录
 =============================================
 			COMMAND
 =============================================
