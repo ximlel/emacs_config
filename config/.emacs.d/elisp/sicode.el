@@ -10,9 +10,9 @@
 
 ;; windows config  下面的自动补齐更好alt+/
 ;;auto-complete  delete by simon have problem in windows when edit c++
-;(require 'auto-complete-config)
-;(add-to-list 'ac-dictionary-directories "~/.emacs.d/elisp/ac-dict")
-;(ac-config-default)
+(require 'auto-complete-config)
+(add-to-list 'ac-dictionary-directories "~/.emacs.d/elisp/ac-dict")
+(ac-config-default)
 
 ;;cedet
 (require 'cedet)
