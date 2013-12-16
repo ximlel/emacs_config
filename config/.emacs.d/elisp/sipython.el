@@ -37,3 +37,5 @@ interpreter-mode-alist))
      (message  "loading repomacs")
      (pymacs-load "ropemacs" "rope-")
      (setq ropemacs-enable-autoimport t)))
+
+(setq gud-pdb-marker-regexp "^> \\([-axx-zA-Z0-9_/.:\\]*\\|<string>\\)(\\([0-9]+\\))\\([a-zA-Z0-9_]*\\|\\?\\|<module>\\)()\\(->[^\n\r]*\\)?[\n\r]")
