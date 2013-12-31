@@ -1,0 +1,67 @@
+1) Buffer相关。emacs可以同时打开多个文件，每一个文件是一个buffer。
+  在X下可以用C-mouse1来选择当前活动哪个buffer
+  C-x C-b  可以得到一个buffer列表并从中选择哪个buffer打开
+  C-x C-f  打开一个文件
+  C-x i  在打开的buffer中插入一个文件内容
+  C-x k  关闭当前buffer中的文件
+  C-x C-s  保存当前buffer
+  C-x C-w 另存为
+  C-x s  保存所有buffer
+2) 屏幕分割相关，emacs可以在同一个窗口中看到多个buffer。
+  C-x 2  垂直分割当前子窗口
+  C-x 3 水平分割当前子窗口
+  C-x 1 当前窗口独占窗口空间
+  C-x o 活动子窗口切换到另外一个子窗口
+3)编辑相关
+  插入/覆盖模式切换
+      M-x overwrite-mode是用来转换 insert mode 与 overwrite mode
+      重复操作：数值引数适用於所有 EMACS 的指令。它的用途可分成 以下数类：
+        * 对某一指令做重复执行的动作
+        * 用法： C-u n command 或 M- n command
+      如：C-u 4 r 在buffer中输入4个r
+          C-u 4 C-u 5 在buffer中输入4个5（重复输入数字要注意有两个C-u）
+      删除－deletion
+      C-d 向后删除一个字元
+      删除－killing（剪切）
+      要查看kill-ring中的内容  1. 键入 ``Ctrl-h v'' 後， echo area 处会出现：
+                             2. 在Describevariable:後输入变数的名称， EMACS 会另开一个视窗来显示此变数的值。此时所要键入的变数名为 ``kill-ring''
+      C-k 删除（剪切）一行
+      C-x C-o 删除（剪切）光标所在位置后面的空白行
+      M-Delete      剪切光标前面的单词
+      M-k           剪切从光标位置到句尾的内容
+      M-d           剪切光标前面的单词
+      C-y
+      C-k           剪切从光标位置到行尾的内容
+      C-x u         撤销操作(先操作C-x，接着再单击u)
+  拷贝与粘贴
+    区域标记：设定区块的步骤如下所示：
+    1. 设定区块的始位置，也就是所谓的标记（ mark）。
+    2. 可使用 `` Ctrl-@'' 或 `` Ctrl-SPC''或M-x set-mark-command任一个指令来设定标记。
+    3. 设定区块的终结位置，也就是移动游标至区块的尾端。
+    在标记与 point之间的范围就是所谓的区块。
+    M-@  开始标记区域用于拷贝
+    M-w  拷贝当前mark的区域
+    C-w 将当前mark的区域剪切到内存
+    C-y  在当前位置粘贴剪贴板的内容
+    C-y M-y  即如果在粘贴命令后根一个M-y，则切换剪贴板的内容，可以有多个M-y
+    C-x u undo功能(好象没有redo)
+    Ctrl-x Ctrl-p（mark-page）
+    Ctrl-x Ctrl-l（downcase-region）使区域变成小写
+    Ctrl-x Ctrl-u（upcase-region）使区域变成大写
+    Meta-x fill-region
+    Meta-x print-region
+  替换
+    M-x replace-string RET 旧字串 RET 新字串 RET（不征询意见）
+    M-x query-string RET 旧字串 RET 新字串 RET （征询意见）
+
+5)在线帮助
+  Ctrl-h c与 Ctrl-h k'的功能相似， 二者都是在寻求与 Hotkey有关的讯息。二者唯一的差别，就在於对指令的解释详细与否而已。
+  C-h a 和C-h w可让使用者键入任意的子字串，都可以找到 相对应的指令。
+    使用  Ctrl-h a 所键入的子字串，并不限於指令的第一个字元, 而 Ctrl-h w 则必需以指令的第一个字为起始字。
+    使用  Ctrl-h a，可给予指令中任何位置的子字串。Ctrl-h a 无法使用 completion，而 Ctrl-h w可使用 completion。
+  C-h i 活着M-x info查看帮助info
+  d  运行Ctrl-h i 指令，会先进入 info 树状结构的根部。任何情况下， 可键入 ``d'' 回到此根部
+  m MenuName 直接移动到指定的Menu上
+  n 将结点移至下一个与此结点相连的结点。
+  p 将结点移至上一个与此结点相连的结点。
+  u 将结点移至上一层的结点。
