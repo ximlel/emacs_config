@@ -3,9 +3,9 @@
 ;; erlang-mode settings 文件关联，自动将py后缀的文件和erlang-mode关联
 ;; Erlang mode
 ;linux
-(setq load-path (cons  "/usr/local/erlang/lib/erlang/lib/tools-2.6.13/emacs" load-path))
-(setq erlang-root-dir "/usr/local/erlang")
-(setq exec-path (cons "/usr/local/erlang/bin" exec-path))
+(setq load-path (cons  "/usr/local/lib/erlang/lib/tools-2.6.13/emacs" load-path))
+(setq erlang-root-dir "/usr/local/lib/erlang")
+(setq exec-path (cons "/usr/local/lib/erlang/bin" exec-path))
 (setq erlang-man-root-dir "/usr/local/erlang/man")  ; 解压缩文件 
 ;windows
 ;(setq load-path (cons  "C:/Program Files/erl5.10.4/lib/tools-2.6.13/emacs" load-path))
