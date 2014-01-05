@@ -20,7 +20,7 @@
 (add-to-list 'auto-mode-alist '("\\.erl?$" . erlang-mode))
 (add-to-list 'auto-mode-alist '("\\.hrl?$" . erlang-mode))
 (require 'erlang-flymake)
-     (let ((distel-dir "~/.emacs.d/elisp/distel-4.03/"))
+     (let ((distel-dir "~/.emacs.d/elisp/distel-4.03/elisp"))
      (unless (member distel-dir load-path)
      (setq load-path (append load-path (list distel-dir)))))
      (require 'distel)
