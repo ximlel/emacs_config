@@ -3,14 +3,14 @@
 ;; erlang-mode settings 文件关联，自动将py后缀的文件和erlang-mode关联
 ;; Erlang mode
 ;linux
-(setq load-path (cons  "/usr/local/erlang/lib/erlang/lib/tools-2.6.6/emacs" load-path))
+(setq load-path (cons  "/usr/local/erlang/lib/erlang/lib/tools-2.6.13/emacs" load-path))
 (setq erlang-root-dir "/usr/local/erlang")
 (setq exec-path (cons "/usr/local/erlang/bin" exec-path))
 (setq erlang-man-root-dir "/usr/local/erlang/man")  ; 解压缩文件 
 ;windows
-;(setq load-path (cons  "C:/Program Files/erl5.10.3/lib/tools-2.6.12/emacs" load-path))
-;(setq erlang-root-dir "C:/Program Files/erl5.10.3")
-;(setq exec-path (cons "C:/Program Files/erl5.10.3/bin" exec-path))
+;(setq load-path (cons  "C:/Program Files/erl5.10.4/lib/tools-2.6.13/emacs" load-path))
+;(setq erlang-root-dir "C:/Program Files/erl5.10.4")
+;(setq exec-path (cons "C:/Program Files/erl5.10.4/bin" exec-path))
 ;(setq erlang-man-root-dir "/usr/local/erlang/man")  ; 解压缩文件 
 (require 'erlang-start)
 ;(setq auto-mode-alist (cons '("\\.erl$" . erlang-mode) auto-mode-alist))
@@ -20,7 +20,7 @@
 (add-to-list 'auto-mode-alist '("\\.erl?$" . erlang-mode))
 (add-to-list 'auto-mode-alist '("\\.hrl?$" . erlang-mode))
 (require 'erlang-flymake)
-     (let ((distel-dir "~/.emacs.d/elisp/distel_090306/"))
+     (let ((distel-dir "~/.emacs.d/elisp/distel-4.03/"))
      (unless (member distel-dir load-path)
      (setq load-path (append load-path (list distel-dir)))))
      (require 'distel)
