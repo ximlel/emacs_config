@@ -8,9 +8,9 @@
 (setq exec-path (cons "/usr/local/lib/erlang/bin" exec-path))
 (setq erlang-man-root-dir "/usr/local/erlang/man")  ; 解压缩文件 
 ;windows
-;(setq load-path (cons  "D:/erl5.10.4/lib/tools-2.6.13/emacs" load-path))
-;(setq erlang-root-dir "D:/erl5.10.4")
-;(setq exec-path (cons "D:/erl5.10.4/bin" exec-path))
+;(setq load-path (cons  "d:/erl5.10.4/lib/tools-2.6.13/emacs" load-path))
+;(setq erlang-root-dir "d:/erl5.10.4")
+;(setq exec-path (cons "d:/erl5.10.4/bin" exec-path))
 ;(setq erlang-man-root-dir "/usr/local/erlang/man")  ; 解压缩文件 
 (require 'erlang-start)
 ;(setq auto-mode-alist (cons '("\\.erl$" . erlang-mode) auto-mode-alist))
