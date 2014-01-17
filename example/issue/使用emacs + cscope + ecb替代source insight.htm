@@ -1,0 +1,1678 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang='zh-CN' xml:lang='zh-CN' xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta http-equiv="Content-Language" content="zh-CN"/>
+  <meta name="robots" content="index, follow" />
+  <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico" />
+  <title>使用emacs + cscope + ecb替代source insight -  AlphaJay的个人空间 - 开源中国社区</title>
+      <meta name="Description" content="使用emacs + cscope + ecb替代source insight：Emacs Lisp 功能扩展集锦 Emacs 具有超强的扩展性。这是当今没有任何其它编辑器可以比拟 的强大特点。这..."/>
+    <link rel="stylesheet/less" href="http://my.oschina.net/alphajay/styles.less?ver=20140107&date=20120724102905" type="text/css" media="screen" />
+  <link rel="stylesheet" href="/js/2012/poshytip/tip-yellowsimple/tip-yellowsimple.css" type="text/css" />
+  <link rel="stylesheet" type="text/css" href="/js/2011/fancybox/jquery.fancybox-1.3.4.css" media="screen" />
+  <script type="text/javascript" src="/js/2012/jquery-1.7.1.min.js"></script>
+  <script type="text/javascript" src="/js/2012/jquery.form.js"></script>
+  <script type="text/javascript" src="/js/2011/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
+  <script type="text/javascript" src="/js/2012/poshytip/jquery.poshytip.min.js"></script>
+  <script type="text/javascript" src="/js/2011/oschina.js?ver=20121007"></script>
+  <script type="text/javascript" src="/js/2012/less-1.3.0.min.js"></script>
+  <script type="text/javascript" src="/js/scrolltopcontrol.js"></script>
+  <script type='text/javascript' src='/js/jquery/jquery.atwho.js?ver=2013112501'></script>
+  <link rel="stylesheet" type="text/css" href="/js/jquery/jquery.atwho.css" />
+  <link rel="alternate" type="application/rss+xml" title="AlphaJay的空间最新博客" href="http://my.oschina.net/alphajay/rss" />
+  <link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://my.oschina.net/action/xmlrpc/rsd?space=66133" />
+  <link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://my.oschina.net/action/xmlrpc/wlwmanifest?space=66133" /> 
+  <style type="text/css">
+    body,table,input,textarea,select {font-family:Verdana,sans-serif,宋体;}	
+  </style>
+  <script type="text/javascript">
+  	scrolltotop.offset(100,165);
+	scrolltotop.init();
+  </script>
+</head>
+<body>
+<div id="OSC_Screen">
+	<div id='OSC_Banner'>
+		<div id="OSC_Logo">
+        	<a href="http://www.oschina.net/" title="开源中国社区首页">开源中国社区</a>
+        </div>
+        <div id='OSC_Slogon'>开源项目发现、使用和交流平台</div>
+		        <div id="OSC_Channels">
+        	<ul>
+        	<li><a href="http://www.oschina.net/project" class='software'>项目</a></li>
+        	<li><a href="http://www.oschina.net/question" class='question'>讨论</a></li>
+        	<li><a href="http://www.oschina.net/code/list" class='code'>代码</a></li>
+        	<li><a href="http://www.oschina.net/news" class='news'>资讯</a></li>
+        	<li><a href="http://www.oschina.net/translate" class='translate'>翻译</a></li>
+        	<li><a href="http://www.oschina.net/blog" class='blog'>博客</a></li>
+        	<li><a href="http://www.oschina.net/android" class='android'>Android</a></li>
+        	<li><a href="http://www.oschina.net/job" class='job'>招聘</a></li>
+        	</ul>
+        </div>
+        <div class='clear'></div>
+	</div>
+	<div id="OSC_Topbar">
+		<div id="VisitorInfo">
+		当前访客身份：
+				游客 [ <a href="http://www.oschina.net/home/login?goto_page=http%3A%2F%2Fmy.oschina.net%2Falphajay">登录</a> | <a href="http://www.oschina.net/home/reg">加入开源中国</a> ]
+				<span id="OSC_Notification">			
+																		<a href="http://www.oschina.net/home/login?goto_page=http%3A%2F%2Fmy.oschina.net%2Falphajay" class="msgbox" title="进入我的留言箱">你有<em>0</em>新留言</a>			
+											</span>
+		</div>
+		<div id="SearchBar">
+    		<form action="http://www.oschina.net/search">
+				<input type='hidden' name='user' value='66133'/>
+																<span class="ipt f_l">
+    			<input type='text' id='txt_q' name='q' class='SERACH' value='在 28693 款开源软件中搜索' onblur="(this.value=='')?this.value='在 28693 款开源软件中搜索':this.value" onfocus="if(this.value=='在 28693 款开源软件中搜索'){this.value='';};this.select();"/>
+				</span>
+				                <div class="search-by selectbox">
+    				<span class="hide">
+    				<select name='scope'>					
+                        <option value='project' selected>软件</option>
+                        <option value='code'>代码</option>
+                        <option value='bbs'>讨论区</option>
+                        <option value='news'>新闻</option>
+                        <option value='blog'>博客</option>
+    				</select>
+    				</span>
+                  <div class="search_on" id="search-item"><span class="text">软件</span></div>
+                  <ul class="search_list">
+                     <li class="search-item"><a href="#1">软件</a></li>
+                     <li><a href="#2">代码</a></li>
+                     <li><a href="#3">讨论区</a></li>
+                     <li><a href="#4">新闻</a></li>
+                     <li><a href="#5">博客</a></li>
+                  </ul>
+                </div>
+				<input type='submit' value='搜索' class='bnt f_r'/>			
+    		</form>
+		</div>
+		<div class='clear'></div>
+	</div>
+	<div id="OSC_Content">	
+<style>
+	.icon{width:20px;height:20px;vertical-align: middle;display:inline-block;font-size:14px;text-align:center;color:#FFF;font-weight: bold;}
+	.catalogs{padding:0px;margin:0px;position:relative;display:inline-block;}
+    .catalogs ul{padding:0px;margin:0px;position:absolute;left:-8px;top: -21px;clear:left;width:120px;height:14px;overflow:hidden;background:#FFF;z-index:1000;padding:5px;border:1px solid #FFF;}
+    .catalogs ul:hover{height:auto;background:#fff;border:1px solid #4466bb;}
+    .catalogs ul li a:hover{color:#A00;font-weight: bold;}
+	.BlogStat a:hover{background:#FFF;}
+	.BlogStat{font-size:12px;line-height:20px;}
+	.BlogStat .g{color:#40AA53}
+	.BlogTags{margin-top:8px;}
+		.BlogAbstracts{}
+</style>
+<div id='SpaceLeft'>
+<div class='Owner'>
+	    <a href="http://my.oschina.net/alphajay" class='Img'><img src="http://static.oschina.net/uploads/user/33/66133_100.jpg" align="absmiddle" alt="AlphaJay" title="AlphaJay" class="LargePortrait"/></a>
+    <span class='U'>
+        <a href="http://my.oschina.net/alphajay" class='Name' title='男'>AlphaJay</a>
+		<span class='opts'>
+			<img src="/img/2012/men.png" align='absmiddle' title='男'/>
+        			<script type='text/javascript'>
+var nologin = "<a href='javascript:_follow_nologin()' title='成为TA的粉丝'>关注此人</a>"
+var follow0 = "<a href='javascript:_follow_user(66133,true)' title='成为TA的粉丝'>关注此人</a>";
+var follow1 = "已关注 | <a href='javascript:_follow_user(66133,false)' title='取消关注后，此人的更新信息将不会出现在你的首页'>取消</a>";
+var follow2 = "互相关注 | <a href='javascript:_follow_user(66133,false)' title='取消关注后，此人的更新信息将不会出现在你的首页'>取消</a>";
+var follow4 = "<a href='javascript:_follow_user(66133,true)' title='成为TA的粉丝'>+关注此人</a>";
+
+document.write("<span id='_follow_66133_action_'>");
+	document.write(nologin);
+document.write("</span>");
+
+function _follow_nologin(){
+	if(confirm('必须登录后才能关注，是否现在登录？')){
+		location.href="http://www.oschina.net/home/login?goto_page="+location.href;
+	}
+}
+
+function _follow_user(uid, follow){
+	var action = follow?"/action/user/follow":"/action/user/unfollow";
+	ajax_post(action,"id="+uid+"&user=${g_user.id}",function(result){
+		var act = $('#_follow_66133_action_');
+		if(result == '0')
+			_follow_nologin();
+		else if(result == '1')
+			act.html(follow0);
+		else if(result == '2')
+			act.html(follow1);
+		else if(result == '3')
+			act.html(follow2);
+		else if(result == '4')
+			act.html(follow4);
+	});
+}
+</script>				</span>
+    </span>
+    <div class='clear'></div>
+    <div class='stat'>
+    	<a href="http://my.oschina.net/alphajay/fellow">关注<span>(5)</span></a>
+    	<a href="http://my.oschina.net/alphajay/fans">粉丝<span>(58)</span></a>
+    	<a href="http://www.oschina.net/question/3307_20931" title="查看OSCHINA积分规则">积分<span>(69)</span></a>
+    </div>
+</div>    <style type="text/css">
+
+    #Medals {margin-left: 3px; height: 28px;}
+    #Medals li {float: left;margin: 3px 5px;line-height: 24px;}
+    .tip-yellowsimple {
+        z-index: 1000;
+        text-align: left;
+        border: 1px solid #E6DEB6;
+        border-radius: 4px;
+        -moz-border-radius: 4px;
+        -webkit-border-radius: 4px;
+        padding: 6px 8px;
+        min-width: 50px;
+        max-width: 300px;
+        color: #000;
+        background-color: #FFFEF2;
+    }	
+</style>
+<script type="text/javascript">
+    $('#Medals a').poshytip({
+        className: 'tip-yellowsimple',
+        alignTo: 'target',
+        alignX: 'right',
+        alignY: 'bottom',
+        offsetX: 10,
+        offsetY: -30,
+        fade: false,
+        slide: false,
+        content: function(updateCallback) {
+            ajax_get("/action/ajax/get_medal_detail?owner=66133&medalId="+$(this).attr('medalId')+"&time="+new Date().getTime(),false,function(html){
+                updateCallback(html);
+                if($('.tip-arrow.tip-arrow-left').last().offset().top >= temp.offset().top) {
+                    $('.tip-arrow.tip-arrow-left').last().css({top : "15px"});
+                }
+                else {
+                    $('.tip-arrow.tip-arrow-left').last().css({top : "135px"});
+                }
+            });
+            temp = $(this);
+            return "<div style='height:100px;'>Loading...</div>";
+        }
+    });
+</script>
+<style>
+#MyResume textarea {width:170px;height:60px;font-size:9pt;}
+</style>
+<div class='Resume' id='MyResume'>
+这个人很懒，啥也没写</div>
+
+<div class='Opts clearfix'>
+	<a href="javascript:sendmsg(66133, 0)" class='a1 sendmsg'><i>.</i><span>发送留言</span></a>
+	<a href="http://www.oschina.net/question/ask?user=66133" class='a2 ask'><i>.</i><span>请教问题</span></a>
+</div><div class="Mod" id="BlogCatalogs">
+  <strong> 博客分类</strong>
+  <ul>
+	    	<li><a href="http://my.oschina.net/alphajay/blog?catalog=103555">通信知识</a><span>(134)</span></li>
+		<li><a href="http://my.oschina.net/alphajay/blog?catalog=196384">善用佳软</a><span>(1)</span></li>
+		<li><a href="http://my.oschina.net/alphajay/blog?catalog=29530">编程coding</a><span>(124)</span></li>
+		<li><a href="http://my.oschina.net/alphajay/blog?catalog=99659">OpenWrt</a><span>(1)</span></li>
+		<li><a href="http://my.oschina.net/alphajay/blog?catalog=29531">技术杂谈</a><span>(1)</span></li>
+		<li><a href="http://my.oschina.net/alphajay/blog?catalog=28447">日常记录</a><span>(0)</span></li>
+		<li><a href="http://my.oschina.net/alphajay/blog?catalog=28448">转贴</a><span>(18)</span></li>
+	  </ul>
+</div><div class="Mod" id="HotBlogs">
+  <strong>阅读排行</strong>
+  <ol>
+			<li><a href="http://my.oschina.net/alphajay/blog/28815">1. OpenWrt系列教程汇总 & OpenWrt简体中文Wiki</a></li>
+				<li><a href="http://my.oschina.net/alphajay/blog/5478">2. 大端小端（Big- Endian和Little-Endian）</a></li>
+				<li><a href="http://my.oschina.net/alphajay/blog/28814">3. openwrt编译基本教程</a></li>
+				<li><a href="http://my.oschina.net/alphajay/blog/5485">4. H.264 NAL层解析</a></li>
+				<li><a href="http://my.oschina.net/alphajay/blog/63208">5. 如何自动调整代码格式 - vim /Visual Studio/ Source Insight...</a></li>
+				<li><a href="http://my.oschina.net/alphajay/blog/7648">6. 关于wchar的两个常用函数wcstombs和WideCharToMultiByte</a></li>
+				<li><a href="http://my.oschina.net/alphajay/blog/7730">7. OBJ文件格式分析工具: objdump, nm,ar</a></li>
+				<li><a href="http://my.oschina.net/alphajay/blog/7737">8. Emacs快捷键的总结</a></li>
+		  </ol>
+</div>
+<div class="Mod" id="BlogReplies">
+  <strong> 最新评论</strong>  
+      <ul>
+		<li>
+		<a href="http://my.oschina.net/bubifengyun">@bubifengyun</a>：引用来自“AlphaJay”的评论 引用来自“bubifen...
+		<a href="/action/tweet/go?obj=277889317&type=18&user=254557">查看&raquo;</a>
+	</li>
+		<li>
+		<a href="http://my.oschina.net/alphajay">@AlphaJay</a>：引用来自“bubifengyun”的评论 老兄，你emacs和...
+		<a href="/action/tweet/go?obj=277873983&type=18&user=66133">查看&raquo;</a>
+	</li>
+		<li>
+		<a href="http://my.oschina.net/3066">@风起q</a>：赞
+		<a href="/action/tweet/go?obj=277329945&type=18&user=116547">查看&raquo;</a>
+	</li>
+		<li>
+		<a href="http://my.oschina.net/bubifengyun">@bubifengyun</a>：老兄，你emacs和vim都学习吗？是不是比较混啊。...
+		<a href="/action/tweet/go?obj=277329939&type=18&user=254557">查看&raquo;</a>
+	</li>
+		<li>
+		<a href="http://my.oschina.net/bubifengyun">@bubifengyun</a>：hao
+		<a href="/action/tweet/go?obj=277329861&type=18&user=254557">查看&raquo;</a>
+	</li>
+		<li>
+		<a href="http://my.oschina.net/u/124797">@Angluca</a>：不错, ctrl+^很有用, 支持一下.
+		<a href="/action/tweet/go?obj=276941728&type=18&user=124797">查看&raquo;</a>
+	</li>
+		<li>
+		<a href="http://my.oschina.net/grath">@职业旅行家</a>：对了 c++中可以有继承 ， 构造函数等
+		<a href="/action/tweet/go?obj=276145733&type=18&user=194764">查看&raquo;</a>
+	</li>
+		<li>
+		<a href="http://my.oschina.net/grath">@职业旅行家</a>：写的这么详细 谢谢
+		<a href="/action/tweet/go?obj=276145720&type=18&user=194764">查看&raquo;</a>
+	</li>
+		<li>
+		<a href="http://my.oschina.net/alphajay">@AlphaJay</a>：引用来自“PTH”的评论 你好。 请教你个问题，我...
+		<a href="/action/tweet/go?obj=275919432&type=18&user=66133">查看&raquo;</a>
+	</li>
+		<li>
+		<a href="http://my.oschina.net/cherogh">@PTH</a>：你好。 请教你个问题，我现在windows bat文件中调...
+		<a href="/action/tweet/go?obj=275912339&type=18&user=1268926">查看&raquo;</a>
+	</li>
+	  </ul>
+  </div>
+<div class='Mod' id='Stat'>
+<strong>访客统计</strong>
+<ul>
+	<li><label>今日访问：</label>132</li>
+    <li><label>昨日访问：</label>344</li>
+    <li><label>本周访问：</label>1503</li>
+    <li><label>本月访问：</label>4945</li>
+    <li><label>所有访问：</label>245334</li>
+</ul>
+</div></div>
+
+<div class='SpaceList'>
+	<div class='TopBar'>
+    	<div class='NavPath'>		
+    		<a href='http://my.oschina.net/alphajay/home'>空间</a> &raquo; <a href='http://my.oschina.net/alphajay/blog'>博客</a>			
+			&raquo; 
+						<span class="catalogs">
+    			<ul>
+    										<li ><a href="http://my.oschina.net/alphajay/blog?catalog=103555">通信知识</a></li>
+					        			        				    				        				<li ><a href="http://my.oschina.net/alphajay/blog?catalog=196384">善用佳软</a></li>    				        				<li ><a href="http://my.oschina.net/alphajay/blog?catalog=29530">编程coding</a></li>    				        				<li ><a href="http://my.oschina.net/alphajay/blog?catalog=99659">OpenWrt</a></li>    				        				<li ><a href="http://my.oschina.net/alphajay/blog?catalog=29531">技术杂谈</a></li>    				        				<li ><a href="http://my.oschina.net/alphajay/blog?catalog=28447">日常记录</a></li>    				        				<li ><a href="http://my.oschina.net/alphajay/blog?catalog=28448">转贴</a></li>    				    				        				<li><a href="http://my.oschina.net/alphajay/blog">所有分类</a></li>
+    				    			</ul>
+			</span>
+    	</div>
+	</div>
+	
+    	<div class='BlogEntity'>		
+      <div class='BlogTitle'>
+        <h1>									<span class="icon" style="background:#799acc;"  title="转帖博客">转</span>						使用emacs + cscope + ecb替代source insight</h1>
+        <div class='BlogStat'>
+    		    		发表于5个月前(2013-08-14 14:17)&nbsp;&nbsp;
+    		阅读（<span class="g">737</span>）&nbsp;|&nbsp;评论（<a href="#comments"><span class="g">0</span></a>）
+    					    	    <span class='admin'>
+				<style>
+#TagsSwitcher{color:#A00;}
+#RecTags,#MyTags{margin:5px 0;}
+#RecTags a.tag{line-height:24px;}
+#favor_form p:first-child{margin:5px 0;}
+#favor_form{width:200px;}
+#favor_form p {color:#666;}
+#favor_form form{min-height: 85px;width:200px;}
+#favor_form form ._favor_input{display:block;margin:2px 0;width:199px;}
+#favor_form form ._favor_button{float:left;padding:2px 5px;}
+.favor_ok {text-align:center;font-size:10.5pt;width:199px;height:60px;margin-top:10px;}
+#TagsSwitcher{cursor:pointer;float:right;margin-top:10px;}
+#MyTags{display:none;width:199px;}
+#MyTags a.tag {float:left; background-color: #E0EAF1;border-bottom: 1px solid #3E6D8E;border-right: 1px solid #7F9FB6;color: #3E6D8E;font-size: 8pt;line-height: 16px;margin: 2px 2px 2px 0;padding: 2px 4px;text-decoration: none;white-space: nowrap;}
+#MyTags a.tag:hover{background-color: #3E6D8E;color: #FFF;}
+</style>
+<script type='text/javascript'>
+var favor_add = "<a href='javascript:add_to_favor(152599,3)' id='favor_trigger' title='添加到收藏夹'>我要收藏</a>";
+var favor_del = "<a href='javascript:delete_favor(152599,3)' id='favor_trigger' style='color:#a00;'>取消收藏</a>";
+var favor_ok = "<p class='favor_ok'>已成功添加到收藏夹<br/><br/> <a href='null/favorites?type=3'>我的收藏夹</a> | <a href='javascript:close_favor()'>关闭</a></p>";
+function delete_favor(obi_id, obj_type){
+	$('#attention_it').html(favor_add);
+	$("#p_attention_count").load("/action/favorite/cancel?type="+obj_type+"&id="+obi_id, {user: ''});
+}
+function add_to_favor(obj_id, obj_type){
+	if(confirm('必须登录后才能收藏，是否现在登录？')){
+		location.href="http://www.oschina.net/home/login?goto_page="+encodeURIComponent(location.href);
+	}
+}
+function close_favor(elem_id){
+    $('#favor_trigger').poshytip('destroy');
+}
+function setTag(tv){
+	var t = $("._favor_input");
+	var value = t.val();
+	var tags = value.replace(/，/ig,',').split(',');
+	var exist = false;
+	value = $.map(tags,function(v,i){
+		if($.trim(tv) == $.trim(v)){
+			exist = true;
+			return undefined;
+		}
+		return v;
+	}).join(',');
+	if(exist){
+		t.val(value);
+		return;
+	}
+	if(value!="")
+		t.val(value+","+tv);
+	else
+		t.val(tv)
+}
+function ltrim(str){
+    var whitespace = new String(" \t\n\r");
+    var s = new String(str);
+    if (whitespace.indexOf(s.charAt(0)) != -1){
+        var j=0, i = s.length;
+        while (j < i && whitespace.indexOf(s.charAt(j)) != -1){
+            j++;
+        }
+        s = s.substring(j, i);
+    }
+    return s;
+}
+
+function rtrim(str){
+    var whitespace = new String(" \t\n\r");
+    var s = new String(str);
+    if (whitespace.indexOf(s.charAt(s.length-1)) != -1){
+        var i = s.length - 1;
+        while (i >= 0 && whitespace.indexOf(s.charAt(i)) != -1){
+            i--;
+        }
+        s = s.substring(0, i+1);
+    }
+    return s;
+}
+ 
+function trim(str){
+    return rtrim(ltrim(str));
+}
+</script>
+<em id='p_attention_count'>3</em>人收藏此文章,
+<span id='attention_it'>
+	<script type='text/javascript'>document.write(favor_add);</script>
+</span>			</span>
+			    	</div>
+		<div class="tvote" onclick="vote(152599)" title="都有0个人赞过了，你也来赞一下吧！不会扣积分哦！"><em class="vote">赞</em><em class="num vote_count">0</em></div>
+      </div>
+	  
+	  <a  name="kindeditor" ></a>
+	  	            <div class="BlogAnchor">
+            <p><em class="corner" id="AnchorContentToggle" title="点击收起目录" style="cursor:pointer;">目录[-]</em></p>
+            <div class="AnchorContent" id="AnchorContent"><li class='osc_h1'><a href='#OSC_h1_1'>Emacs Lisp 功能扩展集锦</a></li><li class='osc_h3'><a href='#OSC_h3_2'>session.el</a></li><li class='osc_h3'><a href='#OSC_h3_3'>desktop.el</a></li><li class='osc_h3'><a href='#OSC_h3_4'>ibuffer.el</a></li><li class='osc_h3'><a href='#OSC_h3_5'>browse-kill-ring.el</a></li><li class='osc_h3'><a href='#OSC_h3_6'>ido.el</a></li><li class='osc_h3'><a href='#OSC_h3_7'>tabbar.el</a></li><li class='osc_h3'><a href='#OSC_h3_8'>speedbar</a></li><li class='osc_h3'><a href='#OSC_h3_9'>table.el</a></li><li class='osc_h3'><a href='#OSC_h3_10'>recentf.el</a></li><li class='osc_h3'><a href='#OSC_h3_11'>rect-mark.el</a></li><li class='osc_h3'><a href='#OSC_h3_12'>hippie-expand</a></li><li class='osc_h3'><a href='#OSC_h3_13'>括号匹配</a></li><li class='osc_h3'><a href='#OSC_h3_14'>临时记号</a></li><li class='osc_h3'><a href='#OSC_h3_15'>go-to-char</a></li><li class='osc_h3'><a href='#OSC_h3_16'>setnu和setnu-plus</a></li><li class='osc_h3'><a href='#OSC_h3_17'>hide-region.el 和 hide-lines.el</a></li><li class='osc_h3'><a href='#OSC_h3_18'>folding.el</a></li><li class='osc_h3'><a href='#OSC_h3_19'>htmlize.el</a></li><li class='osc_h3'><a href='#OSC_h3_20'>dictionary</a></li><li class='osc_h3'><a href='#OSC_h3_21'>color theme</a></li><li class='osc_h3'><a href='#OSC_h3_22'>thumbs</a></li><li class='osc_h3'><a href='#OSC_h3_23'>mmm</a></li><li class='osc_h3'><a href='#OSC_h3_24'>AUCTeX</a></li><li class='osc_h3'><a href='#OSC_h3_25'>preview-latex</a></li><li class='osc_h3'><a href='#OSC_h3_26'>ctypes.el</a></li><li class='osc_h3'><a href='#OSC_h3_27'>ECB</a></li><li class='osc_h3'><a href='#OSC_h3_28'>Emacs Wiki</a></li><li class='osc_h1'><a href='#OSC_h1_29'>在windows环境下使用emacs + cscope + ecb替代source insight</a></li><li class='osc_h3'><a href='#OSC_h3_30'>让Emacs功能强于Source Insight（Linux平台）</a></li><li class='osc_h3'><a href='#OSC_h3_31'>Xrefactory - Refactoring C and C++ programs under Emacs/XEmacs</a></li><li class='osc_h3'><a href='#OSC_h3_32'>1. Prerequisites</a></li><li class='osc_h3'><a href='#OSC_h3_33'>2. Installation</a></li><li class='osc_h3'><a href='#OSC_h3_34'>3. Training Examples</a></li><li class='osc_h3'><a href='#OSC_h3_35'>4. License</a></li></div>
+    	  </div>
+          <script>
+		  	$(function(){
+				$("#AnchorContentToggle").click(function(){
+					var text = $(this).html();
+					if(text=="目录[-]"){
+						$(this).html("目录[+]");
+						$(this).attr({"title":"展开"});
+					}else{
+						$(this).html("目录[-]");
+						$(this).attr({"title":"收起"});
+					}
+					$("#AnchorContent").toggle();
+				});
+			});
+		  </script>
+	  	  <div class='BlogContent'><br /> 
+<span id="OSC_h1_1"></span>
+<h1> Emacs Lisp 功能扩展集锦 </h1> 
+<p> Emacs 具有超强的扩展性。这是当今没有任何其它编辑器可以比拟 的强大特点。这里介绍一些很方便的 Emacs Lisp 扩展。 </p> 
+<p> 有链接的文件可能不是 Emacs 自带的，你需要下载el文件到你的 load-path 中的一个目录里。 </p> 
+<p> 所有文件可以点击链接下载，你也可以点击这里一次性下载所有 el 文件，但是不包括大型的 elisp 包，比如 dictionary. [<a href="http://docs.huihoo.com/homepage/shredderyin/elisp.zip" rel="nofollow">下载</a>]。 </p> 
+<p> 这里提供的下载是我正在用的版本。我没有列出我找到它们的地址， 因为我记不住那么多。如果你需要最新的版本，请查看文件里的网址 到作者的主页。 </p> 
+<p> 每个标题后面的lisp代码是需要写到配置文件里的东西。 </p> 
+<span id="OSC_h3_2"></span>
+<h3> <a href="http://docs.huihoo.com/homepage/shredderyin/src/emacs-lisp/session.el" rel="nofollow">session.el</a> </h3> 
+<pre>(require 'session)
+  (add-hook 'after-init-hook 'session-initialize)</pre> 
+<p> 使用了这个扩展之后，你上次离开 Emacs 时的全局变量 (kill-ring，命令记录……)，局部变量，寄存器，打开的文件，修 改过的文件和最后修改的位置，…… 全部都会被记录下来。 </p> 
+<p> 加载了 session 之后菜单上会多两项：最近访问过的文件和最近 修改过的文件。看这个<a href="http://docs.huihoo.com/homepage/shredderyin/images/session-recentf.png" rel="nofollow">图 </a>。 </p> 
+<span id="OSC_h3_3"></span>
+<h3> desktop.el </h3> 
+<pre>(load &quot;desktop&quot;) 
+(desktop-load-default) 
+(desktop-read)</pre> 
+<p> 如果你想保存上次打开的文件记录，那么可以使用 desktop。这是 Emacs 自 带的。你只需要加入以上设置，然后 M-x desktop-save。以后 Emacs 启动时就会打开你上次离开时的所有 buffer. </p> 
+<p> M-x desktop-clear 可以删除记住的内容，你闲现在记住的 buffer 太多就可以采用这个办法。不过我还是建议用 ibuffer(见下) 来管理这些buffer，因为有时你会发现，如果删掉全部记住的buffer， 以后你需要一定的时间来打开你经常编辑的文件！ </p> 
+<p> 如果session跟desktop配合，下次启动Emacs 的时候，就像根本 没有关闭 Emacs 一样！多爽！ </p> 
+<span id="OSC_h3_4"></span>
+<h3> <a href="http://docs.huihoo.com/homepage/shredderyin/src/emacs-lisp/ibuffer.el" rel="nofollow">ibuffer.el</a> </h3> 
+<p> 把这几行加入 .emacs 就可以把 C-x C-b 那个普通的 buffer menu 换成非常方便的 ibuffer 啦！ </p> 
+<pre>(require 'ibuffer)
+(global-set-key (kbd &quot;C-x C-b&quot;) 'ibuffer)</pre> 
+<p> 使用了 desktop 之后有可能使你同时有几十个 buffer 同时打开 着。有时你想把其中一些关闭，有时你想在某些 buffer 里寻找某个 regexp。这个时候你可以用 ibuffer，它有跟 dired 相似的界面。 可以对 buffer 进行各种标记，排序，隐藏，查找，替换。非常好用。 看看<a href="http://docs.huihoo.com/homepage/shredderyin/images/ibuffer.png" rel="nofollow">这个抓图</a>就是我限定显示 emacs-lisp-mode 和 c-mode 的 buffer，按 major mode 名称排序， 并做上一些记号的情况。 </p> 
+<p> 我常用的一个功能是，用 %-n 标记符合某种名字的 buffer，然 后按 &quot;O&quot; 在这些buffer里寻找我需要的字串。比如在所有打开的后 缀为 html 的 buffer 里寻找 &quot;Emacs&quot; 字样，得到<a href="http://docs.huihoo.com/homepage/shredderyin/images/ibuffer-find.png" rel="nofollow">如下结果</a>。 </p> 
+<span id="OSC_h3_5"></span>
+<h3> <a href="http://docs.huihoo.com/homepage/shredderyin/src/emacs-lisp/browse-kill-ring.el" rel="nofollow">browse-kill-ring.el</a> </h3> 
+<pre>(require 'browse-kill-ring)
+(global-set-key [(control c)(k)] 'browse-kill-ring)
+(browse-kill-ring-default-keybindings)</pre> 
+<p> 方便的在 kill-ring 里寻找需要的东西。 </p> 
+<p> 你是不是经常按 C-y 放进一个 kill-ring 里的单元。然后 M-y，M-y，…… 来寻找你需要的很久以前剪切下来的东西？很费事吧？用了 browse-kill-ring 就好了。你只需要把它绑定到一个热键，比如 C-c k: 就能出现这样一个buffer。[<a href="http://docs.huihoo.com/homepage/shredderyin/images/browse-kill-ring.png" rel="nofollow">查看图形</a>] </p> 
+<p> kill-ring 里的内容都可以方便的浏览，粘贴。具体操作请在这 个 buffer 里 C-h m 或者 ?. </p> 
+<span id="OSC_h3_6"></span>
+<h3> <a href="http://docs.huihoo.com/homepage/shredderyin/src/emacs-lisp/ido.el" rel="nofollow">ido.el</a> </h3> 
+<p> 你可能用过 iswitchb。但是当有很多buffer时，iswitchb 还是很慢。你可 以使用ido。这是我见过的最方便的切换buffer，寻找文件的扩展了。在你的 .emacs 文件里加入： </p> 
+<pre>(require 'ido)
+(ido-mode t)</pre> ido 主要有两个界面：打开文件和切换buffer，它们之间可以随便切换。它的原 始的键设定不是很方便直观，所以我把它另外设置了一下。看 
+<a href="http://docs.huihoo.com/homepage/shredderyin/ido.html" rel="nofollow">这个列表</a>。其实你从这个列表就可以看出 ido 的功能。 我这里只叙述一下基本的操作。 
+<ol> 
+ <li> 打开文件 (C-x C-f) <p> 启动 ido-mode 以后，你可以在 C-x C-f 打开文件时得到一个如下的界面： <br /> <img src="http://static.oschina.net/uploads/img/201308/14141742_fEBz.png" /> </p> <p> 你开始输入文件名，前缀匹配的文件和目录都会列在光标后面的表里。目录 是红色的。 </p> <p> 你可以使用 C-s，C-r 或者左右光标键在匹配的文件之间来回旋转，按上下 光标可以在匹配的目录名之间旋转。你可以按 TAB 补全名字，方括号里的内容 是你按 TAB 将会补全的字符。按 backspace 遇到目录名时，一次会吃掉整个目 录名，并且到达上一级目录。C-k 可以删除一个文件。别担心，当删除文件时， 你会被要求做出明确的回答。 </p> <p> 如果你按 C-p 就会启动部分匹配，而不是严格前缀匹配。这时只要文 件名的一部分与你的输入匹配就会列在表中。 </p> <p> 按 C-t 就会切换到正则表达式匹配方式，你输入的文字将被作为正则 表达式对文件进行匹配。比如我输入 &quot;.*el$&quot; 就可以得到所有以 &quot;el&quot; 结尾的 文件列表。<br /> <img src="http://static.oschina.net/uploads/img/201308/14141742_PJey.png" /> </p> <p> 另外，C-c 和 C-a 分别切换大小写匹配和忽略某些文件。 </p> <p> 你访问过的目录都会被 ido 记住，你可以按 M-up 和 M-down切换以前访问 过的目录，按 M-left 和 M-right 可以提出以前使用过的文件名。 </p> <p> 按 C-b 就会切换到选择buffer模式。按 C-d 就会进入Dired. </p> <p> 注意，你如果要创建一个新的文件叫 &quot;ab&quot;，而你的目录里有匹配前缀的文件 或目录，RET 就会打开部分匹配的文件。所以这个时候你必须按 C-j 来创建这 样一个文件。如果没有匹配的文件，那么RET也会创建一个新的文件。 </p> <p> 由于方向键，backspace 和 C-f, C-b 都被作为其它用途了，所以如果你想 把光标移动到行首修改一些东西，你必须按 C-e 进入编辑模式。 </p> </li> 
+ <li> 寻找文件 <p> Emacs 打开文件的函数叫 find-file。这是很多人不理解的问题。下面我们 就能看到，有了 ido 之后，这个函数就名副其实了。当你输入了一个文件名或 者正则表达式，而在当前目录没有这样的文件，你就可以利用ido的查找功能了。 我举一个例子好了。 </p> <p> 我经常同时编辑不同种类的文件，它们在系统里不同的目录中。它们的目录 名会被ido记住。这样我打开一个文件时，可以不管它在哪个目录。我只需要输 入它的名字。比如，我刚才已经打开了 </p> <pre>~/html/emacs_elisp.html
+/usr/local/texlive/texmf-local/tex/latex/CJK/GB/c19fzhc.fd
+~/.emacs.d/site-lisp/folding.el
+....</pre> 现在我想打开另一些 <pre>/usr/local/texlive/texmf-local/tex/latex/CJK/GB/</pre> 目录下的 .cap 文件。我就在 C-x C-f 的界面按输入 &quot;cap$&quot;，然后打开正则匹配 和部分匹配，出现以下界面：<br /> <img src="http://static.oschina.net/uploads/img/201308/14141742_jcXZ.png" /> <p> 因为当前目录(PWD)下没有后缀是 fd 的文件，所以我按了一下 M-up，这下 成了这个样子：<br /> <img src="http://static.oschina.net/uploads/img/201308/14141742_xlpI.png" /> </p> <p> 显然它找到一个结尾是 &quot;cap&quot; 的文件，但是这不是我想要的，于是我继续按 一下 M-up 到再上面一个目录里去找。就成了这样：<br /> <img src="http://static.oschina.net/uploads/img/201308/14141742_wvYF.png" /> </p> <p> 这就是我需要的文件！想一想，你的当前目录不在那个地方，用别的办法打 开如此深一个目录里的文件需要花多少时间？ </p> <p> 其实我们还有一个窍门，刚才如果在不能匹配的时候按 M-s，ido 就会把所 路径合并，找到匹配文件，然后给出一个列表：<br /> <img src="http://static.oschina.net/uploads/img/201308/14141742_amwH.png" /> </p> </li> 
+ <li> 切换buffer(C-x b) <p> 切换 buffer 的界面也跟打开文件功能类似。不过少了一些文件特有的功能， 多了一些buffer特有的的功能。 <br /> <img src="http://static.oschina.net/uploads/img/201308/14141742_P2lY.png" /> </p> <p> 打开文件时 C-k 是删除文件，现在 C-k 变成了关闭 buffer。如果你按 C-a 就会显示通常被忽略的 buffer。 </p> <p> 如果不存在这样的的buffer，你可以直接回车新建一个buffer，也可以使用 C-f 切换到打开文件界面。 </p> </li> 
+</ol> 
+<p> 这个扩展功能实在太多，你看了我的叙述能够体会到它的方便了吧。但是实 际使用时，你很少能记住所有这些功能。最好是自己绑定键。在需要的时候可以 查询这个键绑定。就像我的这个<a href="http://docs.huihoo.com/homepage/shredderyin/ido.html" rel="nofollow">键绑定</a>。 </p> 
+<p> 最新的 ido 可以逐步筛选你需要的文件 (ido-restrict-to-matches)，你可以把<a href="http://docs.huihoo.com/homepage/shredderyin/wiki/IdoKeys.html" rel="nofollow">这段代码</a>加入你的 .emacs. </p> 
+<a href="http://docs.huihoo.com/homepage/shredderyin/src/emacs-lisp/swbuff.el" rel="nofollow">swbuff</a> 
+<pre>(require 'swbuff)
+(global-set-key (kbd &quot;&quot;) 'swbuff-switch-to-previous-buffer)
+(global-set-key (kbd &quot;&quot;) 'swbuff-switch-to-next-buffer)
+(setq swbuff-exclude-buffer-regexps 
+     '(&quot;^ &quot; &quot;\\*.*\\*&quot;))
+
+(setq swbuff-status-window-layout 'scroll)
+(setq swbuff-clear-delay 1)
+(setq swbuff-separator &quot;|&quot;)
+(setq swbuff-window-min-text-height 1)</pre> 
+<p> 使用这个，你就可以方便的在最近编辑的 buffer 之间切换了。 切换的时候会出现一个小窗口显示附近的buffer，就像翻页一样。看 看<a href="http://docs.huihoo.com/homepage/shredderyin/images/swbuff.png" rel="nofollow">抓图</a>。 </p> 
+<p> 我把它绑定到了 C-prior 和 C-next，按起来很方便。而且你可 以用变量 swbuff-exclude-buffer-regexps 设定你不想看到的 buffer。它们不会出现在列表里。这个例子中我把所有名称开头是空 格的 buffer 和名字前后都是 &quot;*&quot; 的都排除在轮训以外，这样就可 以在不同的文件之间切换而不被恼人的临时 buffer 扰乱了。 </p> 
+<p> 一个很重要的变量是 swbuff-status-window-layout, 改变它的 值可以改变 swbuff 下面那个窗口的显示方式。 </p> 
+<p> 如果你的 buffer 很多，这个窗口可以长得很大。如果你把 swbuff-status-window-layout设为 'adjust，则不论什么时候都会 出现这样的大窗口，设为 'default 则只有单窗口时才出现大窗口。 虽然这个窗口只显示几秒钟，但是 我很讨厌一个那么大的窗口在我 面前一闪。现在如果你把它设为 'scroll，不论什么时候都只占用一 行。这样buffer太多时，那个窗口不会占用太多空间扰乱视线。 </p> 
+<p> 原来的 swbuff 有一个小小的 bug, 无论 swbuff-status-window-layout 是什么值，都会显示一个很大的窗口 显示所有的 buffer，这个文件是我修改过的版本。 </p> 
+<p> swbuff-clear-delay 可以控制小窗口消失的延迟。 </p> 
+<p> swbuff-window-min-text-height 可以控制小窗口的大小。如果 设为 0， 就不会打开小窗口了。 </p> 
+<span id="OSC_h3_7"></span>
+<h3> <a href="http://docs.huihoo.com/homepage/shredderyin/src/emacs-lisp/tabbar.el" rel="nofollow">tabbar.el</a> </h3> 
+<pre>(require 'tabbar)
+(tabbar-mode)
+(global-set-key (kbd &quot;&quot;) 'tabbar-backward-group)
+(global-set-key (kbd &quot;&quot;) 'tabbar-forward-group)
+(global-set-key (kbd &quot;&quot;) 'tabbar-backward)
+(global-set-key (kbd &quot;&quot;) 'tabbar-forward)</pre> 
+<p> 你曾经觉得 Windows 样式的编辑器上面的 tab 很好用吧？其实 Emacs 的更好，它不但可以把所有 buffer 列在 tab 上，而且根据 major mode 对 tab 进行分组。你可以用 customize-group RET tabbar RET 来设置它的选项。 </p> 
+<p> 我把Windows键盘上的 &quot;Win&quot; 键绑定到了这个功能，因为 tabbar 很像Windows 的风格。按 Win-left 和 Win-right 就会在同组 tab 之间切换，Win-up 和 Win-down 可以在分组之间切换。 </p> 
+<p> 看看下面几个图你就知道它如何好用啦！ </p> 
+<p> 显示 html mode 的分组： <br /> <img src="http://static.oschina.net/uploads/img/201308/14141742_goTq.png" /> </p> 
+<p> 分组列表 <br /> <img src="http://static.oschina.net/uploads/img/201308/14141742_TkId.png" /> </p> 
+<p> 在不同的窗口里可以有独立的 tab。图片太大，要看的话点击<a href="http://docs.huihoo.com/homepage/shredderyin/images/tabbar-win.png" rel="nofollow">这里</a> </p> 
+<p> tabbar 有一个小小的 <a href="http://docs.huihoo.com/homepage/shredderyin/wiki/TabbarMode.html" rel="nofollow">Hack</a>, 可以使你更方便。 </p> 
+<span id="OSC_h3_8"></span>
+<h3> speedbar </h3> 
+<p> 这个是 Emacs 自带的。M-x speedbar 就可以启动它。它可以让你 方便的浏览文件，你还可以显示文件里的标题，函数，变量…… </p> 
+<p> 在你编辑不同的文件时，它可以显示当前文件所在目录里的相关文 件和它们的信息，比如文件是否需要重新编译，elisp文件是否已 经编译，…… 等等。 </p> 
+<p> 你可以看看<a href="http://docs.huihoo.com/homepage/shredderyin/images/speedbar.png" rel="nofollow">我的抓图</a>。 </p> 
+<span id="OSC_h3_9"></span>
+<h3> <a href="http://docs.huihoo.com/homepage/shredderyin/src/emacs-lisp/table.el" rel="nofollow">table.el</a> </h3> 
+<pre>(autoload 'table-insert &quot;table&quot; &quot;WYGIWYS table editor&quot;)</pre> 
+<p> 非常酷的一个扩展。可以“所见即所得”的编辑一个文本模式的 表格。就跟很多字处理程序那样操作，可以识别文本文件里本来就存 在的表格，而且可以把表格输出为 HTML 和 TeX。看看我的<a href="http://docs.huihoo.com/homepage/shredderyin/images/table.png" rel="nofollow">抓图</a>吧。 </p> 
+<span id="OSC_h3_10"></span>
+<h3> <a href="http://docs.huihoo.com/homepage/shredderyin/src/emacs-lisp/recentf.el" rel="nofollow">recentf.el</a> </h3> 
+<p> 这个扩展可以帮你保存一个“最近打开的文件”列表。在 .emacs 文件里加 入： </p> 
+<pre>(require 'recentf)
+(recentf-mode 1)</pre> 你可以把不常用的C-x C-r 绑定到这样一个函数： 
+<pre>(defun recentf-open-files-compl ()
+  (interactive)
+  (let* ((all-files recentf-list)
+	 (tocpl (mapcar (function 
+			 (lambda (x) (cons (file-name-nondirectory x) x))) all-files))
+	 (prompt (append '(&quot;File name: &quot;) tocpl))
+	 (fname (completing-read (car prompt) (cdr prompt) nil nil)))
+    (find-file (cdr (assoc-ignore-representation fname tocpl))))) 
+
+(global-set-key [(control x)(control r)] 'recentf-open-files-compl)</pre> 这样你就可以 C-x C-r 然后 TAB 列出最近打开文件列表了。 
+<span id="OSC_h3_11"></span>
+<h3> <a href="http://docs.huihoo.com/homepage/shredderyin/src/emacs-lisp/rect-mark.el" rel="nofollow">rect-mark.el</a> </h3> 
+<p> 你是不是觉得 Emacs 的“矩形区域操作”不太直观？使用这个包之后矩形 region会被真正显示成一个矩形。[<a href="http://docs.huihoo.com/homepage/shredderyin/rect-mark.png" rel="nofollow">查看图形</a>]这 可以使你的矩形操作大大方便。 </p> 
+<p> 如果你已经有了一个 region。你可以使用 C-x r C-x 把它显示为一个矩形。 如果你刚开始设定一个矩形区域，你可以使用 C-x r 作为你的 set-mark-command 的前缀，比如 C-x r C-SPC。那么区域会被显示为矩形。 </p> 
+<span id="OSC_h3_12"></span>
+<h3> hippie-expand </h3> 
+<p> 这个是 Emacs 自带的功能，可是知道它的人不多。很多人用的是M-/ (dabbrev-expand) 这样的东西。 hippie-expand 要强大的多。因为它可以使用 扩展函数任意扩充！你可以把你的 M-/ 绑定到 hippie-expand，马上就可以体 会到它的方便。 </p> 
+<pre>(global-set-key [(meta ?/)] 'hippie-expand)</pre> 你可以设置以下 hippie-expand 的补全方式。它是一个优先列表， hippie-expand 会优先使用表最前面的函数来补全。通常我的设置是： 
+<pre>(setq hippie-expand-try-functions-list 
+      '(try-expand-dabbrev
+	try-expand-dabbrev-visible
+	try-expand-dabbrev-all-buffers
+	try-expand-dabbrev-from-kill
+	try-complete-file-name-partially
+	try-complete-file-name
+	try-expand-all-abbrevs
+	try-expand-list
+	try-expand-line
+	try-complete-lisp-symbol-partially
+	try-complete-lisp-symbol))</pre> 
+<p> 这是说，首先使用当前的buffer补全，如果找不到，就到别的可见的窗口里寻找， 如果还找不到，那么到所有打开的buffer去找，如果还……那么到kill-ring里， 到文件名，到简称列表里，到list，…… 当前使用的匹配方式会在 echo 区域 显示。 </p> 
+<p> 特别有意思的是 try-expand-line，它可以帮你补全整整一行文字。我很多 时后有两行文字大致相同，只有几个字不一样，但是我懒得去拷贝粘贴以下。那 么我就输入这行文字的前面几个字。然后多按几下 M-/ 就能得到那一行。 </p> 
+<span id="OSC_h3_13"></span>
+<h3> 括号匹配 </h3> 
+<p> 这是一个很小的函数。你是不是觉得 Emacs 在匹配的括号之间来回跳转的时 候按 C-M-f 和 C-M-b 太麻烦了？vi的 % 就很方便，我们可以把 % 设置为匹配 括号。可是你想输入 % 怎么办呢？ </p> 
+<p> 一个很巧妙的解决方案就是，当 % 在括号上按下时，那么匹配括号，否则输 入一个 %。你只需要在 .emacs 文件里加入这些东西就可以达到目的： </p> 
+<pre>(global-set-key &quot;%&quot; 'match-paren)
+          
+(defun match-paren (arg)
+  &quot;Go to the matching paren if on a paren; otherwise insert %.&quot;
+  (interactive &quot;p&quot;)
+  (cond ((looking-at &quot;\\s\(&quot;) (forward-list 1) (backward-char 1))
+	((looking-at &quot;\\s\)&quot;) (forward-char 1) (backward-list 1))
+	(t (self-insert-command (or arg 1)))))</pre> 
+<span id="OSC_h3_14"></span>
+<h3> 临时记号 </h3> 
+<p> 有时你需要跳到另一个文件进行一些操作，然后很快的跳回来。你当然可以 使用 bookmark 或者寄存器。但是这些实在是太慢了。你多想拥有vi那样的 ma, mb, 'a, 'b 的操作。现在你可以用几行 elisp 达到类似的目的： </p> 
+<pre>(global-set-key [(control ?\.)] 'ska-point-to-register)
+(global-set-key [(control ?\,)] 'ska-jump-to-register)
+(defun ska-point-to-register()
+  &quot;Store cursorposition _fast_ in a register. 
+Use ska-jump-to-register to jump back to the stored 
+position.&quot;
+  (interactive)
+  (setq zmacs-region-stays t)
+  (point-to-register 8))
+
+(defun ska-jump-to-register()
+  &quot;Switches between current cursorposition and position
+that was stored with ska-point-to-register.&quot;
+  (interactive)
+  (setq zmacs-region-stays t)
+  (let ((tmp (point-marker)))
+        (jump-to-register 8)
+        (set-register 8 tmp)))</pre> 当你按 C-. 时就做了一个记号。然后你可以到别处，按 C-, 就可以在这两点之 间来回跳转了。这虽然没有 vi 的 26 个 mark 多，但是你仔细想想，vi的26个 mark，你通常能用到几个？ 
+<span id="OSC_h3_15"></span>
+<h3> go-to-char </h3> 
+<pre>(defun wy-go-to-char (n char)
+  &quot;Move forward to Nth occurence of CHAR.
+Typing `wy-go-to-char-key' again will move forwad to the next Nth
+occurence of CHAR.&quot;
+  (interactive &quot;p\ncGo to char: &quot;)
+  (search-forward (string char) nil nil n)
+  (while (char-equal (read-char)
+		     char)
+    (search-forward (string char) nil nil n))
+  (setq unread-command-events (list last-input-event)))
+
+(define-key global-map (kbd &quot;C-c a&quot;) 'wy-go-to-char)</pre> 
+<p> 非常感谢 Oliver Scholz 提供这个函数给 我。 </p> 
+<p> 这个函数是一个 vi 的 &quot;f&quot; 命令的替代品。vi的用户知道，vi有 一个特别好的命令 &quot;f&quot;。当你按 &quot;fx&quot;, x 是任意一个字符时，光标 就会移动到下一个 &quot;x&quot; 处。这之后只要按 &quot;;&quot;(分号)，光标就到再 下一个 &quot;x&quot;。 </p> 
+<p> 举个例子说明这个命令的用途。比如我们有这样一行字，光标在 行首。 </p> 
+<pre>(setq unread-command-events (list last-input-event)))
+                                               ^^^^^</pre> 
+<p> 我们希望迅速的到达最后那个 event 处，于是我在 vi 里按 &quot;fe&quot;。结果光标到了 &quot;setq&quot; 的那个 e 上面，这时候我接着按 &quot;;&quot;, 不一会儿就到了我们想要的地方。很方便吧？可能起初不觉得，后来 你发现这真的非常好！ </p> 
+<p> 我一直觉得 Emacs 没有这样一个方便的命令，但是 Oliver 给了 我一个完美的答案： </p> 
+<p> 有了这段代码之后，当你按 C-c a x (x 是任意一个字符) 时，光 标就会到下一个 x 处。再次按 x，光标就到下一个 x。比如 C-c a w w w w ..., C-c a b b b b b b ... </p> 
+<p> 我觉得这个方式比 vi 的 &quot;f&quot; 要快。 </p> 
+<span id="OSC_h3_16"></span>
+<h3> <a href="http://docs.huihoo.com/homepage/shredderyin/src/emacs-lisp/setnu.el" rel="nofollow">setnu</a>和<a href="http://learn.tsinghua.edu.cn:8080/2001315450/src/emacs-lisp/setnu-plus" rel="nofollow">setnu-plus</a> </h3> 
+<p> 这两个包可以用来显示文件的行号。并且根据是否空行和文件行 的语法加亮显示不同的数字颜色。 </p> 
+<p> 看看<a href="http://docs.huihoo.com/homepage/shredderyin/images/setnu.png" rel="nofollow">我的抓图</a>。 </p> 
+<span id="OSC_h3_17"></span>
+<h3> <a href="http://docs.huihoo.com/homepage/shredderyin/src/emacs-lisp/hide-region.el" rel="nofollow">hide-region.el</a> 和 <a href="http://docs.huihoo.com/homepage/shredderyin/src/emacs-lisp/hide-lines.el" rel="nofollow">hide-lines.el</a> </h3> 
+<p> 这两个函数可以分别把一个区域和匹配某个regexp的行都藏起来， 就跟不存在一样……这样你就可以对某些内容进行任意的操作而不会 影响到其它的部分。 </p> 
+<p> hide-lines 在操作某些行的时候用起来特别方便。加一个前缀参 数可以把不匹配的行都藏起来，只看到匹配的！看看我只显示这个文 件里含有global-set-key 的行： <br /> <img src="http://static.oschina.net/uploads/img/201308/14141742_BF9C.png" /> </p> 
+<pre>;;hide region
+(require 'hide-region)
+(global-set-key (kbd &quot;C-c r&quot;) 'hide-region-hide)
+(global-set-key (kbd &quot;C-c R&quot;) 'hide-region-unhide)
+
+
+;; hide lines
+(require 'hide-lines)
+(global-set-key (kbd &quot;C-c l&quot;) 'hide-lines)
+(global-set-key (kbd &quot;C-c L&quot;) 'show-all-invisible)</pre> 
+<span id="OSC_h3_18"></span>
+<h3> <a href="http://docs.huihoo.com/homepage/shredderyin/src/emacs-lisp/folding.el" rel="nofollow">folding.el</a> </h3> 
+<p> 我的 folding 配置很长，要看请点击<a href="http://docs.huihoo.com/homepage/shredderyin/wiki/FoldingConfig.html" rel="nofollow">这里</a>。 </p> 
+<p> 我编辑了这么长一个 HTML 文件，你觉得一定很费力，不容易定 位吧？其实我的屏幕看起来就是<a href="http://docs.huihoo.com/homepage/shredderyin/images/folding.png" rel="nofollow">这 个样子</a>。所有小节都被我折叠了起来，我很容易就可以调换小节 的位置。我刚才把folding的大段的配置代码移动到了另一个文件， 就像移动了一行。 </p> 
+<p> folding 根据不同的文档有不同的标记，它都是基于注释的。本 网页就是这样一个例子。 </p> 
+<span id="OSC_h3_19"></span>
+<h3> <a href="http://docs.huihoo.com/homepage/shredderyin/src/emacs-lisp/htmlize.el" rel="nofollow">htmlize.el</a> </h3> 
+<p> 把语法加亮的文件输出成彩色 HTML 文件。看看<a href="http://docs.huihoo.com/homepage/shredderyin/htmlize.html" rel="nofollow">这个例子</a>。 </p> 
+<span id="OSC_h3_20"></span>
+<h3> <a href="http://www.myrkr.in-berlin.de/dictionary/index.html" rel="nofollow">dictionary</a> </h3> 
+<br /> [ 
+<a href="http://docs.huihoo.com/homepage/shredderyin/src/emacs-lisp/dictionary-1.8.4.tar.gz" rel="nofollow">本地下载</a>][ 
+<a href="http://www.myrkr.in-berlin.de/dictionary/index.html" rel="nofollow">来源地</a>] 
+<pre>(autoload 'dictionary-search &quot;dictionary&quot;
+  &quot;Ask for a word and search it in all dictionaries&quot; t)
+(autoload 'dictionary-match-words &quot;dictionary&quot;
+  &quot;Ask for a word and search all matching words in the dictionaries&quot; t)
+(autoload 'dictionary-lookup-definition &quot;dictionary&quot;
+  &quot;Unconditionally lookup the word at point.&quot; t)
+(autoload 'dictionary &quot;dictionary&quot;
+  &quot;Create a new dictionary buffer&quot; t)
+(autoload 'dictionary-mouse-popup-matching-words &quot;dictionary&quot;
+  &quot;Display entries matching the word at the cursor&quot; t)
+(autoload 'dictionary-popup-matching-words &quot;dictionary&quot;
+  &quot;Display entries matching the word at the point&quot; t)
+(autoload 'dictionary-tooltip-mode &quot;dictionary&quot;
+  &quot;Display tooltips for the current word&quot; t)
+(autoload 'global-dictionary-tooltip-mode &quot;dictionary&quot;
+  &quot;Enable/disable dictionary-tooltip-mode for all buffers&quot; t)
+
+(global-set-key [mouse-3] 'dictionary-mouse-popup-matching-words)
+(global-set-key [(control c)(d)] 'dictionary-lookup-definition)
+(global-set-key [(control c)(s)] 'dictionary-search)
+(global-set-key [(control c)(m)] 'dictionary-match-words)
+
+;; choose a dictionary server
+(setq dictionary-server &quot;localhost&quot;)
+
+;; for dictionary tooltip mode
+;; choose the dictionary: &quot;wn&quot; for WordNet
+;; &quot;web1913&quot; for Webster's Revised Unabridged Dictionary(1913)
+;; so on
+(setq dictionary-tooltip-dictionary &quot;wn&quot;)
+(global-dictionary-tooltip-mode t)
+;(dictionary-tooltip-mode t)</pre> 
+<p> 连接到 dict 协议服务器，并且查询单词含义。按 C-c d 查询道当 前单词，按 C-c m 在字典里查找一个匹配的单词，鼠标邮件点击单词 会弹出菜单。还有 tooltip 功能！非常好用！你可以看看我的<a href="http://docs.huihoo.com/homepage/shredderyin/dictionary_el.png" rel="nofollow">屏幕截图</a>。 </p> 
+<p> 你可以在自己机器上安装一个 dictd。这样就不需要连到很远的服 务器查字典了。 </p> 
+<span id="OSC_h3_21"></span>
+<h3> <a href="http://docs.huihoo.com/homepage/shredderyin/src/emacs-lisp/color-theme.el.gz" rel="nofollow">color theme</a> </h3> 
+<p> Emacs 提供给你所有的配色机制，可是由于你的艺术细胞不够，经常为找不 到好的配色方案而烦恼。使用这个包就可以方便的改变你的 Emacs 的配色方案 啦！看看我的屏幕抓图 [<a href="http://docs.huihoo.com/homepage/shredderyin/color-theme.png" rel="nofollow">1</a>] [<a href="http://docs.huihoo.com/homepage/shredderyin/color-theme1.png" rel="nofollow">2</a>] [<a href="http://docs.huihoo.com/homepage/shredderyin/color-theme2.png" rel="nofollow">3</a>] </p> 
+<p> 它提供了50种以上的配色方案。你只需要把： </p> 
+<pre>(require 'color-theme)</pre> 加入到 .emacs 文件。使用 M-x color-theme-select 就会出现一个配色方案选 择窗口，在配色方案上按 l 就可以改变当前 frame 的配色，按 i 就可以改变 所有 frame 的配色。 
+<p> 如果你想选定一个配色方案后就一直用它，而避免每次都加载大量用不着的 lisp代码，按 p 就可以把当前配色方案的 lisp 打印出来，你可以把它加到你 的 .emacs 文件。而不使用 (require 'color-theme) 这样可以加快启动速度。 </p> 
+<span id="OSC_h3_22"></span>
+<h3> <a href="http://docs.huihoo.com/homepage/shredderyin/src/emacs-lisp/thumbs.el" rel="nofollow">thumbs</a> </h3> 
+<p> 这个扩展可以把 Emacs 变成一个图片浏览器。看看<a href="http://docs.huihoo.com/homepage/shredderyin/emacs-thumbs.png" rel="nofollow">抓图</a>吧。 </p> 
+<span id="OSC_h3_23"></span>
+<h3> <a href="http://docs.huihoo.com/homepage/shredderyin/src/emacs-lisp/mmm-mode-0.4.7.tar.gz" rel="nofollow">mmm</a> </h3> 
+<pre>(autoload 'mmm-mode &quot;mmm-mode&quot; &quot;Multiple Major Modes&quot; t)
+(autoload 'mmm-parse-buffer &quot;mmm-mode&quot; &quot;Automatic MMM-ification&quot; t)</pre> 
+<p> 你想过一个 buffer 里同时存在很多个 major mode 吗？现在用 MMM 就可以办到了。在不同的区域拥有对应键绑定，变量，缩进 …… </p> 
+<p> 看看<a href="http://docs.huihoo.com/homepage/shredderyin/images/mmm.png" rel="nofollow">我的抓图</a>，HTML, Emacs Lisp, Perl, C 和 LaTeX 全都都在同一个 buffer 里被正确的语法 加亮了！而且TAB在不同的区域都可以进行正确缩进。在 LaTeX 的区 域还可以使用 AUC TeX 来处理某个部分。 </p> 
+<p> 当然我现在是在滥用这个模式。如果你有嵌入 HTML 的 JavaScript 或 CSS2, PL/SQL，……这个就有用了。 </p> 
+<p> 我可以使用这个扩展来处理 CWEB 程序。最外面的 major mode 用 cweb-mode, 里面的 TeX 和 C 的区域就使用它们各自的TeX-mode 和 c-mode。看起来就像<a href="http://learn.tsinghua.edu.cn:8080/2001315450/images/mmm-cweb.png" rel="nofollow">这个样子 </a>。 </p> 
+<span id="OSC_h3_24"></span>
+<h3> <a href="http://www.gnu.org/software/auctex/" rel="nofollow">AUCTeX</a> </h3> 
+<p> 看到这个名字你还以为是一个 TeX 发行吧？它不是一个 TeX 发 行，而是一个专门用来帮助作者写 TeX/LaTeX 文档的工具。它大大 加强了 LaTeX 用户的能力。你写文档时能够只 TeX 一个你觉得需要 看到效果的 region 的内容，而不必等待漫长的编译过程啦！ </p> 
+<span id="OSC_h3_25"></span>
+<h3> <a href="http://sourceforge.net/project/showfiles.php?group_id=35101&amp;release_id=134739" rel="nofollow">preview-latex</a> </h3> 
+<p> 可以把 LaTeX 文档的效果插入到文档里，形成一个预览，与你的 原文件一一对照。非常方便。你可以看看我的抓图： </p> 
+<p> <a href="http://docs.huihoo.com/homepage/shredderyin/images/preview-latex-formula.png" rel="nofollow">文档里的公式</a> </p> 
+<p> <a href="http://docs.huihoo.com/homepage/shredderyin/images/preview-latex-image.png" rel="nofollow">文档里的图片</a> </p> 
+<p> 注意要用这个包，你必须安装 TeX 系统和 AUCTeX. </p> 
+<span id="OSC_h3_26"></span>
+<h3> <a href="http://docs.huihoo.com/homepage/shredderyin/src/emacs-lisp/ctypes.el" rel="nofollow">ctypes.el</a> </h3> 
+<pre>(require 'ctypes)
+(ctypes-auto-parse-mode 1)</pre> 
+<p> ctypes 可以识别你的 C 文件里的类型定义 (typedef)。自动对 它们进行语法加亮。 </p> 
+<span id="OSC_h3_27"></span>
+<h3> <a href="http://sourceforge.net/projects/ecb/" rel="nofollow">ECB</a><a name="ecb" rel="nofollow"></a> </h3> 
+<p> ECB(Emacs Code Browser) 是一个代码浏览器，它依赖于<a href="http://cedet.sourceforge.net/semantic.shtml" rel="nofollow">Semantic</a> 和<a href="http://cedet.sourceforge.net/eieio.shtml" rel="nofollow">Eieio</a>。 </p> 
+<p> 它们组合可以实现很好的文法分析的代码浏览。ECB 在 Semantic 和 Eieio 的支持下，可以识别许许多多种计算机语言，C, C++, Java, Elisp, ... </p> 
+<p> 看看这个<a href="http://docs.huihoo.com/homepage/shredderyin/images/ecb.png" rel="nofollow">抓图</a>。 </p> 
+<span id="OSC_h3_28"></span>
+<h3> <a href="http://docs.huihoo.com/homepage/shredderyin/src/emacs-lisp/emacs-wiki.el" rel="nofollow">Emacs Wiki</a><a name="wiki" rel="nofollow"></a> </h3> 
+<pre>(require 'emacs-wiki)
+
+(add-hook 'emacs-wiki-mode-hook
+	  (lambda ()
+	    (define-key emacs-wiki-mode-map (kbd &quot;C-c C-h&quot;) 'emacs-wiki-preview-html)
+	    (define-key emacs-wiki-mode-map (kbd &quot;C-c C-c&quot;) 'emacs-wiki-preview-source)
+	    (define-key emacs-wiki-mode-map (kbd &quot;C-c C-v&quot;) 'emacs-wiki-change-project)
+
+))
+
+;; (setq emacs-wiki-grep-command &quot;glimpse -nyi \&quot;%W\&quot;&quot;)
+
+(setq emacs-wiki-publishing-directory &quot;publish&quot;)
+
+(setq emacs-wiki-directories '(&quot;~/WiKi&quot;))
+(setq emacs-wiki-meta-charset &quot;gb2312&quot;)
+(setq emacs-wiki-style-sheet
+      &quot;&quot;)
+
+(setq emacs-wiki-inline-relative-to 'emacs-wiki-publishing-directory)
+
+(defun emacs-wiki-preview-source ()
+  (interactive)
+  (emacs-wiki-publish-this-page)
+  (find-file (emacs-wiki-published-file)))
+
+(defun emacs-wiki-preview-html ()
+  (interactive)
+  (emacs-wiki-publish-this-page)
+  (browse-url (emacs-wiki-published-file)))
+
+(setq emacs-wiki-projects
+      `((&quot;default&quot; . ((emacs-wiki-directories . (&quot;~/WiKi&quot;))))
+        (&quot;work&quot; . ((fill-column . 65)
+                 (emacs-wiki-directories . (&quot;~/workwiki/&quot;))))))</pre> 
+<p> 用来制作 WiKi 的包。非常方便。看看我的<a href="http://docs.huihoo.com/homepage/shredderyin/images/wiki-text.png" rel="nofollow">抓图</a>。 </p> 
+<p> 这上面的只是我自己的设定，你要根据自己的情况修改。 </p> 
+<p> 我写了一个简要的 WiKi 说明在 <a href="http://docs.huihoo.com/homepage/shredderyin/wiki/WiKi.html" rel="nofollow">这 里</a>。 </p> 
+<p> 更多的信息请参考 <a href="http://repose.cx/emacs/wiki/" target="_blank" rel="nofollow">http://repose.cx/emacs/wiki/</a>。 </p> 
+<p> —————————————————————————————————————— </p> 
+<p> <br /> </p> 
+<span id="OSC_h1_29"></span>
+<h1> 在windows环境下使用emacs + cscope + ecb替代source insight </h1> 
+<p> <br /> source insight是windows环境下用于代码开发和阅读的利器，功能强大，对于大规模代码的维护和开发几乎不可或缺（这里 <br /> 指它提供的功能，类似的商业工具还有很多）。使用emacs替代source insight原因有：a，si是商业软件，使用需要付费，虽然可以从网上 <br /> 找到破解版本；b，对于unix/linux爱好者或者需要同时工作于unix和windows环境下的开发人员，emacs是通用工具；emacs其它的强大 <br /> 功能暂且不表。 <br /> 下面是基于windows xp平台的安装方法，其中大部分步骤和unix环境下的一样，只有cscope的有所不同。 <br /> <br /> 1）准备工作 <br /> 首先，你得下载一下一些工具（扩展），emacs，cscope，ecb，cedet是必须的，session，doxymacs不是必要的，但是装上会 <br /> 更方便。下载这些东西的网址链接如下：（当然，下面这些东西都可以从google找到下载链接，下面提供的网址都是google出来的，如果 <br /> 下面提供的链接不可用了，大家可以自己google一把） <br /> i）emacs： <a href="http://www.gnu.org/software/emacs/" target="_blank" rel="nofollow">http://www.gnu.org/software/emacs/</a> <br /> 从gnu的ftp网站上下载windows版本，最新的版本是emacs-22.1。下面的设置都是在这个版本上进行的。 <br /> <br /> ii）cscope：cscope的主页 <a href="http://cscope.sourceforge.net/" target="_blank" rel="nofollow">http://cscope.sourceforge.net/</a>，其中有一个download的链接，从那里可以下载到编译好的压缩包。 <br /> win32版本的下载地址： <a href="http://iamphet.nm.ru/cscope/index.html" target="_blank" rel="nofollow">http://iamphet.nm.ru/cscope/index.html</a>，压缩包中有两个编译好的exe文件：cscope.exe, sort.exe <br /> <br /> iii）ecb：主页地址 <a href="http://ecb.sourceforge.net/" target="_blank" rel="nofollow">http://ecb.sourceforge.net/</a>，download页面中还有一个Xemcas的安装程序setup.exe，可以试试，我没有使用这个。 <br /> sourceforg下载地址 <a href="http://sourceforge.net/project/showfiles.php?group_id=17484" target="_blank" rel="nofollow">http://sourceforge.net/project/showfiles.php?group_id=17484</a> <br /> <br /> iv）cedet：主页 <a href="http://cedet.sourceforge.net/" target="_blank" rel="nofollow">http://cedet.sourceforge.net/</a>，下载release压缩包1.0pre4.tar.gz，这个包中已经包含了semantic，ede，eieio， <br /> speedbar，因此下载了这个大包后不用分别下载这些扩展插件。 <br /> <br /> v）session：sf下载地址 <a href="http://sourceforge.net/project/showfiles.php?group_id=46019" target="_blank" rel="nofollow">http://sourceforge.net/project/showfiles.php?group_id=46019</a> <br /> <br /> vi）doxymacs：地址 <a href="http://doxymacs.sourceforge.net/" target="_blank" rel="nofollow">http://doxymacs.sourceforge.net/</a>， <br /> 下载 <a href="http://sourceforge.net/project/showfiles.php?group_id=23584&amp;release_id=514962" target="_blank" rel="nofollow">http://sourceforge.net/project/s ... p;release_id=514962</a> <br /> <br /> vii）下载windows下的bash工具，主要是用到其中的find工具，用来手工生成cscope.files。如果安装了cygwin则不用安装这个了。 <br /> 地址： <a href="http://folk.uio.no/andreass/unix_tools.html" target="_blank" rel="nofollow">http://folk.uio.no/andreass/unix_tools.html</a> <br /> <br /> 2）安装 <br /> 安装emacs：这个很简单，只要将压缩包解开，放到你想放的位置就可以用了，如果要在windows的开始菜单中添加菜单项，点击bin目录下 <br /> 的addpm运行，就会在菜单中加入gnu菜单项。 <br /> <br /> 安装cscope：a，解压平台不相关的那个tar.gz包，将/contrib/xscope/xscope.el拷贝到emacs-22.1/site-lisp目录下（emacs-22.1是 <br /> 你安装emacs的目录）；b，解压win32版本的cscope，将cscope.ext sort.exe拷贝到emacs-22.1/bin目录下（这个路径不是必要的，因为 <br /> cscope在windows下要用起来还得费点劲，4）点会讲到） </p> 
+<p> <strong>【site-lisp目录下插件安装】</strong> </p> 
+<p> <strong>安装ecb：解压，将解压后的ecb目录拷贝到site-lisp目录下。 </strong> </p> 
+<br /> 
+<strong> 安装cedet：解压，将解压后的cedet目录拷贝到site-lisp目录下。 </strong> 
+<br /> 
+<br /> 
+<strong> 安装session：解压，将解压后的session目录拷贝到site-lisp目录下。 </strong> 
+<br /> 
+<br /> 
+<strong> 安装doxymacs：解压，将解压后的doxymacs目录拷贝到site-lisp目录下。 </strong> 
+<br /> 
+<br /> 安装win32bash：点击user.exe安装文件一步步点到最后就行了。 
+<br /> 到此安装工作完成。 
+<br /> 
+<br /> 3）配置.emacs启动文件 
+<br /> 显示指定扩展插件的加载地址（这一步好像不是必要的，只列出一个地址，其它类似） 
+<br /> (add-to-list 'load-path &quot;e:/emacs/site-lisp/ecb-2.31&quot; 
+<img src="http://static.oschina.net/uploads/img/201308/14141741_2i9L.gif" alt="" /> 
+<br /> 加载相应插件： 
+<br /> 
+<strong>(require 'xcscope) ;;加载xcscope </strong> 
+<br /> 
+<strong> (require 'cedet) ;;加载cedet </strong> 
+<br /> 
+<strong> (require 'ecb) ;;加载ecb </strong> 
+<br /> 
+<strong> (require 'session) ;;加载session </strong> 
+<br /> 
+<strong> (add-hook 'after-init-hook 'session-initialize) ;; 启动时初始化session </strong> 
+<br /> 
+<strong> (require 'doxymacs) ;; 启动doxymacs </strong> 
+<br /> 在配置文件中加入这些语句后，保存重启emacs，重启后查看一下Message窗口中的加载信息，可以看到各个插件加载成功。 
+<br /> 在.emacs中加入一些方便的设置就可以使用了，完整的配置文件附在后面。（这些配置都是从google上到处搜刮来的，其中王垠博士的 
+<br /> 网页上有很多emacs设置的好东西可以参考，还有一些英文网站上贴出的配置文件中也有很多好东西，大家可以根据自己的习惯写自己的 
+<br /> 配置） 
+<br /> 
+<br /> 4）问题及解决 
+<br /> 安装进行到这里，大部分功能都没有问题了，存在的问题有： 
+<br /> i）cscope的创建文件列表和创建代码符号索引两个命令不可用，按下C-c s L和C-c s I后minibuffer中显示cscope-indexer找不到。 
+<strong>在 cscope的安装包中确实有一个cscope-indexer的文件，我们安装时没有将它拷贝到emacs的安装路径中去，但是即使将它拷贝到bin目录下也还是不能工作，用文本编辑器打开cscope-indexer会发现它其实是个shell脚本文件</strong>，从脚本中可以看到，它首先通过find，grep等工具生成一个cscope.files的文件，然后调用cscope使用cscope.files作为输入生成cscope.out的索引文件。 
+<br /> 因此，只要能生成一个文件列表的文件就可以使用win32版本的cscope.exe来生成cscope.out文件。到此，我们可以使用win32bash中的f 
+<strong>ind 工具生成一个源代码文件列表</strong>了 （与unix下一样：find /my-project-source -name &quot;*.[chs]&quot; -print &gt; cscope.files，不知windows下是否有类似find这样功能的命令，xp下的find好像不能用通配符，如果有这样的东西就可以不安装 win32bash）。 
+<br /> 
+<strong>生成了cscope.files源码文件列表后就可以使用它像si一样在代码间穿梭</strong>了： 
+<br /> C-c s a设定代码根目录，cscope.files必须放在这个设定目录下，否则cscope找不到；在第一次使用如下几条命令时cscope会自动生成 
+<br /> cscope.out，也可以在windows的cmd中调用cscope.exe -b -i cscope.files -f cscope.out生成cscope.out。 
+<br /> C-c s g查找函数（或变量）定义； 
+<br /> C-c s c查看调用者； 
+<br /> C-c s C查看函数中调用的子函数； 
+<br /> 
+<br /> ii）semantic中设置的项目根目录好像不起作用，在进行tag查找时semantic只查了当前目录中的代码文件， 
+<strong>如果引用的是其它目录中的函数或变量，查找相应定义时就找不到。这个问题还不知道原因，可能是设置的问题</strong>，semantic的设置项太多了。遇到相同问题的朋友请解答一下。 
+<br /> 
+<br /> 到此，si中常用的几个动作实现了。 
+<br /> 
+<br /> 还有个si中类似功能的实现：跳到函数定义后如何在跳回刚才的调用函数的地方。 
+<br /> 在王垠的网页中找到了一个实现 
+<br /> ;;;临时记号 
+<br /> (global-set-key [(control ?\.)] 'ska-point-to-register) 
+<br /> (global-set-key [(control ?\,)] 'ska-jump-to-register) 
+<br /> (defun ska-point-to-register() 
+<br /> &nbsp;&nbsp;&quot;Store cursorposition _fast_ in a register. 
+<br /> Use ska-jump-to-register to jump back to the stored 
+<br /> position.&quot; 
+<br /> &nbsp;&nbsp;(interactive) 
+<br /> &nbsp;&nbsp;(setq zmacs-region-stays t) 
+<br /> &nbsp;&nbsp;(point-to-register 
+<img src="http://static.oschina.net/uploads/img/201308/14141741_kfdU.gif" alt="" />) 
+<br /> 
+<br /> (defun ska-jump-to-register() 
+<br /> &nbsp;&nbsp;&quot;Switches between current cursorposition and position 
+<br /> that was stored with ska-point-to-register.&quot; 
+<br /> &nbsp;&nbsp;(interactive) 
+<br /> &nbsp;&nbsp;(setq zmacs-region-stays t) 
+<br /> &nbsp;&nbsp;(let ((tmp (point-marker))) 
+<br /> &nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;(jump-to-register 
+<img src="http://static.oschina.net/uploads/img/201308/14141741_kfdU.gif" alt="" /> 
+<br /> &nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;(set-register 8 tmp))) 
+<br /> 这样就可以在函数间跳来跳去， 
+<br /> 结合cscope的pop-mark，就可以跳来跳去了，这样基本可以满足大多数情况下的使用。 
+<br /> 
+<br /> 
+<br /> 
+<p> <strong>ecb，cedet（semantic）提供了很多功能，不过由于太多了，需要慢慢摸索，目前使用cscope已经基本上实现了si上的几个常用功能，</strong><strong>ecb + semantic可以实现像si中的函数/变量上下文显示功能</strong>， </p> 
+<p> 但是由于4）ii）中提到的问题，这个显示上下文功能有时候不起作用。 </p> 
+<p> <br /> </p> 
+<p> 还有一些有用扩展：<a href="http://docs.huihoo.com/homepage/shredderyin/emacs_elisp.html" target="_blank" rel="nofollow">http://docs.huihoo.com/homepage/shredderyin/emacs_elisp.html</a> </p> 
+<p> —————————————————————————————————————— </p> 
+<span id="OSC_h3_30"></span>
+<h3> <span>让Emacs功能强于Source Insight（Linux平台）</span> </h3> 
+<p> 单独的Emacs软件的话，虽然也有着除了编辑以外的各种各样的功能，例如Mail，网页浏览等等，但是，仅对于我个人我还是觉得他就是个文本编辑器，因为别的功能我不用，也用不上。而且这个编辑器使用时还非常的费劲，觉不出他比微软的记事本强在哪里。<br /> <br /> 但是，Emacs支持配置其工作环境，当结合了一些插件后，他就发挥出强大的功能了。<br /> 这个强大的功能 = SourceInsight+专用仿真Debug软件之和。<br /> 还有就是，他是免费的，FreeDownload的，可自定义的。<br /> 微软在努力让我们告别键盘，Linux则建议大家没事别老碰鼠标。<br /> <i><br /> <span style="color:#E53333;background-color:#FFE500;font-size:24px;"><b>Emacs + gtags + cedet + ecb + doxymas + session + GDB</b></span></i><br /> <strong>Emacs: &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; GNU Emacs</strong><br /> <strong> gtags: &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; GNU GLOBAL source code tag system</strong><br /> <strong> cedet:&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; Collection of Emacs Development Environment Tools</strong><br /> <strong> ecb:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; Emacs Code Browser</strong><br /> <strong> doxymacs:&nbsp;&nbsp;&nbsp; Doxygen + Emacs</strong><br /> <strong> Doxygen:&nbsp;&nbsp; &nbsp;&nbsp; Source code documentation generator tool</strong><br /> <strong> session:&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; Session Management for Emacs</strong><br /> <strong> GDB：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; GNU Project debugger</strong><br /> <br /> 个人环境：Ubuntu 10.04<br /> 目标源代码：C语言<br /> 建议写个hello来试运行，gtags建立tags或htags创建HTML模式源代码和doxygen生成文档等的时候，花费时间极长。同时也写好hello的configure.ac和Makefile.am吧，能够编译后执行，以便体验功能。<br /> <br /> <span style="font-size:medium;"><span style="font-weight:bold;">Emacs:GNU Emacs</span></span>&nbsp;(Ver:23.1)<br /> Emacs:Editor MACroS(宏编辑器)<br /> <span> HomePage:<a href="http://www.gnu.org/software/emacs/" rel="nofollow">http://www.gnu.org/software/emacs/</a></span><br /> 功能和热键的学习： </p> 
+<ul> 
+ <li> <span><a href="http://man.ddvip.com/soft/emacsuserguide/index.html" rel="nofollow">http://man.ddvip.com/soft/emacsuserguide/index.html</a></span><br /> </li> 
+ <li> <span><a href="http://www.gnu.org/software/chinese/manual/TUTORIAL.cn" rel="nofollow">http://www.gnu.org/software/chinese/manual/TUTORIAL.cn</a></span> </li> 
+ <li> 《学习GNU Emacs》(68元)/《GNU Emacs Lisp 编程入门》(38元)<br /> 网上有中文扫描版和英文版的下载，忘了在哪里下的了，搜搜吧。<br /> 扫描版不清晰，例代码根本看不清，建议购入原书。<br /> </li> 
+ <li> <span><a href="http://man.chinaunix.net/newsoft/Emac/book.html" rel="nofollow">http://man.chinaunix.net/newsoft/Emac/book.html</a></span> </li> 
+</ul> 下载安装：参考上记Homepage。 
+<br /> 
+<span> <a href="http://ftp.gnu.org/gnu/emacs/" rel="nofollow">http://ftp.gnu.org/gnu/emacs/</a></span> 
+<br /> 
+<br /> 重点： 
+<br /> &nbsp;记住个别编辑工作中常用Hotkey。 
+<br /> &nbsp;知道.emacs文件和&lt;load-path&gt;设置的作用和用法。 
+<br /> &nbsp;知道LISP语言。(但是不一定要掌握这种语言，抄抄网络上大侠的就行，同时也希望更多的人加入到Lisp行列中)。 
+<br /> 
+<br /> 简单说明： 
+<br /> 
+<ul> 
+ <li> .emacs文件:是Emacs启动时，自动读取用户自定义配置的默认的配置文件<br /> (手动创建该文件，自定义配置都写在该文件中，LISP语言，&quot;~&quot;路径下) </li> 
+ <li> shell命令启动Emacs时，如果用'emacs -q'命令，则不加载任何额外的自定义设置启动Emacs.<br /> </li> 
+ <li> &lt;load-path&gt;：由'.emacs'文件中编写的相应的自定义配置，调用的关联**.el文件的存放路径。<br /> (在.emacs中记入该路径时，建议使用绝对路径.这样通过shell命令无论用哪个帐户的ENV启动Emacs时，都能正确读取对应的**.el文件。也就是无视'~'所代替的ENV中的$HOME的值是什么，LISP语言)<br /> 这个&lt;load-path&gt;的文件夹，可以手动创建(推荐)，也可以用Emacs软件的默认路径(/usr/local/share/emacs/site-lisp/)。 </li> 
+ <li> 下记的.emacsLoadpath 就是手动创建的一个文件夹，其中放置一些，准备使用的el文件啦，cedet啦，ecb啦，gtags.el啦等等。<br /> </li> 
+</ul> 
+<br /> 
+<pre class="prettyprint">
+<p>
+<span>例：</span> <span>;</span><span>load</span><span>-</span><span>path</span> <span>(</span><span>add</span><span>-</span><span>to</span><span>-</span><span>list </span><span>'load-path &quot;/home/yourname/.emacsLoadpath&quot;)</span> 
+</p>
+</pre> 个人.emacs文件中的内容： 
+<br /> (仅安装emacs软件后，即可完成的动作，无需安装其他的组件，但需要个别插件，都是参考其他大侠的) 
+<br /> 
+<br /> 
+<pre class="prettyprint">
+<p>
+<span>;;</span><span> </span><span>Author</span><span>:</span><span> </span><span>Mark</span><span> </span><span>Chen</span> <span>;;</span><span> </span><span>2012.2</span><span>.</span><span>24</span> <span>(</span><span>custom</span><span>-</span><span>set</span><span>-</span><span>variables</span> <span> </span><span>;;</span><span> custom</span><span>-</span><span>set</span><span>-</span><span>variables was added </span><span>by</span><span> </span><span>Custom</span><span>.</span> <span> </span><span>;;</span><span> </span><span>If</span><span> you edit it </span><span>by</span><span> hand</span><span>,</span><span> you could mess it up</span><span>,</span><span> so be careful</span><span>.</span> <span> </span><span>;;</span><span> </span><span>Your</span><span> init file should contain only one such instance</span><span>.</span> <span> </span><span>;;</span><span> </span><span>If</span><span> there </span><span>is</span><span> more than one</span><span>,</span><span> they won</span><span>'t work right.</span> <span> '</span><span>(</span><span>current</span><span>-</span><span>language</span><span>-</span><span>environment </span><span>&quot;Chinese-GB&quot;</span><span>)</span> <span> </span><span>'(default-input-method &quot;chinese-py&quot;)</span> <span> '</span><span>(</span><span>display</span><span>-</span><span>time</span><span>-</span><span>mode t</span><span>)</span> <span> </span><span>'(column-number-mode t)</span> <span> '</span><span>(</span><span>show</span><span>-</span><span>paren</span><span>-</span><span>mode t</span><span>);显示与当前光标所在位置的括号匹配的另一个括号</span> <span> </span><span>'(inhibit-startup-screen t))</span> <span>(custom-set-faces</span> <span> ;; custom-set-faces was added by Custom.</span> <span> ;; If you edit it by hand, you could mess it up, so be careful.</span> <span> ;; Your init file should contain only one such instance.</span> <span> ;; If there is more than one, they won'</span><span>t work right</span><span>.</span> <span> </span><span>)</span> <span>;;</span><span> </span><span>输入法设置为</span><span>IBus</span> <span>;;</span><span> </span><span>set</span><span> ibus</span><span>-</span><span>el</span> <span>(</span><span>add</span><span>-</span><span>to</span><span>-</span><span>list </span><span>'load-path &quot;~/.emacs.d/ibus-el-0.3.1&quot;)</span> <span>(require '</span><span>ibus</span><span>)</span> <span>(</span><span>add</span><span>-</span><span>hook </span><span>'after-init-hook '</span><span>ibus</span><span>-</span><span>mode</span><span>-</span><span>on</span><span>)</span> <span>;;</span><span> </span><span>当光标接近时，自动移开光标</span> <span>(</span><span>mouse</span><span>-</span><span>avoidance</span><span>-</span><span>mode </span><span>'animate)</span> <span>(setq-default cursor-type '</span><span>bar</span><span>);光标显示为一竖线</span> <span>(</span><span>tool</span><span>-</span><span>bar</span><span>-</span><span>mode </span><span>-</span><span>1</span><span>);不显示工具栏</span> <span>(</span><span>menu</span><span>-</span><span>bar</span><span>-</span><span>mode </span><span>-</span><span>1</span><span>);不显示菜单栏</span> <span>(</span><span>setq x</span><span>-</span><span>select</span><span>-</span><span>enable</span><span>-</span><span>clipboard t</span><span>);;支持</span><span>emacs</span><span>和外部程序之间进行粘帖</span> <span>(</span><span>fset </span><span>'yes-or-no-p '</span><span>y</span><span>-</span><span>or</span><span>-</span><span>n</span><span>-</span><span>p</span><span>);以‘</span><span>y</span><span>/</span><span>n</span><span>‘字样替换原默认的‘</span><span>yes</span><span>/</span><span>no</span><span>‘字样</span> <span>(</span><span>setq frame</span><span>-</span><span>title</span><span>-</span><span>format </span><span>&quot;%d@emacs&quot;</span><span>);;标题栏显示</span><span>buffer</span><span>名字</span> <span>(</span><span>setq make</span><span>-</span><span>backup</span><span>-</span><span>files </span><span>nil</span><span>)</span><span> </span><span>;关闭自动备份功能</span> <span>(</span><span>setq </span><span>auto</span><span>-</span><span>save</span><span>-</span><span>mode </span><span>nil</span><span>)</span> <span>(</span><span>setq </span><span>auto</span><span>-</span><span>save</span><span>-</span><span>default</span><span> </span><span>nil</span><span>);不生成</span><span>#filename#临时文件</span> <span>(</span><span>setq </span><span>require</span><span>-</span><span>final</span><span>-</span><span>newline t</span><span>);;自动在当前的</span><span>buffer</span><span>文件的最后加一个空行</span> <span>(</span><span>global</span><span>-</span><span>set</span><span>-</span><span>key </span><span>&quot;\r&quot;</span><span> </span><span>'align-newline-and-indent);;自动缩进&lt;C-j&gt;变为&lt;Enter&gt;</span> <span>(setq echo-keystrokes 0.1) ;;尽快显示按键序列提示</span> <span>;; 设置指针颜色白色</span> <span>(set-cursor-color &quot;white&quot;)</span> <span>;; 鼠标颜色设置为白色</span> <span>(set-mouse-color &quot;white&quot;)</span> <span>;;</span> <span>(global-font-lock-mode t) ;;hightlight grammer语法高亮</span> <span>(global-hl-line-mode 1);高亮当前行</span> <span>;;;;;;;;;;;;;;; 启动最大化 ;;;;;;;;;;;;;;;;;;</span> <span>;(require '</span><span>maxframe</span><span>)</span> <span>;(</span><span>add</span><span>-</span><span>hook </span><span>'window-setup-hook '</span><span>maximize</span><span>-</span><span>frame t</span><span>)</span> <span>;下载</span><span>maxframe</span><span>.</span><span>el</span><span>并放置在&lt;</span><span>load</span><span>-</span><span>path</span><span>&gt;中</span> <span>;</span><span>http</span><span>:</span><span>//emacsblog.org/2007/02/22/maximize-on-startup-part-2/</span> <span>;;;;;;;;</span> <span>;;;;;;;;;;;</span><span> </span><span>Web</span><span> </span><span>方式显示行号</span> <span>;(</span><span>set</span><span>-</span><span>scroll</span><span>-</span><span>bar</span><span>-</span><span>mode </span><span>'right'</span><span>)滚动条显示在右侧</span> <span>(</span><span>set</span><span>-</span><span>scroll</span><span>-</span><span>bar</span><span>-</span><span>mode </span><span>nil</span><span>)</span><span> </span><span>;不显示滚动条</span> <span>(</span><span>add</span><span>-</span><span>to</span><span>-</span><span>list </span><span>'load-path &quot;~/.emacs.d/&quot;)</span> <span>(require '</span><span>wb</span><span>-</span><span>line</span><span>-</span><span>number</span><span>)</span> <span>(</span><span>wb</span><span>-</span><span>line</span><span>-</span><span>number</span><span>-</span><span>toggle</span><span>)</span> <span>;</span><span> </span><span>下载</span><span>wb</span><span>-</span><span>line</span><span>-</span><span>number </span><span>.</span><span> el</span> <span>;</span><span> http</span><span>:</span><span>//homepage1 . nifty.com/blankspace/emacs/elisp.html</span> <span>;;;;;;;;;;;;;;;;;;;;;</span> <span>;;;;;</span><span> cc</span><span>-</span><span>mode </span><span>;;;;;;;;</span> <span>(</span><span>add</span><span>-</span><span>to</span><span>-</span><span>list </span><span>'load-path &quot;~/.emacs.d/cc-mode-5.32.2&quot;)</span> <span>(require '</span><span>cc</span><span>-</span><span>mode</span><span>)</span> <span>(</span><span>c</span><span>-</span><span>set</span><span>-</span><span>offset </span><span>'inline-open 0)</span> <span>(c-set-offset '</span><span>friend</span><span> </span><span>'-)</span> <span>(c-set-offset '</span><span></span> 
+</p>
+
+<p>
+<br />
+
+</p>
+
+<p>
+<br />
+
+</p>
+</pre> 
+<p> ------------------------- </p> 
+<p> <span> </span> </p> 
+<p> <a href="http://www.sourceinsight.com/" rel="nofollow"><span>http://www.sourceinsight.com/</span></a> </p> 
+<p> <span>source insight serial number for all versions:</span> </p> 
+<p> <span>SI3US-719473-71478</span> </p> 
+<p> <span><strong><span>Source Insight</span></strong> is a revolutionary project oriented program code editor and code browser, with built-in analysis for C/C++, C#, and Java programs, as well as other languages. Source Insight parses your source code and maintains its own database of symbolic information dynamically while you work, and presents useful contextual information to you automatically. Not only is Source Insight a great program editor, but it also can display reference trees, class inheritance diagrams, and call trees. Source Insight features the quickest navigation of source code and source information of any programming editor. Let Source Insight loose on your project and see what a difference it makes in your productivity.</span> </p> 
+<p> <a href="http://photo.hexun.com/lgnq/photodetail.aspx?photoID=563080" target="_blank" rel="nofollow"><img alt="查看更多精彩图片" src="http://static.oschina.net/uploads/img/201308/14143750_UQe9.jpg" /></a> </p> 
+<p> <strong><span>sourcenav</span></strong> </p> 
+<p> <a href="http://sourcenav.sourceforge.net/index.html" rel="nofollow"><span>http://sourcenav.sourceforge.net/index.html</span></a> </p> 
+<p> <br /> </p> 
+<table cellpadding="4" border="0"> 
+ <tbody> 
+  <tr> 
+   <th> <p> <span>What is Source-Navigator?</span> </p> </th> 
+  </tr> 
+ </tbody> 
+</table> 
+<span>Source-Navigator is a source code analysis tool. With it, you can edit your source code, display relationships between classes and functions and members, and display call trees. You can also build your projects, either with your own makefile, or by using Source-Navigator's build system to automatically generate a makefile.</span> 
+<p> <span>Source-Navigator works with the </span><a href="http://sources.redhat.com/insight" rel="nofollow"><span>Insight</span></a><span> GUI interface for GDB.</span> </p> 
+<p> <span>Source-Navigator supports C, C++, Java, Tcl, [incr Tcl], FORTRAN and COBOL, and provides and SDK so that you can write your own parsers.</span> </p> 
+<p> <span>Use Source-Navigator to:</span> </p> 
+<ul> 
+ <li> <span>Analyze how a change will effect external source modules. </span> </li> 
+ <li> <span>Find every place in your code where a given function is called. </span> </li> 
+ <li> <span>Find each file that includes a given header file. </span> </li> 
+ <li> <span>Use the grep tool to search for a given string in all your source files.</span> </li> 
+</ul> 
+<p> <strong><span>Emacs Code Browser</span></strong> </p> 
+<p> <a href="http://ecb.sourceforge.net/" rel="nofollow"><span>http://ecb.sourceforge.net/</span></a> </p> 
+<p> <span>ECB stands for &quot;Emacs Code Browser&quot;. While Emacs already has good <i>editing</i> support for many modes, its <i>browsing</i> support is somewhat lacking. That's where ECB comes in: it displays a number of informational windows that allow for easy source code navigation and overview.</span> </p> 
+<p> <a href="http://photo.hexun.com/lgnq/photodetail.aspx?photoID=563089" target="_blank" rel="nofollow"><img alt="查看更多精彩图片" src="http://static.oschina.net/uploads/img/201308/14143750_fM3e.jpg" /></a> </p> 
+<p> ———————————————————————————————— </p> 
+<p> 网友摘录： </p> 
+<p> ” </p> 
+<p> 1.<strong><span style="color:#E53333;">Color Theme</span></strong>，在~/.emacs里添加如下行<br /> &nbsp; &nbsp; ;;COLOR_THEME<br /> &nbsp; &nbsp; ;;加载 Color Theme<br /> &nbsp; &nbsp; (require 'color-theme)<br /> &nbsp; &nbsp; ;;Color Theme应用的主题<br /> &nbsp; &nbsp; (color-theme-classic)<br /> 这个还行，勉强可以接受，就是为Emacs换个主题<br /> 2.<strong><span style="color:#E53333;">显示行号</span></strong>，我下了半天没下载下来，不过我觉得这个应该挺好，比Emacs只在下边显光标行好多了<br /> 3.session，<br /> 4.cscope，<br /> 5.ECB，<br /> 6.CEDET，<br /> <strong><span style="background-color:#FFE500;">7.Xrefactory，也许是因为商业软件的原因，感觉这个最猛</span></strong>，可是在网上找不到License string<br /> 免免强强就收获了这点，真是可怜啊，有个我最想要的<strong><u><span style="background-color:#FFE500;">像Viual Assists X一样把变量高亮</span></u></strong>显示了一直找不到，不知道Xrefactory有没有，还有就是可以在函数的定义和实现之间跳转，、 </p> 
+<p> “ </p> 
+<p> http://www.xref.sk/xrefactory/download.html </p> 
+<span id="OSC_h3_31"></span>
+<h3> <a href="http://www.baidu.com/link?url=2M5jEwkpvVtDVXZ3MPtZAXxvFqVrD2PSN4VSk42Hp2cxwmh-JxTvDFxzsIyjOa--ahjtozeo0rd-djYkUfrjG_" target="_blank" rel="nofollow"><em>Xrefactory</em> - Refactoring C and C++ programs under <em>Emacs</em>/XEmacs</a> </h3> 
+<p> <span><b> </b></span> </p> 
+<li> <b> <a href="http://www.xref.sk/xrefactory/main.html" rel="nofollow">Xrefactory&nbsp;C/C++</a> <p> <br /> </p> </b> </li> 
+<b> <li> <a href="http://www.xref.sk/xrefactory-java/main.html" rel="nofollow">Xrefactory&nbsp;C/Java</a> (free) </li> </b> 
+<p> <br /> </p> 
+<div> 
+ <table style="font-family:微软雅黑;" cellpadding="40" cellspacing="0" border="0"> 
+  <tbody> 
+   <tr> 
+    <td> <span id="OSC_h3_32"></span><h3> <span>1. Prerequisites</span> </h3> <span>You need Emacs or XEmacs installed on your computer. They are free software.</span> <p> <span><b>Emacs</b><span>&nbsp;</span>for Unix/Linux systems can be found at<span>&nbsp;</span><a href="http://www.gnu.org/software/emacs" target="_top" rel="nofollow">http://www.gnu.org/software/emacs</a><span>&nbsp;</span>GNU site. Most Linux distributions, and many other Unix systems come with Emacs pre-installed or pre-packaged for installation. Emacs for MS-Windows can be found on<span>&nbsp;</span><a href="http://www.gnu.org/software/emacs/windows/ntemacs.html" target="_top" rel="nofollow">http://www.gnu.org/software/emacs/windows/ntemacs.html</a><span>&nbsp;</span>. All Emacs packages required by Xrefactory are included in the standard Emacs distribution.</span> </p> <p> <span><b>XEmacs</b><span>&nbsp;</span>for nearly all platforms can be downloaded from<span>&nbsp;</span><a href="http://www.xemacs.org/" target="_top" rel="nofollow">http://www.xemacs.org</a><span>&nbsp;</span>pages.<strong><span style="color:#E53333;"> <span style="background-color:#FFE500;">Most Xrefactory functions will work with the default XEmacs installation. Installation of the 'mail-lib' package is required for JavaDoc browsing and the 'xemacs-base' package is required for XEmacs IDE functions (compile, run, etc.).</span></span></strong></span> </p> </td> 
+   </tr> 
+   <tr> 
+    <td> <span id="OSC_h3_33"></span><h3> <span>2. Installation</span> </h3> 
+     <ul> 
+      <li> <span>Download Xrefactory distribution corresponding to your platform by clicking on the appropriate link from the table above.</span> </li> 
+      <li> <span>Unpack the downloaded file into a directory (say<span>&nbsp;</span>DIR). Then insert the following lines at the end of your .emacs configuration file:</span> <pre><span>(setq load-path (cons &quot;DIR/xref/emacs&quot; load-path))
+(setq exec-path (cons &quot;DIR/xref&quot; exec-path))
+(load &quot;xrefactory&quot;) </span></pre> <span>Don't forget to replace<span>&nbsp;</span>DIR<span>&nbsp;</span>by the actual name of the directory where you have unzipped Xrefactory.<br /> <br /> Under UNIX systems you can skip this point by running<span>&nbsp;</span>xrefsetup<span>&nbsp;</span>shell script. This script will setup your .emacs file automatically and will guide you through Xrefactory training examples.</span> </li> 
+      <li> <span>If you have used<span>&nbsp;</span><em>Xrefactory Java</em><span>&nbsp;</span>before installation of<span>&nbsp;</span><em>Xrefactory C++</em>, you will need to remove your<span>&nbsp;</span><em>Xrefactory Java</em><span>&nbsp;</span>configuration file (this is usualy the file<span>&nbsp;</span><b>~/.xrefrc</b>) in order to profite from free evaluation license.</span> </li> 
+     </ul> <span><br /> <br /> <br /> <br /> </span> <span id="OSC_h3_34"></span><h3> <span>3. Training Examples</span> </h3> <p> <span>It is highly recommended that you work through the tutorials after the installation. <strong><span style="color:#E53333;background-color:#FFE500;">The C and C++ tutorials are stored in the</span></strong><span style="color:#E53333;background-color:#FFE500;"><strong>&nbsp;</strong></span><strong><span style="color:#E53333;background-color:#FFE500;">cexercise</span></strong><span style="color:#E53333;background-color:#FFE500;"><strong>&nbsp;</strong></span><strong><span style="color:#E53333;background-color:#FFE500;">and</span></strong><span style="color:#E53333;background-color:#FFE500;"><strong>&nbsp;</strong></span><strong><span style="color:#E53333;background-color:#FFE500;">cppexercise</span></strong><span style="color:#E53333;background-color:#FFE500;"><strong>&nbsp;</strong></span><strong><span style="color:#E53333;background-color:#FFE500;">directories of each distribution package. Tutorials will guide you through the typical usage of Xrefactory. </span></strong>To start the tutorial just open one of files<span>&nbsp;</span>cexercise/index.c<span>&nbsp;</span>or<span>&nbsp;</span>cppexercise/index.cpp<span>&nbsp;</span>and follow the instructions written there.</span> </p> <p> <br /> <span></span> </p> <p> <span><span><span> </span></span></span></p><span id="OSC_h3_35"></span><h3> 4. License </h3> You are supposed to purchase a license when using Xrefactory <strong><span style="color:#E53333;">beyond the <u>8 days </u><u>evaluation period</u></span></strong>! By downloading Xrefactory you agree with terms of our <a href="http://www.xref.sk/xrefactory/license.html#licenseaggr" rel="nofollow">license agreement</a> conditions. <br /> <p></p> </td> 
+   </tr> 
+  </tbody> 
+ </table> 
+</div> 
+<p> <br /> </p></div>
+      	      	<div class='BlogShare'>
+    	
+		<strong>分享到：</strong>
+		<a class="share_sina" title="分享到新浪微博" href="javascript:void((function(s,d,e,r,l,p,t,z,c){var%20f='http://v.t.sina.com.cn/share/share.php?appkey=858381728',u=z||d.location,p=['&url=',e(u),'&title=',e(t||d.title),'&source=',e(r),'&sourceUrl=',e(l),'&content=',c||'gb2312','&pic=',e(p||'')].join('');function%20a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=440,height=430,left=',(s.width-440)/2,',top=',(s.height-430)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent))setTimeout(a,0);else%20a();})(screen,document,encodeURIComponent,'','','','使用emacs + cscope + ecb替代source insight: Emacs Lisp 功能扩展集锦 Emacs 具有超强的扩展性。这是当今没有任何其它编辑器可以比拟 的强大特点。这里介绍一些很方便的 Emacs Lisp 扩展。 有链接的文件可能不是 Em...','','utf-8'));">
+			<img src="/img/sinaweibo_fb1.png" height="29">
+		</a>
+		<a class="share_qq" title="分享到腾讯微博" href="javascript:(function(){window.open('http://v.t.qq.com/share/share.php?url='+encodeURIComponent(document.location)+'&amp;appkey=96f54f97c4de46e393c4835a266207f4&amp;site=&amp;title='+encodeURIComponent(document.title)+encodeURIComponent(': Emacs Lisp 功能扩展集锦 Emacs 具有超强的扩展性。这是当今没有任何其它编辑器可以比拟 的强大特点。这里介绍一些很方便的 Emacs Lisp 扩展。 有链接的文件可能不是 Em...'),'', 'width=450, height=400, top=0, left=0, toolbar=no, menubar=no, scrollbars=no, location=yes, resizable=no, status=no');}())">
+			<img src="/img/tencent_weibo_fb.jpg" height="30">
+		</a>
+    	<span class='BlogVote' onclick="vote(152599)" title="都有0个人赞过了，你也来赞一下吧！不会扣积分哦！">
+			<span class="num vote_count" >0</span><span class="vote" >赞</span>
+		</span>
+	</div>
+      
+      <div class='BlogCopyright'>		
+	  		原文地址：<a href="http://bbs.chinaunix.net/thread-1014134-1-1.html" target="_blank">http://bbs.chinaunix.net/thread-1014134-1-1.html</a>
+	  	  </div>
+	  	  
+      <div class='BlogLinks'>
+    	<ul>
+                <li class='prev'><a href="http://my.oschina.net/alphajay/blog/152327" title="上一篇：IntelliJ IDEA for CleanCode">&laquo; 上一篇</a></li>        <li class='next'><a href="http://my.oschina.net/alphajay/blog/155254" title="下一篇： linux 系统监控、诊断工具之 lsof 用法简介">下一篇 &raquo;</a></li>    	</ul>
+				<p style='margin:10px 0 0 0;font-weight:bold;color:#A00;text-decoration:none;'>开源中国-程序员在线工具：<a href="http://www.ostools.net/apidocs" style="text-decoration:none;">API文档大全(120+)</a> <a href="http://runjs.cn" style="text-decoration:none;" target='_blank'>JS在线编辑演示</a> <a href="http://www.ostools.net/qr" style="text-decoration:none;" target='_blank'>二维码</a>  <a href="http://www.ostools.net" style="text-decoration:none;" target='_blank'>更多>></a>
+		      </div>
+	</div>
+	
+	
+		       <div style='margin:10px 0;'>
+    	<script type="text/javascript" src="/js/ad/blog.js"></script>
+      </div>
+      </div>
+<div class='SpaceList' style='margin-top:20px;'>
+<div class='BlogComments'>
+    <h2><a name="comments"></a>评论<em>0</em></h2>
+			<p class='NoData'>尚无网友评论</p>
+		<ul id="BlogComments">
+		</ul>
+</div>
+	</div>
+
+<div id='inline_reply_editor' style='display:none;'>
+<div class="BlogCommentForm">
+	<form id="form_inline_comment" action="/action/blog/add_comment?blog=152599" method="POST">
+	  <input type='hidden' id='inline_reply_id' name='reply_id' value=''/>          
+      <textarea name="content" id="ccom_content" style="width:650px;height:60px;" onkeydown="if((event.metaKey || event.ctrlKey)&&event.keyCode==13){$('#form_inline_comment').submit();}"></textarea><br/>
+	  <p>
+		  <span style="float:right;">
+    	  <input type="button" value="关闭" class="blg_submit_btn" id='btn_close_inline_reply' style="background: rgba(255,255,255,0);color: #555;"/>
+    	  <input type="submit" value="回复" id="btn_comment" class="blg_submit_btn"/> 
+		  </span>
+		  插入：
+				<a href="javascript:;" onclick="javascript:insert_emotions('ccom_content',this);" class="blog_emotion">表情</a>
+				<a href="javascript:insert_projects_c();" class="blog_soft">开源软件</a>
+		 <span class="NoData" id="ficmp_msg" style="color:#F00"></span>
+	  </p>
+    </form>
+</div>
+</div>
+
+<div class='SpaceList' style='margin-top:20px;'>
+  <a name="comments" id="postform"></a>
+      <div class="BlogCommentForm">
+        <form id="form_comment" action="/action/blog/add_comment?blog=152599" method="POST">
+        	<div class="comment_portrait">
+        		<img src="/img/portrait.gif" align="absmiddle" alt="AlphaJay" title="AlphaJay" class="LargePortrait"/>        	</div>
+        	<div class="comment_form">
+        		<textarea name="content" id="wmd-input" style="width:650px;height:80px;" placeholder=""></textarea>
+				<p>
+					<button type="submit" class="blg_submit_btn" style="float:right;">发表评论</button>
+					插入：
+					<a href="javascript:insert_emotions();" class="blog_emotion">表情</a>
+					<a href="javascript:insert_projects();" class="blog_soft">开源软件</a>
+					<span class="NoData" id="cmt_tip"></span>
+				</p>
+				<div id="TweetFormPopupWraper">
+					<div id="TweetFormPopupArrow">
+        				<div id="TweetFormPopup">
+                        	<div id='TweetEmotions'>
+                            	<div class='TweetPopupTitle'><a href="javascript:;" onclick="$('#TweetFormPopupWraper').hide();return false;">关闭</a>插入表情</div>
+                            	                            	<a href='javascript:;' onclick='return ins_e(0);' class='emotion' style='background-position: -0px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(1);' class='emotion' style='background-position: -24px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(2);' class='emotion' style='background-position: -48px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(3);' class='emotion' style='background-position: -72px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(4);' class='emotion' style='background-position: -96px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(5);' class='emotion' style='background-position: -120px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(6);' class='emotion' style='background-position: -144px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(7);' class='emotion' style='background-position: -168px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(8);' class='emotion' style='background-position: -192px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(9);' class='emotion' style='background-position: -216px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(10);' class='emotion' style='background-position: -240px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(11);' class='emotion' style='background-position: -264px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(12);' class='emotion' style='background-position: -288px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(13);' class='emotion' style='background-position: -312px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(14);' class='emotion' style='background-position: -336px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(15);' class='emotion' style='background-position: -360px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(16);' class='emotion' style='background-position: -384px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(17);' class='emotion' style='background-position: -408px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(18);' class='emotion' style='background-position: -432px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(19);' class='emotion' style='background-position: -456px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(20);' class='emotion' style='background-position: -480px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(21);' class='emotion' style='background-position: -504px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(22);' class='emotion' style='background-position: -528px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(23);' class='emotion' style='background-position: -552px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(24);' class='emotion' style='background-position: -576px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(25);' class='emotion' style='background-position: -600px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(26);' class='emotion' style='background-position: -624px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(27);' class='emotion' style='background-position: -648px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(28);' class='emotion' style='background-position: -672px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(29);' class='emotion' style='background-position: -696px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(30);' class='emotion' style='background-position: -720px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(31);' class='emotion' style='background-position: -744px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(32);' class='emotion' style='background-position: -768px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(33);' class='emotion' style='background-position: -792px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(34);' class='emotion' style='background-position: -816px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(35);' class='emotion' style='background-position: -840px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(36);' class='emotion' style='background-position: -864px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(37);' class='emotion' style='background-position: -888px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(38);' class='emotion' style='background-position: -912px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(39);' class='emotion' style='background-position: -936px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(40);' class='emotion' style='background-position: -960px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(41);' class='emotion' style='background-position: -984px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(42);' class='emotion' style='background-position: -1008px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(43);' class='emotion' style='background-position: -1032px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(44);' class='emotion' style='background-position: -1056px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(45);' class='emotion' style='background-position: -1080px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(46);' class='emotion' style='background-position: -1104px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(47);' class='emotion' style='background-position: -1128px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(48);' class='emotion' style='background-position: -1152px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(49);' class='emotion' style='background-position: -1176px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(50);' class='emotion' style='background-position: -1200px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(51);' class='emotion' style='background-position: -1224px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(52);' class='emotion' style='background-position: -1248px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(53);' class='emotion' style='background-position: -1272px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(54);' class='emotion' style='background-position: -1296px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(55);' class='emotion' style='background-position: -1320px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(56);' class='emotion' style='background-position: -1344px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(57);' class='emotion' style='background-position: -1368px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(58);' class='emotion' style='background-position: -1392px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(59);' class='emotion' style='background-position: -1416px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(60);' class='emotion' style='background-position: -1440px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(61);' class='emotion' style='background-position: -1464px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(62);' class='emotion' style='background-position: -1488px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(63);' class='emotion' style='background-position: -1512px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(64);' class='emotion' style='background-position: -1536px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(65);' class='emotion' style='background-position: -1560px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(66);' class='emotion' style='background-position: -1584px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(67);' class='emotion' style='background-position: -1608px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(68);' class='emotion' style='background-position: -1632px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(69);' class='emotion' style='background-position: -1656px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(70);' class='emotion' style='background-position: -1680px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(71);' class='emotion' style='background-position: -1704px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(72);' class='emotion' style='background-position: -1728px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(73);' class='emotion' style='background-position: -1752px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(74);' class='emotion' style='background-position: -1776px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(75);' class='emotion' style='background-position: -1800px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(76);' class='emotion' style='background-position: -1824px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(77);' class='emotion' style='background-position: -1848px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(78);' class='emotion' style='background-position: -1872px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(79);' class='emotion' style='background-position: -1896px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(80);' class='emotion' style='background-position: -1920px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(81);' class='emotion' style='background-position: -1944px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(82);' class='emotion' style='background-position: -1968px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(83);' class='emotion' style='background-position: -1992px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(84);' class='emotion' style='background-position: -2016px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(85);' class='emotion' style='background-position: -2040px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(86);' class='emotion' style='background-position: -2064px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(87);' class='emotion' style='background-position: -2088px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(88);' class='emotion' style='background-position: -2112px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(89);' class='emotion' style='background-position: -2136px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(90);' class='emotion' style='background-position: -2160px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(91);' class='emotion' style='background-position: -2184px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(92);' class='emotion' style='background-position: -2208px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(93);' class='emotion' style='background-position: -2232px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(94);' class='emotion' style='background-position: -2256px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(95);' class='emotion' style='background-position: -2280px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(96);' class='emotion' style='background-position: -2304px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(97);' class='emotion' style='background-position: -2328px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(98);' class='emotion' style='background-position: -2352px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(99);' class='emotion' style='background-position: -2376px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(100);' class='emotion' style='background-position: -2400px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(101);' class='emotion' style='background-position: -2424px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(102);' class='emotion' style='background-position: -2448px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(103);' class='emotion' style='background-position: -2472px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(104);' class='emotion' style='background-position: -2496px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(105);' class='emotion' style='background-position: -2520px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(106);' class='emotion' style='background-position: -2544px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(107);' class='emotion' style='background-position: -2568px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(108);' class='emotion' style='background-position: -2592px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(109);' class='emotion' style='background-position: -2616px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(110);' class='emotion' style='background-position: -2640px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(111);' class='emotion' style='background-position: -2664px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(112);' class='emotion' style='background-position: -2688px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(113);' class='emotion' style='background-position: -2712px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(114);' class='emotion' style='background-position: -2736px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(115);' class='emotion' style='background-position: -2760px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(116);' class='emotion' style='background-position: -2784px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(117);' class='emotion' style='background-position: -2808px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(118);' class='emotion' style='background-position: -2832px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(119);' class='emotion' style='background-position: -2856px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(120);' class='emotion' style='background-position: -2880px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(121);' class='emotion' style='background-position: -2904px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(122);' class='emotion' style='background-position: -2928px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(123);' class='emotion' style='background-position: -2952px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(124);' class='emotion' style='background-position: -2976px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(125);' class='emotion' style='background-position: -3000px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(126);' class='emotion' style='background-position: -3024px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(127);' class='emotion' style='background-position: -3048px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(128);' class='emotion' style='background-position: -3072px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(129);' class='emotion' style='background-position: -3096px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(130);' class='emotion' style='background-position: -3120px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(131);' class='emotion' style='background-position: -3144px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(132);' class='emotion' style='background-position: -3168px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(133);' class='emotion' style='background-position: -3192px 0px;'></a>
+                            	                            	<a href='javascript:;' onclick='return ins_e(134);' class='emotion' style='background-position: -3216px 0px;'></a>
+                            	                            	<div class='clear'></div>
+                        	</div>
+        				</div>
+					</div>
+				</div>
+            </div>
+        </form>
+    </div>
+  </div>
+	
+<div id="RelativeBlogs">
+	<strong><a id='btn_close'>关闭</a>相关文章阅读</strong>
+	<ul>
+			<li>
+		<span class='date'>2012/11/03</span>
+		<a href="http://my.oschina.net/guqiwei/blog/86846" title="生成cscope文件 ">生成cscope文件 </a>
+	</li>
+				<li>
+		<span class='date'>2013/09/10</span>
+		<a href="http://my.oschina.net/ITHaozi/blog/160290" title="在windows环境下使用emacs+cscope+ecb">在windows环境下使用emacs+cscope+...</a>
+	</li>
+				<li>
+		<span class='date'>2013/06/27</span>
+		<a href="http://my.oschina.net/Julian1988/blog/140784" title="CSCOPE 安装和使用方法总结">CSCOPE 安装和使用方法总结</a>
+	</li>
+				<li>
+		<span class='date'>2011/12/31</span>
+		<a href="http://my.oschina.net/u/184477/blog/38298" title="使用的emacs配置">使用的emacs配置</a>
+	</li>
+				<li>
+		<span class='date'>2013/02/04</span>
+		<a href="http://my.oschina.net/toeoso/blog/108014" title="Emacs 学习">Emacs 学习</a>
+	</li>
+			</ul>
+</div>
+<script type="text/javascript" src="/action/visit/blog?id=152599" defer="defer"></script>
+<script type="text/javascript" src="/js/syntax-highlighter-2.1.382/scripts/brush.js"></script>
+<link type="text/css" rel="stylesheet" href="/js/syntax-highlighter-2.1.382/styles/shCore.css"/>
+<link type="text/css" rel="stylesheet" href="/js/syntax-highlighter-2.1.382/styles/shThemeDefault.css"/>
+<script type='text/javascript'><!--
+$(document).ready(function(){
+	SyntaxHighlighter.config.clipboardSwf = '/js/syntax-highlighter-2.1.382/scripts/clipboard.swf';
+	SyntaxHighlighter.all();
+});
+//-->
+</script>
+<!--[if lt IE 7]>
+<script type="text/javascript" src="/js/minmax.js"></script>
+<![endif]-->
+<script type='text/javascript'>
+<!--
+var posting = false;
+var upprev_closed = false;
+var upprev_hidden = true;
+
+$(document).ready(function(){
+    $('.BlogContent img').css('cursor','pointer');
+    jQuery.each($('.BlogContent img'),function(idx,v){
+    	$(v).wrap("<a href='"+$(this).attr('src')+"' target='_blank'></a>");
+    });
+	$('#form_comment').ajaxForm({
+		dataType: 'json',
+		bforeSubmit: function(){
+			posting = true;
+		},
+		success: function(json) {
+        	if(json.msg){
+				///alert(json.msg);
+				$('#cmt_tip').html("<span style='color:#C00;'>"+json.msg+"</span>");
+				$('#wmd-input').focus();				
+			}else{
+				var url = "http://my.oschina.net/alphajay/blog_post?_cmt_blog="+json.blog+"&_cmt_user="+json.user+"&_cmt_id="+json.id;				
+        		jQuery.get(url, function(data){
+    				$('#form_comment .NoData').hide();
+        			$('ul#BlogComments').append(data);
+        			$('#form_comment').resetForm();
+        		}); 
+			}
+		}
+	});
+	
+    var at_datas = [];
+    $('img.SmallPortrait').each(function(){
+        var name = $(this).attr('alt');
+        if(jQuery.inArray(name, at_datas) < 0 && name != '${g_user.name}')
+            at_datas.push(name);
+    });
+    $("#form_comment textarea").atWho("@", {data: at_datas});
+	$("#form_comment textarea").on("keydown",function(event){
+		if((event.metaKey || event.ctrlKey) && event.keyCode==13){
+			$("#form_comment").submit();
+		}
+	});
+	$("#submiting").ajaxStart(function(){
+	   if(posting){
+    	   $('#btn_submit').attr("disabled","disabled");
+           $(this).show();
+	   }
+    });
+	$("#submiting").ajaxComplete(function(event,request, settings){
+	   if(posting){
+           $(this).hide();
+    	   $('#btn_submit').attr("disabled","");
+	   }
+	   posting = false;
+    }); 
+	
+    $(window).scroll(function() {
+        var lastScreen;
+        if ($("#postform").length > 0)
+            lastScreen = getScrollY() + $(window).height() < $("#postform").offset().top * 1 ? false : true;
+        else
+            lastScreen = getScrollY() + $(window).height() < $(document).height() * 1 ? false : true;
+        if (lastScreen && !upprev_closed) {
+            $("#RelativeBlogs").stop().animate({right:"0px"});
+            upprev_hidden = false;
+        }
+        else if (upprev_closed && getScrollY() == 0) {
+            upprev_closed = false;
+        }
+        else if (!upprev_hidden) {
+            upprev_hidden = true;
+            $("#RelativeBlogs").stop().animate({right:"-400px"});
+        }
+    });
+    $("#RelativeBlogs #btn_close").click(function() {
+        $("#RelativeBlogs").stop().animate({right:"-400px"});
+        upprev_closed = true;
+        upprev_hidden = true;
+    });
+});
+function delete_c(nid,uid,cid){
+  if(confirm("您确认要删除此篇评论？")){
+    var args = "cmt="+cid+"#"+uid+"#"+nid;
+    ajax_post("/action/blog/delete_blog_comments?space=66133",args,function(){$("#cmt_"+nid+"_"+uid+"_"+cid).fadeOut();});
+  }
+}
+var replyinline_dup = false;
+function ReplyInline(blog,user,reply){
+	$('.inline_reply').empty();
+	var div_id = '#inline_reply_of_'+blog+'_'+user+'_'+reply;
+	$('#inline_reply_id').val(user+'_'+reply);
+	$(div_id).html($('#inline_reply_editor').html());
+	$('#ccom_content').focus();
+	$('#btn_close_inline_reply').click(function(){
+		$(div_id).empty();
+	});
+	var li_id = '#cmt_'+blog+'_'+user+'_'+reply;
+	var p_li = $(li_id);
+	var tip = $("#ficmp_msg");
+	$('#form_inline_comment').ajaxForm({
+		dataType: 'json',
+		beforeSubmit:function(){
+			if(replyinline_dup){
+			    tip.html("正在发表评论，请勿重复提交");
+				return false;
+			}
+			replyinline_dup = true;
+			return true;
+		},
+    	success: function(json) {
+			tip.html("");
+        	if(json.msg){                                                                                                       
+				tip.html(json.msg);
+				replyinline_dup = false;
+        	}
+        	else if(json.id){
+    			ajax_post("http://my.oschina.net/blog/show_post","_cmt_user="+"&_cmt_id="+json.id,function(html){
+					if(html.length > 0){
+						$(html).insertAfter(p_li);
+						$(div_id).empty();
+					}else{
+						tip.html("获取评论失败");
+					}
+					setTimeout(function(){
+    					replyinline_dup = false;
+					},5000)
+				});
+        	}
+    	}
+	});
+}
+function edit_catalogs(qid){
+	popup("/set-catalogs?parent=1&type=3&id="+qid);
+}
+function vote(blogid){
+		alert("必须登录后才能操作 :)");
+	}
+function toggle_recomm(blogid){
+	ajax_post("/action/blog/toggle_recomm","id="+blogid,function(html){
+		if(html == '-1')
+			alert("文章不存在");
+		else if(html == 0){
+			$('#lnk_recomm_'+blogid).removeClass('recommend');
+			$('#lnk_recomm_'+blogid).text("未推荐");
+		}
+		else if(html == 1){
+			$('#lnk_recomm_'+blogid).addClass('recommend');
+			$('#lnk_recomm_'+blogid).text("已推荐");
+		}
+	});
+}
+	var textbox = $("#wmd-input").textbox({
+		maxLength: 1000,
+    	onInput: function(event, status) {
+			var txt = jQuery.trim($("#wmd-input").val());
+    	}
+	});	
+	function insert_projects() {
+		textbox.insertText('#此处输入软件名#');
+		$('#TweetEmotions').removeAttr('txt_id');
+	}
+	function insert_projects_c() {
+    	var combox = $("#ccom_content").textbox({
+    		maxLength: 1000,
+        	onInput: function(event, status) {
+    			var txt = jQuery.trim($("#ccom_content").val());
+        	}
+    	});	
+		combox.insertText('#此处输入软件名#');
+		$('#TweetEmotions').removeAttr('txt_id');
+	}
+	function insert_emotions(id,obj) {
+		if(id) {
+			$('#TweetEmotions').attr('txt_id',id);
+			var thiz = $(obj);
+			var offset = thiz.offset();
+			var poffset = thiz.offsetParent().offset();
+        	var left = offset.left-poffset.left;
+        	var top = offset.top-poffset.top;
+			$('#TweetFormPopupWraper').css({'top':top+25 +'px','left':left+'px'});
+		}
+		else {
+			$('#TweetFormPopupWraper').css({'top':'','left':''});
+			$('#TweetEmotions').removeAttr('txt_id');
+		}
+		$('#TweetEmotions').show();
+		$('#TweetImages').hide();
+		$('#TweetFormPopupArrow').removeClass('projects');
+		$('#TweetFormPopupArrow').removeClass('images');
+		$('#TweetFormPopupArrow').addClass('emotions');
+		$('#TweetFormPopupWraper').slideDown('fast');
+	}
+	function ins_e(idx){
+		var txt_id = $('#TweetEmotions').attr('txt_id');
+		if(!txt_id)
+			textbox.insertText('['+idx+']');
+		else {
+			insertAtCursor(txt_id,'['+idx+']');
+		}
+		$('#TweetFormPopupWraper').hide();
+		return false;
+	}
+	function insertAtCursor(tbid,str) {
+		var tb = document.getElementById(tbid);
+        if (document.selection){
+			tb.focus();
+			var r = document.selection.createRange();
+            document.selection.empty();
+            r.text = str;
+            r.collapse();
+            r.select();
+        }
+        else{
+            var newstart = tb.selectionStart+str.length;
+            tb.value=tb.value.substr(0,tb.selectionStart)+str+tb.value.substring(tb.selectionEnd);
+            tb.selectionStart = newstart;
+            tb.selectionEnd = newstart;
+        }
+	}
+//-->
+</script></div>
+	<div class='clear'></div>
+	<div id="OSC_Footer"><style>
+.oscapp {text-align:left; width:220px;}
+.oscapp span {float:left;width:140px;}
+.oscapp a {float:left;text-indent:-9999em;width:16px;margin-left:8px;}
+.oscapp a.android {background:url('/img/android.gif') no-repeat left center;}
+.oscapp a.iphone {background:url('/img/iphone.gif') no-repeat left center;}
+.oscapp a.wp7 {background:url('/img/wp7.gif') no-repeat left center;}
+</style>
+<table width='100%'><tr>
+<td align='left'>&copy; 开源中国(OsChina.NET) | <a href="http://www.oschina.net/home/about">关于我们</a> | <a href="mailto:oschina.net@gmail.com">广告联系</a> | <a href="http://weibo.com/oschina2010" target="_blank">@新浪微博</a> | <a href="http://m.oschina.net/">开源中国手机版</a> | <a href='http://www.miitbeian.gov.cn/' target='_blank' style='color:#737573;text-decoration:none;'>粤ICP备12009483号-3</a></td>
+<td class='oscapp'>
+	<span>开源中国手机客户端：</span>
+	<a href="http://www.oschina.net/app" class='android' title='Android客户端'>Android</a>
+	<a href="http://www.oschina.net/app" class='iphone' title='iPhone 客户端'>iPhone</a>
+	<a href="http://www.oschina.net/app" class='wp7' title='Windows Phone 客户端'>WP7</a>
+</td>
+</tr>
+</table>
+<script type='text/javascript'>
+<!--
+if (top.location != self.location)top.location=self.location;
+//-->
+</script></div>
+</div>
+</body>
+
+<script type="text/javascript" src="/action/visit/space?id=66133"></script>
+<script type='text/javascript'>
+<!--
+$(document).ready(function() {
+
+	SelectStyle("#search-item",".search_list");
+	$('.Tweet .photo img').live("click",function(){
+		var T=$(this);
+		var t=this;
+		var bigImg = T.attr('bi');
+		var smallImg = T.attr('si');
+		var src = T.attr('src');
+		var newsrc = (bigImg == src)?smallImg:bigImg;
+		var imgId = T.attr('id');
+		if(newsrc == bigImg){
+    		var loading=$('<img alt="loading" src="/img/loading.gif"/>');
+			var top = T.position().top+T.height()/2-8;
+			var left = T.position().left+T.width()/2-8;
+			loading.css({
+				'position':'absolute',
+				'z-index':999,
+				'top':top,
+				'left':left
+			});
+    		T.before(loading);
+			var tImg=new Image();
+			tImg.src=newsrc;
+			tImg.onload=function(){afterImgLoad(T,loading,imgId,newsrc,bigImg);};
+		}
+		else{
+			T.attr("src",newsrc);
+			$('#img_menu_'+imgId).remove();
+		}
+		return false;
+	});
+	
+	$(".tweet_thumb_wrapper").mouseenter(function(){
+		$(this).find(".tweet_play_video").css("opacity",1);
+	}).mouseleave(function(){
+		$(this).find(".tweet_play_video").css("opacity",0.7);
+	});
+
+    $("#TForm textarea").atWho("@", function(query, callback){
+        jQuery.ajax({
+            type:'POST',
+            url:"/action/tweet/at_suggest",
+            data:{'q':query},
+            dataType:'json',
+            success:function(json){
+                callback(json);
+            }
+        });
+    });
+	
+	toggle_tweet_video = function(id){
+		$("#tweet_video_thumb_"+id).toggle();
+		var video = $("#tweet_video_"+id).toggle();
+		video.siblings(".tweet_video_operation,.tweet_thumb_wrapper").toggle();
+	};
+	
+	function afterImgLoad(T,loading,imgId,url,bigImg){
+		var lnks = "<div id='img_menu_"+imgId+"' class='ImgMenu'>";
+		lnks += "<a href='#' onclick='$(\"#"+imgId+"\").click();return false;'>收起</a>";
+		lnks += "<a href='"+bigImg+"' target='_blank'>查看原图</a></div>";			
+		loading.remove();
+		T.attr("src",url);
+		T.before(lnks);
+	}
+});
+
+function set_fellow_memo(fid,fname){
+	popup("/action/ajax/set_fellow_memo","friend="+fid+"&name="+fname);
+}
+
+function deleteMsgs(uid, fid, fname){
+	if(!confirm("你确认要清除与‘"+fname+"’的所有留言信息吗？"))
+		return ;
+	var args = "user="+uid+"&friend="+fid;
+	ajax_post("/action/msg/delete_user",args,function(html){
+		if(html.length > 0)
+			alert(html);
+		else{
+			$('#Msg_'+fid).fadeOut();
+		}
+	});
+}
+
+function follow_user(uid, uname){
+	just_follow(uid, uname,'${g_user.id}'); //oschina.js
+}
+
+function unfollow_user(uid, uname){
+	if(confirm("确定不再关注" + uname + "了吗？"))
+	just_unfollow(uid,'${g_user.id}',function(){
+		alert('已取消对 ' + uname + ' 的关注');
+	});
+}
+
+function tweet_reply(logid){
+	var r = $('#LogReply_'+logid);
+	if(!r.is(":hidden")){
+		close_tweet_reply(logid);
+		return ;
+	}
+	r.html("<div class='TweetRplsWrapper'><span class='loading'>正在加载评论，请稍候...</span></div>")
+	r.show();
+	r.load("http://my.oschina.net/alphajay/tweet-rpls?log="+logid,function(){
+		$('#edt_tweet_post_'+logid).focus();
+        var at_datas = [];
+        $(this).find("img.SmallPortrait").each(function(){
+            var name = $(this).attr('alt');
+            if(jQuery.inArray(name, at_datas) < 0 && name != '${g_user.name}')
+                at_datas.push(name);
+        });
+        $(this).find("input.TXT_TweetRpl_Text").atWho("@", {data: at_datas});
+        $('#TweetReplyForm_'+logid).ajaxForm({
+        	dataType: 'json',
+			beforeSubmit: function(arr, form, options){
+				$('#BTN_TweetReply_'+logid).attr('disabled','disabled');
+			},
+            success: function(json) {
+            	if(json.msg){
+        			alert(json.msg);
+            	}else if(json.log){
+					$('#log_reply_count_'+logid).text(json.reply_count);
+        			//插入新评论					
+					ajax_get("/action/ajax/get_tweet_reply?id=" + json.log,true,function(html){
+						$('#LogReply_'+logid+' ul').prepend(html);
+					});
+					$('#edt_tweet_post_'+logid).val('');
+            	}
+				$('#BTN_TweetReply_'+logid).removeAttr('disabled');
+            }
+        });
+	});
+}
+function close_tweet_reply(logid){
+	$('#LogReply_'+logid).empty();
+	$('#LogReply_'+logid).hide();
+	$('#Logs .userlogs li').removeClass('hover');
+}
+function reply_rtweet(logid, rid, toname){
+	var edtPost = $('#edt_tweet_post_' + logid);
+	var old_v = edtPost.val();
+	if(old_v.length > 0)
+		edtPost.val(old_v + ',@'+toname+' ');
+	else
+		edtPost.val('回复 @'+toname+' : ');
+	edtPost.focus();
+	edtPost.caretPos(edtPost.val().length); }
+function delete_tweet(logid){
+	if(confirm("确认要删除这条信息吗？"))
+	ajax_post("/action/tweet/delete?log="+logid+"&user=${g_user.id}","",function(html){
+		if(html.length==0){
+			var elem = $('#LI_'+logid);
+			if(elem.length > 0)
+				$('#LI_'+logid).fadeOut();
+			else
+				location.reload();
+		}
+	});
+}
+function delete_tweet_reply(logid){
+	if(confirm("确认要删除这条评论吗？"))
+	ajax_post("/action/tweet/delete_reply?id="+logid+"&user=${g_user.id}","",function(html){
+		if(html.length==0)
+			$('#TweetReply_'+logid).fadeOut();
+	});
+}
+
+function delete_blog(blog_id){
+    if(!confirm("文章删除后无法恢复，请确认是否删除此篇文章？")) return;
+    ajax_post("/action/blog/delete?id="+blog_id+"&user=${g_user.id}&user_code=${g_user.activate_code}","",function(html){
+    	location.href="http://my.oschina.net/alphajay/blog";
+    });
+}
+
+function SelectStyle(on,option){
+	var currentSort = $(on).attr('id');
+	var currentText = $(option+" li."+currentSort+" a").html();
+	$(on + " .text").html(currentText);
+	$(on + " .text").hover(function(){
+		$(this).addClass("hover")
+	},function(){
+		$(this).removeClass("hover")
+	});
+	$(option+" li a").each(function(index){
+		$(this).click(function(){
+			thishtml = $(this).html();
+			$(on + " .text").removeClass("on").html(thishtml);		
+			$(".selectbox select ").find("option").removeAttr('selected').eq(index).attr("selected","selected");	
+			$(option).hide()
+			return false;
+		});
+		
+	});		
+	
+	$(".selectbox").click(function(){		
+		$(option).toggle();
+		$(on + " .text").toggleClass("on");		
+		return false;
+	});
+	$(document).click(function(){
+		$(option).hide();	
+		$(on + " .text").removeClass("on");
+	});
+	$(document).trigger('click');
+
+}
+
+//-->
+</script>
+</html>
+
+<!-- Generated by OsChina.NET (init:1[ms],page:76[ms],ip:60.29.171.35) -->
