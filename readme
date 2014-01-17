@@ -11,7 +11,7 @@
 7.(setq default-directory "D:/python_workspace")
 8.base.el 初始最大化
 9.修改 base.el 中 set-default-font
-10.sierlang 中 erlang 目录
+10.sierlang.el 中 erlang 相关目录
 -----linux：
 1.删除.emacs 中(setenv "HOME" "D:/tools/emacs-23.2")
 2.解压cedet 和 ecb ，安装cedet
@@ -23,8 +23,9 @@
 7.(setq default-directory "~/workspace")
 8.base.el 初始最大化
 9.修改 base.el 中 set-default-font
-10.sierlang 中 erlang 目录
+10.sierlang.erl 中 erlang 相关目录
 11.将plug-in\for_erlang\tools-2.6.13 拷贝到/usr/local/lib/erlang/lib 中，其中的tools 版本较老
+
 当前可用版本
     commit f33b7d89981a6f2b74bd2d72ca5a66b9b69ca50f
     Author: simon-rock <simon29rock@gmail.com>
