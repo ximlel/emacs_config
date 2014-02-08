@@ -198,3 +198,15 @@ HKEY_CLASSES_ROOT\*\shell\Edit with Emacs\command
 =============================================
 M-x woman 的命令可以高亮的察看manpage
 M-x info 的命令可以察看man所提供的所有命令并且以层次形式提供
+
+C-x r m 添加书签
+C-x r b 跳到某个书签
+M-x list-bookmarks 显示所有书签，在里面d标记删除，u取消，r重命名，x执行操作   ==》 C+F12
+要想保存书签，可以修改.emacs文件，在里面添加如下内容
+(setq bookmark-save-flag 1)
+这会把书签保存到~/.emacs.bmk 
+
+=============================================
+			RESOURCE
+=============================================
+http://blog.csdn.net/redguardtoo/article/details/7222501

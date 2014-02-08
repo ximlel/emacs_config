@@ -127,3 +127,6 @@
 
 ;; 关闭buffer的时候, 如果该buffer有对应的进程存在, 不提示, 烦
 (delq 'process-kill-buffer-query-function kill-buffer-query-functions)
+
+;; 保存标签
+(setq bookmark-save-flag t)
