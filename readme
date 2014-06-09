@@ -12,6 +12,9 @@
 8.base.el 初始最大化
 9.修改 base.el 中 set-default-font
 10.sierlang.el 中 erlang 相关目录
+11.on windows, 单例运行emacs （http://www.cnblogs.com/ini_always/archive/2012/04/28/2475741.html）
+	HKEY_CLASSES_ROOT\*\shell\Edit with Emacs\command
+		Default REG_SZ "d:\tools\emacs-23.2\bin\emacsclientw.exe" -no-wait --server-file "d:\tools\emacs-23.2\.emacs.d\server\server"  --alternate-editor="d:\tools\emacs-23.2\bin\runemacs.exe" "%1"
 -----linux：
 1.删除.emacs 中(setenv "HOME" "D:/tools/emacs-23.2")
 2.解压cedet 和 ecb ，安装cedet
