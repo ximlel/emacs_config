@@ -11,4 +11,4 @@
  ;; If there is more than one, they won't work right.
  )
 
- (load-file "D:/tools/emacs-24.3/.emacs")
+ (load-file "D:/tools/emacs-23.2/.emacs")
