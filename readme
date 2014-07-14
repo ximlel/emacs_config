@@ -6,15 +6,36 @@
     (或在注册表中添加HKLM\SOFTWARE\GNU\Emacs\HOME变量)
 3.拷贝config 下的.emacs.d 和.emacs 到安装目录
 4.修改(setenv "HOME" "D:/tools/emacs-24.3") 指向安装目录,如果上面通过修改注册表方式则忽略此步
-5.python-mode 一些插件需要安装 python的插件才能生效
-6.为适应ecb和cedet 使用emacs 23.2
+5.python-mode 一些插件需要安装 python的插件才能生效(rope ropemode ropemacs pymacs)
+6.为适应ecb和cedet(make) 使用emacs 23.2
 7.(setq default-directory "D:/python_workspace")
 8.base.el 初始最大化
 9.修改 base.el 中 set-default-font
-10.sierlang.el 中 erlang 相关目录
+10.安装erlang， 设置sierlang.erl 中 erlang 相关目录
 11.on windows, 单例运行emacs （http://www.cnblogs.com/ini_always/archive/2012/04/28/2475741.html）
 	HKEY_CLASSES_ROOT\*\shell\Edit with Emacs\command
 		Default REG_SZ "d:\tools\emacs-23.2\bin\emacsclientw.exe" -no-wait --server-file "d:\tools\emacs-23.2\.emacs.d\server\server"  --alternate-editor="d:\tools\emacs-23.2\bin\runemacs.exe" "%1"
+12.emacs24 需要下载cedet1.1, 修改ecb 关于版本的检测的文件安装
+	(https://github.com/alexott/ecb/downloads
+	http://blog.csdn.net/a593796769/article/details/9000055)
+ecb-upgrade.el中的
+	(defconst ecb-required-cedet-version-max '(1 0 4 9))
+	为
+	(defconst ecb-required-cedet-version-max '(1 1 4 9))
+	并且注释其中的
+	;;      (when (or (not (boundp 'cedet-version))
+	;;                (ecb-package-version-list<
+	;;                 (ecb-package-version-str2list cedet-version)
+	;;                 ecb-required-cedet-version-min)
+	;;                (ecb-package-version-list<
+	;;                 ecb-required-cedet-version-max
+	;;                 (ecb-package-version-str2list cedet-version)))
+	;;        (setq version-error (concat "cedet ["
+	;;                                    cedet-required-version-str-min
+	;;                                    ", "
+	;;                                    cedet-required-version-str-max
+	;;                                    "]")))
+13.emacs24 需使用相应python-mode
 -----linux：
 1.删除.emacs 中(setenv "HOME" "D:/tools/emacs-23.2")
 2.解压cedet 和 ecb ，安装cedet
@@ -22,13 +43,33 @@
     (setq default-process-coding-system '(utf-8 . utf-8))            ;windows 可以使用这个 
     (setq default-process-coding-system '(utf-8-unix . utf-8-unix))  ;进程输出输入编码 -- affect pdb on windows,linux 可以使用这个 
 5.python-mode 一些插件需要安装 python的插件才能生效
-6.为适应ecb和cedet 使用emacs 23.2
+6.为适应ecb和cedet(make) 使用emacs 23.2
 7.(setq default-directory "~/workspace")
 8.base.el 初始最大化
 9.修改 base.el 中 set-default-font
-10.sierlang.erl 中 erlang 相关目录
+10.安装erlang， 设置sierlang.erl 中 erlang 相关目录
 11.将plug-in\for_erlang\tools-2.6.13 拷贝到/usr/local/lib/erlang/lib 中，其中的tools 版本较老
-
+12.emacs24 需要下载cedet1.1, 修改ecb 关于版本的检测的文件安装
+	(https://github.com/alexott/ecb/downloads
+	http://blog.csdn.net/a593796769/article/details/9000055)
+	ecb-upgrade.el中的
+	(defconst ecb-required-cedet-version-max '(1 0 4 9))
+	为
+	(defconst ecb-required-cedet-version-max '(1 1 4 9))
+	并且注释其中的
+	;;      (when (or (not (boundp 'cedet-version))
+	;;                (ecb-package-version-list<
+	;;                 (ecb-package-version-str2list cedet-version)
+	;;                 ecb-required-cedet-version-min)
+	;;                (ecb-package-version-list<
+	;;                 ecb-required-cedet-version-max
+	;;                 (ecb-package-version-str2list cedet-version)))
+	;;        (setq version-error (concat "cedet ["
+	;;                                    cedet-required-version-str-min
+	;;                                    ", "
+	;;                                    cedet-required-version-str-max
+	;;                                    "]")))
+13.emacs24 需使用相应python-mode
 当前可用版本
     commit f33b7d89981a6f2b74bd2d72ca5a66b9b69ca50f
     Author: simon-rock <simon29rock@gmail.com>
