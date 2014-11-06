@@ -9,4 +9,6 @@
          M-x revert-buffer-with-coding-system chinese-gbk
          M-x set-buffer-file-coding-system utf-8
          保存
+    ref https://github.com/ocde/ego/wiki/Emacs%E4%B9%B1%E7%A0%81%E9%97%AE%E9%A2%98
+    设置 Emacs 文件系统的编码格式 http://blog.waterlin.org/articles/set-emacs-default-coding-system.html
 2.<RET>  为回车
