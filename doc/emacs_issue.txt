@@ -9,3 +9,4 @@
          M-x revert-buffer-with-coding-system chinese-gbk
          M-x set-buffer-file-coding-system utf-8
          保存
+2.<RET>  为回车
