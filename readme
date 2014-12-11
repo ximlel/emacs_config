@@ -89,7 +89,7 @@ ecb-upgrade.el中的
 14.安装Cscope
     -- http://lifegoo.pluskid.org/wiki/EmacsCscope.html
     编译安装.emacs.d\install\csc145_win\cscope-15.8a.tar.gz
-    将cscope-indexer拷贝到系统目录（usr\bin）
+    将cscope-indexer拷贝到系统目录（usr/local/bin）
 -----共同changelist：
 修改base.el中配置的字体
 删除了sicode.el                     auto-comple的配置，由于和windows c++有冲突，cedet 的补全alt+/更好(cedet补全此功能在windows下保存python时emacs 卡，生成.ropeproject后),但对于python auto-comple的补全更方便建议使用
