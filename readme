@@ -1,6 +1,6 @@
 ﻿
 使用说明
------windows：
+-----windows：(windows 使用23.2即可)
 1.windows emacs-24.1-bin-i386.zip
 2.重定向配置文件到安装目录 : C:\Documents and Settings\Administrator\Application Data\.emacs 中添加(load-file "D:/tools/emacs-24.3/.emacs")
     (或在注册表中添加HKLM\SOFTWARE\GNU\Emacs\HOME变量)
@@ -36,6 +36,17 @@ ecb-upgrade.el中的
 	;;                                    cedet-required-version-str-max
 	;;                                    "]")))
 13.emacs24 需使用相应python-mode
+14.安装Cscope
+    -- http://lifegoo.pluskid.org/wiki/EmacsCscope.html
+    需要.emacs.d\install\csc145_win\cscope.exe or cscope15.6-win32 and cscope-15.8a\cscope-indexer
+    拷贝到emacs\bin下， 会遇到问题参照cscope-indexer 在windows 下手动生成cscope.out
+                        dir /s /b *.c *.h > cscope.files
+                        find . -name "*.[chs]" > cscope.files
+                        find . -name "*.cpp" >> cscope.files
+                        cscope -b -i cscope.files -f cscope.out
+    如果不行  只能参照 http://blog.csdn.net/mslk/article/details/1598513 自行编译
+    或下载http://sourceforge.net/projects/mslk/files/Cscope
+            http://cscope.sourceforge.net/
 -----linux：
 1.删除.emacs 中(setenv "HOME" "D:/tools/emacs-23.2")
 2.解压cedet 和 ecb ，安装cedet
@@ -75,7 +86,10 @@ ecb-upgrade.el中的
     Author: simon-rock <simon29rock@gmail.com>
     Date:   Sun Jun 9 09:01:39 2013 +0800
         del mulit-term setting config, because it impact python mode
-
+14.安装Cscope
+    -- http://lifegoo.pluskid.org/wiki/EmacsCscope.html
+    编译安装.emacs.d\install\csc145_win\cscope-15.8a.tar.gz
+    将cscope-indexer拷贝到系统目录（usr\bin）
 -----共同changelist：
 修改base.el中配置的字体
 删除了sicode.el                     auto-comple的配置，由于和windows c++有冲突，cedet 的补全alt+/更好(cedet补全此功能在windows下保存python时emacs 卡，生成.ropeproject后),但对于python auto-comple的补全更方便建议使用
@@ -277,3 +291,6 @@ M-% ori_string RET replace_string RET
 			RESOURCE
 =============================================
 http://blog.csdn.net/redguardtoo/article/details/7222501
+cscope使用
+http://os.chinaunix.net/a2006/0707/963/000000963869.shtml
+http://blog.csdn.net/intrepyd/article/details/4202312
