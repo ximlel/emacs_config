@@ -1,0 +1,14 @@
+1.emacs改变文件编码
+    1)查看当前buffer的编码：M-x describe-coding-system
+    2)列出所有编码：C-x <RET> r <TAB>
+    3)以指定编码重读当前buffer：C-x <RET> r utf-8，（revert-buffer-with-coding-system）
+    4)改变当前buffer的编码：C-x <RET> f utf-8，（set-buffer-file-coding-system）
+    5)设定下一步操作的编码格式：C-x <RET> c，（universal-coding-system-argument）
+    例如 
+         打开一个windows ansi编码文件
+         M-x revert-buffer-with-coding-system chinese-gbk
+         M-x set-buffer-file-coding-system utf-8
+         保存
+    ref https://github.com/ocde/ego/wiki/Emacs%E4%B9%B1%E7%A0%81%E9%97%AE%E9%A2%98
+    设置 Emacs 文件系统的编码格式 http://blog.waterlin.org/articles/set-emacs-default-coding-system.html
+2.<RET>  为回车
