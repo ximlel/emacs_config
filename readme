@@ -252,45 +252,9 @@ HKEY_CLASSES_ROOT\*\shell\Edit with Emacs\command
 
 4.cedet 补全需要配置目录
 =============================================
-			COMMAND
-=============================================
-M-x woman 的命令可以高亮的察看manpage
-M-x info 的命令可以察看man所提供的所有命令并且以层次形式提供
-
-C-x r m 添加书签
-C-x r b 跳到某个书签
-M-x list-bookmarks 显示所有书签，在里面d标记删除，u取消，r重命名，x执行操作   ==》 C+F12
-要想保存书签，可以修改.emacs文件，在里面添加如下内容
-(setq bookmark-save-flag 1)
-这会把书签保存到~/.emacs.bmk 
-
-move
-C-p C-n C-b C-f
-M-f M-b
-C-a C-e
-M-a M-e
-
-search
-C-s         start serch
-   M-n M-P  切换搜索历史
-   C-W      补全当前词
-   C-s C-r  上下搜索
-
-list search mode
-M-x occur RET string RET
-
-replace
-M-% ori_string RET replace_string RET
-    y replace
-    n skip
-    ! replace all below the line
-    ^ backup last place
-    C-r   edit mode
-    C-M-c quit edit mode
-=============================================
 			RESOURCE
 =============================================
 http://blog.csdn.net/redguardtoo/article/details/7222501
-cscope使用
-http://os.chinaunix.net/a2006/0707/963/000000963869.shtml
-http://blog.csdn.net/intrepyd/article/details/4202312
+some importent setting
+http://my.oschina.net/alphajay/blog/152599
+
