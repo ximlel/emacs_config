@@ -144,7 +144,7 @@ d delete
 u undo
 x exec
 y yes
-S save
+S save to filex
 t toggle mark
 http://emacser.com/ann77/Emacs/EmacsIbuffer.html
 正则
