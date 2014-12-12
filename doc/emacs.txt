@@ -73,3 +73,84 @@ M-x list-bookmarks 显示所有书签，在里面d标记删除，u取消，r重�
 要想保存书签，可以修改.emacs文件，在里面添加如下内容
 (setq bookmark-save-flag 1)
 这会把书签保存到~/.emacs.bmk 
+
+=============================================
+			COMMAND
+=============================================
+M-x woman 的命令可以高亮的察看manpage
+M-x info 的命令可以察看man所提供的所有命令并且以层次形式提供
+
+=============================================
+书签
+C-x r m 添加书签
+C-x r b 跳到某个书签
+M-x list-bookmarks 显示所有书签，在里面d标记删除，u取消，r重命名，x执行操作   ==》 C+F12
+要想保存书签，可以修改.emacs文件，在里面添加如下内容
+(setq bookmark-save-flag 1)
+这会把书签保存到~/.emacs.bmk 
+
+=============================================
+移动
+move
+C-p C-n C-b C-f
+M-f M-b
+C-a C-e
+M-a M-e
+
+=============================================
+搜索，替换
+search
+C-s         start serch
+   M-n M-P  切换搜索历史
+   C-w      补全当前词
+   C-s C-r  上下搜索
+
+list search mode
+M-x occur RET string RET
+
+replace
+M-% ori_string RET replace_string RET
+    y replace
+    n skip
+    ! replace all below the line
+    ^ backup last place
+    C-r   edit mode
+    C-M-c quit edit mode
+
+=============================================
+cscope 查看代码
+cscope (read xcscope.el)
+    C-c s a                     set root dir of code
+    C-c s I                     create cscope.out
+    C-c s L
+    
+    C-c s d
+    C-c s g(global define)      find function or var define
+    C-c s G
+
+    C-c s c(caller)             find the caller
+    C-c s C(call function list) find the subfunction in the funciton
+    C-c s t(text)               find text string
+    C-c s f(file)               find a file
+    C-c s i                     find the files #inlcude a file
+
+cscope使用
+http://os.chinaunix.net/a2006/0707/963/000000963869.shtml
+http://blog.csdn.net/intrepyd/article/details/4202312
+
+=============================================
+ibuffer
+d delete
+u undo
+x exec
+y yes
+S save to filex
+t toggle mark
+http://emacser.com/ann77/Emacs/EmacsIbuffer.html
+正则
+http://dsec.pku.edu.cn/~rli/WiKi/EmacsRegexp.html
+regexp_test.py
+occur
+http://www.emacswiki.org/emacs/OccurMode
+=============================================
+
