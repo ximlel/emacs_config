@@ -44,10 +44,14 @@
 ;; ==============配色方案
 
 ;; 各种语言开发方面的设置,这个设置牵涉到太多配置....
-(require 'dev-settings)
+;(require 'dev-settings)
 
 ;; 在buffer中方便的查找字符串: color-moccur
-(require 'moccur-settings)
+;; ;;; This file does not contain utf-8 non-ASCII characters,
+;; ;;; and so can be loaded in Emacs versions earlier than 23.
+;; ;;; you can get info from
+;; ;;; https://github.com/k-yamada/.emacs.d/blob/master/elisp/color-moccur.elc
+;;(require 'moccur-settings)
 ;; Emacs超强的增量搜索Isearch配置
 (require 'isearch-settings)
 
