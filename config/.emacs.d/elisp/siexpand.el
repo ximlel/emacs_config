@@ -44,7 +44,7 @@
 ;; ==============配色方案
 
 ;; 各种语言开发方面的设置,这个设置牵涉到太多配置....
-;(require 'dev-settings)
+(require 'dev-settings)
 
 ;; 在buffer中方便的查找字符串: color-moccur
 ;; ;;; This file does not contain utf-8 non-ASCII characters,
@@ -74,6 +74,7 @@
 ;;(require 'linkd-settings)
 
 ;; Emacs的超强文件管理器
+(require 'edit-settings)
 (require 'dired-settings)
 
 ;; 方便的切换major mode
