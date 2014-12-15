@@ -35,6 +35,7 @@ ecb-upgrade.el中的
 	;;                                    ", "
 	;;                                    cedet-required-version-str-max
 	;;                                    "]")))
+	!!! but exit issue in emacs24 using cedet 1.1, compile emacs23
 13.emacs24 需使用相应python-mode
 14.安装Cscope
     -- http://lifegoo.pluskid.org/wiki/EmacsCscope.html
@@ -81,6 +82,7 @@ ecb-upgrade.el中的
 	;;                                    ", "
 	;;                                    cedet-required-version-str-max
 	;;                                    "]")))
+    !!! but exit issue in emacs24 using cedet 1.1, compile emacs23
 13.emacs24 需使用相应python-mode(将相应的python-mode拷备到elisp)
 当前可用版本
     commit f33b7d89981a6f2b74bd2d72ca5a66b9b69ca50f
@@ -182,6 +184,9 @@ http://guweigang.com/2010/09/gnu/%E4%BB%8A%E5%A4%A9%E5%9F%BA%E6%9C%AC%E9%85%8D%E
 	(setq ropemacs-enable-autoimport t)
 -----cedet ecb	
 	http://hi.baidu.com/dapplehou/item/05f40eb411107a9619469708
+    untar cedet and make
+    on linux, untar ecb
+    on windows, untar ecb, config makefile (cedetpath) and make, (ref README)
 	emacs 24.x only install cedet 1.1 (not cedet 1.0.x)
 	but ecb2.4 only cedet 1.x
 	Solved this by changing these lines in ecb-upgrade.el

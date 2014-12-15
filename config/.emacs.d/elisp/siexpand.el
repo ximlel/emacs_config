@@ -74,7 +74,19 @@
 ;;(require 'linkd-settings)
 
 ;; Emacs的超强文件管理器
-(require 'edit-settings)
+;(require 'edit-settings) ; lead copy issue
+; need by dired-settings
+(defmacro def-redo-command (fun-name redo undo)
+  "Make redo command."
+  `(defun ,fun-name ()
+     (interactive)
+     (if (equal last-command ,redo)
+         (setq last-command 'undo)
+       (setq last-command nil))
+     (call-interactively ,undo)
+     (setq this-command ,redo)))
+(def-redo-command redo 'redo 'undo)
+
 (require 'dired-settings)
 
 ;; 方便的切换major mode
