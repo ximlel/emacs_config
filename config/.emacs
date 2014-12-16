@@ -29,6 +29,7 @@
 
 ;; 设置 添加Emacs搜索路径
 (setq load-path (cons "~/.emacs.d/elisp" load-path)) 
+(setq load-path (cons "~/.emacs.d/elisp/dired" load-path))
 
 ;; 配色方案 ;; 添加el的路径
 (setq load-path (append load-path (list "~/.emacs.d/elisp/color-theme-6.6.0")))

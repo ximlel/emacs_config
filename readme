@@ -35,6 +35,7 @@ ecb-upgrade.el中的
 	;;                                    ", "
 	;;                                    cedet-required-version-str-max
 	;;                                    "]")))
+	!!! but exit issue in emacs24 using cedet 1.1, compile emacs23
 13.emacs24 需使用相应python-mode
 14.安装Cscope
     -- http://lifegoo.pluskid.org/wiki/EmacsCscope.html
@@ -59,6 +60,7 @@ ecb-upgrade.el中的
 8.base.el 初始最大化
 9.修改 base.el 中 set-default-font
 10.安装erlang， 设置sierlang.erl 中 erlang 相关目录
+                load_path, erlang-root-dir, exec-path, erlang-man-root-path
 11.将plug-in\for_erlang\tools-2.6.13 拷贝到/usr/local/lib/erlang/lib 中，其中的tools 版本较老
 12.emacs24 需要下载cedet1.1, 修改ecb 关于版本的检测的文件安装
 	(https://github.com/alexott/ecb/downloads
@@ -80,7 +82,8 @@ ecb-upgrade.el中的
 	;;                                    ", "
 	;;                                    cedet-required-version-str-max
 	;;                                    "]")))
-13.emacs24 需使用相应python-mode
+    !!! but exit issue in emacs24 using cedet 1.1, compile emacs23
+13.emacs24 需使用相应python-mode(将相应的python-mode拷备到elisp)
 当前可用版本
     commit f33b7d89981a6f2b74bd2d72ca5a66b9b69ca50f
     Author: simon-rock <simon29rock@gmail.com>
@@ -89,14 +92,17 @@ ecb-upgrade.el中的
 14.安装Cscope
     -- http://lifegoo.pluskid.org/wiki/EmacsCscope.html
     编译安装.emacs.d\install\csc145_win\cscope-15.8a.tar.gz
-    将cscope-indexer拷贝到系统目录（usr\bin）
+    将cscope-indexer拷贝到系统目录（usr/local/bin）
 -----共同changelist：
 修改base.el中配置的字体
 删除了sicode.el                     auto-comple的配置，由于和windows c++有冲突，cedet 的补全alt+/更好(cedet补全此功能在windows下保存python时emacs 卡，生成.ropeproject后),但对于python auto-comple的补全更方便建议使用
 删除了siexpand.el-dev-settings.el   关于保存的配置，windows下不能正常工作,导致保存时出现许多cmdproxy.exe进程
 删除了siwxpand.el                   mulit-term-setting 配置，不能与python兼容，提示错误
 删除了siexpand.el                   高亮当前行
+20141213  删除了siexpand.el         moccur-settings 配置， 因为其依赖color-moccur.el 不支持utf8和no-ascii 码，所以只能工作在emacs22及以前版本
 修改了颜色，增加了一些符号到关键字
+20141214  重新配置dird配置
+          创建dird目录，将所有配置相关配置文件移到这个目录，在.emacs添加dird目录
 ===========================
 配置说明
 ===========================
@@ -178,6 +184,9 @@ http://guweigang.com/2010/09/gnu/%E4%BB%8A%E5%A4%A9%E5%9F%BA%E6%9C%AC%E9%85%8D%E
 	(setq ropemacs-enable-autoimport t)
 -----cedet ecb	
 	http://hi.baidu.com/dapplehou/item/05f40eb411107a9619469708
+    untar cedet and make
+    on linux, untar ecb
+    on windows, untar ecb, config makefile (cedetpath) and make, (ref README)
 	emacs 24.x only install cedet 1.1 (not cedet 1.0.x)
 	but ecb2.4 only cedet 1.x
 	Solved this by changing these lines in ecb-upgrade.el
@@ -257,3 +266,7 @@ HKEY_CLASSES_ROOT\*\shell\Edit with Emacs\command
 http://blog.csdn.net/redguardtoo/article/details/7222501
 some importent setting
 http://my.oschina.net/alphajay/blog/152599
+
+
+http://emacser.com/
+http://www.emacswiki.org/

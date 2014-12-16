@@ -153,4 +153,18 @@ regexp_test.py
 occur
 http://www.emacswiki.org/emacs/OccurMode
 =============================================
+Emacs 中的查找
+Nonincremental Search
+打开文件中查找
+使用 moccur 在所有打开的文件内查找
+多文件查找
+find-dired
+运行外部命令 find , 产生文件列表，然后进入 dired 模式。
+find-grep-dired
+运行外部命令 find，用 grep 过滤文件， ls 产生目录列表，然后进入 dired 模式，这样 列出所有包含某些字符的文件列表。可以使用 dired-do-query-replace-regexp 在文件列 表中查找并替换。可以递归所有子目录。可以用各种条件过滤文件，详细可以查看 find 命 令的帮助。
+grep
+在当前目录中查找指定的 regexp 。
+grep-find
+运行 find , grep ，然后产生类似于 compile 的结果，可以查看哪些文件在什么地方包含 了匹配了指定的 regexp 。用 C-x ` 浏览结果。可以递归所有子目录。，详细可以查看 find 命令的帮助。
+dired-do-query-replace-regexp
 

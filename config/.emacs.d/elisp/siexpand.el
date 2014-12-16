@@ -47,7 +47,11 @@
 (require 'dev-settings)
 
 ;; 在buffer中方便的查找字符串: color-moccur
-(require 'moccur-settings)
+;; ;;; This file does not contain utf-8 non-ASCII characters,
+;; ;;; and so can be loaded in Emacs versions earlier than 23.
+;; ;;; you can get info from
+;; ;;; https://github.com/k-yamada/.emacs.d/blob/master/elisp/color-moccur.elc
+;;(require 'moccur-settings)
 ;; Emacs超强的增量搜索Isearch配置
 (require 'isearch-settings)
 
@@ -70,6 +74,19 @@
 ;;(require 'linkd-settings)
 
 ;; Emacs的超强文件管理器
+;(require 'edit-settings) ; lead copy issue
+; need by dired-settings
+(defmacro def-redo-command (fun-name redo undo)
+  "Make redo command."
+  `(defun ,fun-name ()
+     (interactive)
+     (if (equal last-command ,redo)
+         (setq last-command 'undo)
+       (setq last-command nil))
+     (call-interactively ,undo)
+     (setq this-command ,redo)))
+(def-redo-command redo 'redo 'undo)
+
 (require 'dired-settings)
 
 ;; 方便的切换major mode
