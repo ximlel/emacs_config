@@ -146,12 +146,23 @@ x exec
 y yes
 S save to filex
 t toggle mark
+g refresh
 http://emacser.com/ann77/Emacs/EmacsIbuffer.html
 正则
 http://dsec.pku.edu.cn/~rli/WiKi/EmacsRegexp.html
 regexp_test.py
 occur
 http://www.emacswiki.org/emacs/OccurMode
+=============================================
+dired
+m       mark
+U       unmark
+D       delet
+C(c)    copy
+R       move
+r       进入编辑模式
+        C-c C-c 退出编辑模式
++       创建目录
 =============================================
 Emacs 中的查找
 Nonincremental Search
@@ -167,4 +178,11 @@ grep
 grep-find
 运行 find , grep ，然后产生类似于 compile 的结果，可以查看哪些文件在什么地方包含 了匹配了指定的 regexp 。用 C-x ` 浏览结果。可以递归所有子目录。，详细可以查看 find 命令的帮助。
 dired-do-query-replace-regexp
+rgrep
 
+
+find . -type f -exec rm '{}' \;
+find-grep
+    find . -type f -exec grep -nH -e  {} NUL ";"
+    ==> find . -type f -exec grep -nH -e  {} ";"
+        find . -type f -exec grep -nH -e  {} \;
