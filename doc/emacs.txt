@@ -12,6 +12,7 @@
   C-x 3 水平分割当前子窗口
   C-x 1 当前窗口独占窗口空间
   C-x o 活动子窗口切换到另外一个子窗口
+  C-x 0 关闭当前窗口
 3)编辑相关
   插入/覆盖模式切换
       M-x overwrite-mode是用来转换 insert mode 与 overwrite mode
@@ -43,7 +44,7 @@
     M-w  拷贝当前mark的区域
     C-w 将当前mark的区域剪切到内存
     C-y  在当前位置粘贴剪贴板的内容
-    C-y M-y  即如果在粘贴命令后根一个M-y，则切换剪贴板的内容，可以有多个M-y
+    *C-y M-y  即如果在粘贴命令后根一个M-y，则切换剪贴板的内容，可以有多个M-y
     C-x u undo功能(好象没有redo)
     Ctrl-x Ctrl-p（mark-page）
     Ctrl-x Ctrl-l（downcase-region）使区域变成小写
@@ -169,20 +170,19 @@ Nonincremental Search
 打开文件中查找
 使用 moccur 在所有打开的文件内查找
 多文件查找
-find-dired
-运行外部命令 find , 产生文件列表，然后进入 dired 模式。
-find-grep-dired
+find-grep-dired        ----- 输入目录->过滤字符串"regexstr"(注意引号)
 运行外部命令 find，用 grep 过滤文件， ls 产生目录列表，然后进入 dired 模式，这样 列出所有包含某些字符的文件列表。可以使用 dired-do-query-replace-regexp 在文件列 表中查找并替换。可以递归所有子目录。可以用各种条件过滤文件，详细可以查看 find 命 令的帮助。
-grep
-在当前目录中查找指定的 regexp 。
-grep-find
-运行 find , grep ，然后产生类似于 compile 的结果，可以查看哪些文件在什么地方包含 了匹配了指定的 regexp 。用 C-x ` 浏览结果。可以递归所有子目录。，详细可以查看 find 命令的帮助。
-dired-do-query-replace-regexp
-rgrep
+find-name-dired        ----- 查找指定文件名的文件并进入dired mode
 
+find-dired             ----- 可将find命令的结果生成list并进入dired模式，需要自己配置find 参数
+rgrep                  ----- 在制定目录下查找制定字符串，可制定文件后缀
 
 find . -type f -exec rm '{}' \;
-find-grep
+find-grep grep-find    -----  包含制定字符串的文件
     find . -type f -exec grep -nH -e  {} NUL ";"
     ==> find . -type f -exec grep -nH -e  {} ";"
         find . -type f -exec grep -nH -e  {} \;
+
+other command
+grep
+在当前目录中查找指定的 regexp 。
