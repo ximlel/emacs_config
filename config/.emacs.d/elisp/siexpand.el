@@ -147,3 +147,65 @@
 
 ;; 保存标签
 (setq bookmark-save-flag t)
+
+;; C-c a x移动光标到字符x
+(defun wy-go-to-char (n char)
+  "Move forward to Nth occurence of CHAR.
+Typing `wy-go-to-char-key' again will move forwad to the next Nth
+occurence of CHAR."
+  (interactive "p\ncGo to char: ")
+  (search-forward (string char) nil nil n)
+  (while (char-equal (read-char)
+		     char)
+    (search-forward (string char) nil nil n))
+  (setq unread-command-events (list last-input-event)))
+
+(define-key global-map (kbd "C-c a") 'wy-go-to-char)
+
+;; 临时标记 两点跳转 C-.  C-,
+
+(defun ska-point-to-register()
+  "Store cursorposition _fast_ in a register. 
+Use ska-jump-to-register to jump back to the stored 
+position."
+  (interactive)
+  (setq zmacs-region-stays t)
+  (point-to-register 8))
+
+(defun ska-jump-to-register()
+  "Switches between current cursorposition and position
+that was stored with ska-point-to-register."
+  (interactive)
+  (setq zmacs-region-stays t)
+  (let ((tmp (point-marker)))
+        (jump-to-register 8)
+        (set-register 8 tmp)))
+(global-set-key [(control ?\.)] 'ska-point-to-register)
+(global-set-key [(control ?\,)] 'ska-jump-to-register)
+;;(global-set-key (kbd "C-\.") 'ska-point-to-register) ;; ok
+;;(global-set-key (kbd "C-\,") 'ska-jump-to-register)
+;;
+
+;; 在括号间跳转 括号前作用
+(global-set-key "%" 'match-paren)
+(defun match-paren (arg)
+  "Go to the matching paren if on a paren; otherwise insert %."
+  (interactive "p")
+  (cond ((looking-at "\\s\(") (forward-list 1) (backward-char 1))
+	((looking-at "\\s\)") (forward-char 1) (backward-list 1))
+	(t (self-insert-command (or arg 1)))))
+
+;;browse-kill-ring
+(require 'browse-kill-ring)
+(global-set-key [(control c)(k)] 'browse-kill-ring)
+(browse-kill-ring-default-keybindings)
+
+;; session
+(require 'session)
+  (add-hook 'after-init-hook 'session-initialize)
+;; desktop
+(load "desktop") 
+(desktop-load-default) 
+(desktop-read)
+;;M-x desktop-save
+;;M-x desktop-clear
