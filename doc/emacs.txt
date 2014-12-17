@@ -183,8 +183,23 @@ find-grep grep-find    -----  包含制定字符串的文件
     ==> find . -type f -exec grep -nH -e  {} ";"
         find . -type f -exec grep -nH -e  {} \;
 
-grep                   ----- 当前目录下查找含有指定字符串的文件，可过滤文件名
-grep -nH -e "stirng" .cpp
+grep                   ----- 当前目录下查找含有指定字符串的文件，可过滤文件名, -r 可迭代查找
+grep -nH -e "stirng" *.cpp [-r]  
 
 other command
-在当前目录中查找指定的 regexp 。
+在当前目录中查找指定的 regexp
+                       
+也可以定制模板
+(require 'grep)  
+(grep-apply-setting  
+ 'grep-find-command  
+ '("E:/Tools/Emacs/bin/find.exe . -type f -exec E:/Tools/Emacs/bin/grep.exe -nH -ie  {} NUL \";\"" . 80 ) )  
+(grep-apply-setting  
+ 'grep-command  
+ "E:/Tools/Emacs/bin/grep.exe -nH -ie ")  
+(grep-apply-setting  
+ 'grep-find-template  
+ "E:/Tools/Emacs/bin/find.exe . <X> -type f <F> -exec E:/Tools/Emacs/bin/grep.exe <C> -nH -ie <R> {} NUL \";\"" )  
+
+use emacs find grep on windows 
+http://blog.csdn.net/winterttr/article/details/7348279
