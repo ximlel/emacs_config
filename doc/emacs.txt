@@ -232,3 +232,9 @@ http://www.ibm.com/developerworks/cn/education/aix/au-emacs7/
 Emacs Lisp 功能扩展集锦
 ecb + semantic实现si显示函数/变量上下文显示功能
 怎么使emacs语法高亮 分别配置x11 和终端模式颜色属性
+
+配置eshell
+https://linuxtoy.org/archives/emacs-eshell.html
+配置git-emacs
+配置编译环境
+配置代码阅读环境
