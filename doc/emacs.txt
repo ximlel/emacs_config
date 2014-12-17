@@ -206,7 +206,12 @@ use emacs find grep on windows
 http://blog.csdn.net/winterttr/article/details/7348279
 find maunal
 http://world77.blog.51cto.com/414605/209125
-
+=============================================
+other function
+C-. C-,   -----临时标记，两点间跳转
+C-c a x   -----移动光标到制定字符
+browse-kill-ring   ----- 所有的剪切板
+desktop-save/clear ----- 保存桌面，清除桌面
 
 =============================================
 			RESOURCE
