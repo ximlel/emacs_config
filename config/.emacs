@@ -24,6 +24,9 @@
 ;; 设置工作目录
 ;;windows
 ;(setq default-directory "D:/python_workspace")
+;(require 'grep) ;; 
+;;(setq grep-program "D:/MinGW/msys/1.0/bin/grep.exe")  
+;(setq find-program "D:\\MinGW\\msys\\1.0\\bin\\find.exe") 
 ;;linux
 (setq default-directory "~/workspace")
 

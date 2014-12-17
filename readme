@@ -48,6 +48,11 @@ ecb-upgrade.el中的
     如果不行  只能参照 http://blog.csdn.net/mslk/article/details/1598513 自行编译
     或下载http://sourceforge.net/projects/mslk/files/Cscope
             http://cscope.sourceforge.net/
+15.for grep function
+    add some setting to .emacs
+    (require 'grep)
+    (setq grep-program "D:/MinGW/msys/1.0/bin/grep.exe")  
+    (setq find-program "D:/MinGW/msys/1.0/bin/find.exe")
 -----linux：
 1.删除.emacs 中(setenv "HOME" "D:/tools/emacs-23.2")
 2.解压cedet 和 ecb ，安装cedet
