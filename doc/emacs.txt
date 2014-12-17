@@ -105,7 +105,8 @@ C-s         start serch
    M-n M-P  切换搜索历史
    C-w      补全当前词
    C-s C-r  上下搜索
-
+C-M-s C-M-r 前后正则表达式替换查找
+C-M-%       正则表达式替换
 list search mode
 M-x occur RET string RET
 
@@ -203,3 +204,26 @@ other command
 
 use emacs find grep on windows 
 http://blog.csdn.net/winterttr/article/details/7348279
+find maunal
+http://world77.blog.51cto.com/414605/209125
+
+
+=============================================
+			RESOURCE
+=============================================
+http://blog.csdn.net/redguardtoo/article/details/7222501
+some importent setting
+http://my.oschina.net/alphajay/blog/152599
+http://bbs.chinaunix.net/thread-1014134-1-1.html
+http://blog.chinaunix.net/uid-20684384-id-1895300.html
+
+http://emacser.com/
+http://www.emacswiki.org/
+
+Emacs 编译环境
+http://www.ibm.com/developerworks/cn/education/aix/au-emacs7/
+用emacs浏览代码一年多的总结
+用zjl-hl.el实现Emacs的C语法高亮着色
+Emacs Lisp 功能扩展集锦
+ecb + semantic实现si显示函数/变量上下文显示功能
+怎么使emacs语法高亮 分别配置x11 和终端模式颜色属性
