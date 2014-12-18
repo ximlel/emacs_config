@@ -234,7 +234,7 @@ http://www.emacswiki.org/
 
 Emacs 编译环境
 http://www.ibm.com/developerworks/cn/education/aix/au-emacs7/
-用emacs浏览代码一年多的总结
+用emacs浏览代码一年多的总结*
 用zjl-hl.el实现Emacs的C语法高亮着色
 Emacs Lisp 功能扩展集锦
 ecb + semantic实现si显示函数/变量上下文显示功能
@@ -242,9 +242,10 @@ ecb + semantic实现si显示函数/变量上下文显示功能
 
 配置eshell
 https://linuxtoy.org/archives/emacs-eshell.html
-TortoiseGit
-配置编译环境
-配置代码阅读环境
 
 dired's usage
 http://lifegoo.pluskid.org/wiki/EnhanceDired.html
+
+TortoiseGit
+配置编译环境
+配置代码阅读环境
