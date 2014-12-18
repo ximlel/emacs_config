@@ -69,6 +69,9 @@
 (add-to-list 'load-path "~/.emacs.d/install/ecb-2.40")
 ;(require 'ecb)
 
+;;git-emacs
+(add-to-list 'load-path "~/.emacs.d/elisp/git-emacs")
+
 (setq load-path (append load-path (list "~/.emacs.d/elisp/codepilot")))
 (load-file "~/.emacs.d/elisp/base.el")
 (load-file "~/.emacs.d/elisp/siexpand.el")
@@ -76,4 +79,3 @@
 (load-file "~/.emacs.d/elisp/sikey.el")
 (load-file "~/.emacs.d/elisp/sipython.el")
 (load-file "~/.emacs.d/elisp/sierlang.el")
-

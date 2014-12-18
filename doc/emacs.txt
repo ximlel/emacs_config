@@ -235,6 +235,6 @@ ecb + semantic实现si显示函数/变量上下文显示功能
 
 配置eshell
 https://linuxtoy.org/archives/emacs-eshell.html
-配置git-emacs
+配置git-emacs TortoiseGit
 配置编译环境
 配置代码阅读环境
