@@ -13,7 +13,8 @@
 
 (global-set-key [f1] 'manual-entry)
 (global-set-key [C-f1] 'info )
-(global-set-key [C-f2] 'sr-speedbar )
+(require 'sr-speedbar)
+(global-set-key [C-f2] 'sr-speedbar-open )
 ;;f3为查找字符串,alt+f3关闭当前缓冲区
 (global-set-key [f3] 'grep-find)
 (global-set-key [M-f3] 'kill-this-buffer)

@@ -209,3 +209,6 @@ that was stored with ska-point-to-register."
 (desktop-read)
 ;;M-x desktop-save
 ;;M-x desktop-clear
+
+;;eshell setting
+(load-file "~/.emacs.d/elisp/eshell_setting.el")

@@ -165,6 +165,7 @@ R       move
 r       进入编辑模式
         C-c C-c 退出编辑模式
 +       创建目录
+M-o     切换显示/隐藏 配置中过滤的文件
 =============================================
 Emacs 中的查找
 Nonincremental Search
@@ -212,7 +213,13 @@ C-. C-,   -----临时标记，两点间跳转
 C-c a x   -----移动光标到制定字符
 browse-kill-ring   ----- 所有的剪切板
 desktop-save/clear ----- 保存桌面，清除桌面
-
+=============================================
+git-emacs
+you can get manual from https://github.com/tsgates/git-emacs
+=============================================
+eshell
+eshell-setting
+https://linuxtoy.org/archives/emacs-eshell.html
 =============================================
 			RESOURCE
 =============================================
@@ -235,7 +242,7 @@ ecb + semantic实现si显示函数/变量上下文显示功能
 
 配置eshell
 https://linuxtoy.org/archives/emacs-eshell.html
-配置git-emacs TortoiseGit
+TortoiseGit
 配置编译环境
 配置代码阅读环境
 
