@@ -1,3 +1,6 @@
 # emacs compile
 *.elc
 *.pyc
+.#*
+TAGS
+*~

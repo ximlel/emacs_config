@@ -158,8 +158,8 @@ http://www.emacswiki.org/emacs/OccurMode
 =============================================
 dired
 m       mark
-U       unmark
-D       delet
+u       unmark
+d       delet
 C(c)    copy
 R       move
 r       进入编辑模式
@@ -238,3 +238,6 @@ https://linuxtoy.org/archives/emacs-eshell.html
 配置git-emacs TortoiseGit
 配置编译环境
 配置代码阅读环境
+
+dired's usage
+http://lifegoo.pluskid.org/wiki/EnhanceDired.html
