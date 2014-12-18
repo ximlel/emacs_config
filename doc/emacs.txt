@@ -178,6 +178,7 @@ find-name-dired        ----- 查找指定文件名的文件并进入dired mode
 
 find-dired             ----- 可将find命令的结果生成list并进入dired模式，需要自己配置find 参数
 rgrep                  ----- 在制定目录下查找制定字符串，可制定文件后缀
+lgrep                  ----- 在当前目录下找
 
 find . -type f -exec rm '{}' \;
 find-grep grep-find    -----  包含制定字符串的文件
@@ -186,7 +187,7 @@ find-grep grep-find    -----  包含制定字符串的文件
         find . -type f -exec grep -nH -e  {} \;
 
 grep                   ----- 当前目录下查找含有指定字符串的文件，可过滤文件名, -r 可迭代查找
-grep -nH -e "stirng" *.cpp [-r]  
+grep -nH -e "stirng" *.cpp [-r][-i no match case][-w Match whole word]
 
 other command
 在当前目录中查找指定的 regexp
