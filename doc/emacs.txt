@@ -275,7 +275,8 @@ gdb(f6)       gdb
               观察变量          gud-watch           C-xC-aC-w
               展开/收缩变量                         <SPC>
               开启/关闭工具提示  gud-tooltip-mode
-              
+              C-x <SPC>        make a break
+
               Emacs gdb 配置和使用
               http://blog.csdn.net/cctvzxxz1/article/details/8604114
 =============================================
