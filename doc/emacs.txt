@@ -228,6 +228,13 @@ browse-kill-ring   ----- 所有的剪切板
 desktop-save/clear ----- 保存桌面，清除桌面
 =============================================
 git-emacs
+c   commit
+    C-c C-c 提交
+    C-c C-q 退出
+m   mark
+u   unmark
+a   add to
+g   refresh
 you can get manual from https://github.com/tsgates/git-emacs
 =============================================
 eshell
@@ -262,7 +269,15 @@ gdb(f6)       gdb
               annotate = 3  all info
               gdb-many-windows      切换单窗体，多窗体模式
               gdb-restore-windows   恢复窗格布局
-              其他可以打开工具栏和菜单栏操作或查看快捷键 
+              其他可以打开工具栏和菜单栏操作或查看快捷键
+              可用鼠标在浏览代码窗口中添加删除断点，点击行首
+              在local变量窗口中键点击变量可以在speedbar中添加这个数组，然后在这个窗口展开变量,注意勾选auto-update，'+'/'-'后面空格
+              观察变量          gud-watch           C-xC-aC-w
+              展开/收缩变量                         <SPC>
+              开启/关闭工具提示  gud-tooltip-mode
+              
+              Emacs gdb 配置和使用
+              http://blog.csdn.net/cctvzxxz1/article/details/8604114
 =============================================
 			RESOURCE
 =============================================
