@@ -161,6 +161,14 @@ y yes
 s save to filex
 t toggle mark
 g refresh
+-filter-
+//      show all the buffer
+/f      show the buffer which file name is string
+/n      show the buffer which name is string
+O       (occur)show the line mathc string in buffers marked
+U       (replace)
+Q       (query replace)
+/c      show the buffer which include string
 http://emacser.com/ann77/Emacs/EmacsIbuffer.html
 正则
 http://dsec.pku.edu.cn/~rli/WiKi/EmacsRegexp.html
