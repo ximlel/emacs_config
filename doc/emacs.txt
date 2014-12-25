@@ -314,7 +314,6 @@ dired's usage
 http://lifegoo.pluskid.org/wiki/EnhanceDired.html
 
 TortoiseGit
-配置代码阅读环境
 
 auto-complete about
 emacs中使用auto-complete的详细设置
@@ -323,3 +322,12 @@ http://blog.csdn.net/cherylnatsu/article/details/7670445
 http://blog.csdn.net/winterttr/article/details/7273345
 http://forever8tf.iteye.com/blog/1695400
 http://emacser.com/auto-complete_yasnippet.htm
+
+cedet
+http://blog.sina.com.cn/s/blog_66b005600101637l.html
+http://blog.csdn.net/intrepyd/article/details/4331877
+内置cedet
+http://www.udpwork.com/item/1359.html
+
+c++ config
+http://blog.sina.com.cn/s/blog_66b00560010162kh.html
