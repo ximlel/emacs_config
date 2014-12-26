@@ -134,23 +134,37 @@ M-% ori_string RET replace_string RET
 =============================================
 cscope 查看代码
 cscope (read xcscope.el)
-    C-c s a                     set root dir of code
-    C-c s I                     create cscope.out
-    C-c s L
+   *C-c s a                     set root dir of code
+    C-c s A                     unset root dir
+   *C-c s I                     create cscope.out from cscope.files amd *.files
+    C-c s L                     create cscope.files
     
-    C-c s d
+   *C-c s d
     C-c s g(global define)      find function or var define
     C-c s G
-
+        RET(elect)              jump to code from
+        SPC(show)               
+        o(selectonewin)
+        n(shownext)
+        p(showprev)
+        q(quit)
+        h(help)
     C-c s c(caller)             find the caller
     C-c s C(call function list) find the subfunction in the funciton
     C-c s t(text)               find text string
     C-c s f(file)               find a file
     C-c s i                     find the files #inlcude a file
-
+    
+    C-c s W(where)              locate this buffer's cscope directory
+          S(show)
+          T(Tell)
+    C-c s D(dired)              dired this buffer's directory
+set this, if not, you cann't change the buffer after jump to the code
+(setq buffer-read-only nil) 
+(setq inhibit-read-only t) 
 cscope使用
-http://os.chinaunix.net/a2006/0707/963/000000963869.shtml
-http://blog.csdn.net/intrepyd/article/details/4202312
+vim     http://os.chinaunix.net/a2006/0707/963/000000963869.shtml
+        http://blog.csdn.net/intrepyd/article/details/4202312
 
 =============================================
 ibuffer
@@ -177,11 +191,15 @@ occur
 http://www.emacswiki.org/emacs/OccurMode
 =============================================
 dired
+t       mark/unmark
 m       mark
 u       unmark
 d       delet
 C(c)    copy
 R       move
+^       进入上级目录
+D       删除所有标记文件
+d       删除标记文件
 r       进入编辑模式
         C-c C-c 退出编辑模式
 +       创建目录
@@ -331,3 +349,14 @@ http://www.udpwork.com/item/1359.html
 
 c++ config
 http://blog.sina.com.cn/s/blog_66b00560010162kh.html
+
+cscope
+Using Cscope on large projects (example: the Linux kernel)
+http://cscope.sourceforge.net/large_projects.html
+
+dired
+http://tangtong.iteye.com/blog/280464
+
+rpm
+http://pkgs.org/
+www.rpmfind.net
