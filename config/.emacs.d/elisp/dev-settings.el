@@ -54,7 +54,7 @@
 ;; `(("{" skeleton-c-mode-left-brace)))
 
 ;; 动态检查语法错误
-(require 'flymake-settings)
+;(require 'flymake-settings) ;; remove, because error when complete whit cedet
 
 (defun skeleton-c-mode-left-brace (arg)
   (interactive "P")

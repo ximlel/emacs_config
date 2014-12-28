@@ -336,9 +336,9 @@ TortoiseGit
 auto-complete about
 emacs中使用auto-complete的详细设置
 http://blog.csdn.net/winterttr/article/details/7524336#t4
-http://blog.csdn.net/cherylnatsu/article/details/7670445
-http://blog.csdn.net/winterttr/article/details/7273345
-http://forever8tf.iteye.com/blog/1695400
+http://blog.csdn.net/cherylnatsu/article/details/7670445    *
+http://blog.csdn.net/winterttr/article/details/7273345      no
+http://forever8tf.iteye.com/blog/1695400                    *
 http://emacser.com/auto-complete_yasnippet.htm
 
 cedet
