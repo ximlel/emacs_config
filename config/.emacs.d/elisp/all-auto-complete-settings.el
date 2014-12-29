@@ -46,7 +46,7 @@
 
 ;; auto complete clang
 (if wttr/os:windowsp 
-    (wttr/prepend-to-exec-path "~/bin/clang"))
+    (wttr/prepend-to-exec-path "~/.emacs.d/exec_bin/clang"))
 
     (global-auto-complete-mode t) 
 ;; 使用Ctrl+enter按键触发自动补全  

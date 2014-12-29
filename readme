@@ -55,7 +55,8 @@ ecb-upgrade.el中的
     (setq grep-program "D:/MinGW/msys/1.0/bin/grep.exe")  
     (setq find-program "D:/MinGW/msys/1.0/bin/find.exe")
 16.use clang on windows
-    将clang 拷贝到～/bin
+    unzip .emacs.d/exec_bin/clang.zip
+17.set erl-path in sierlang
 -----linux：
 1.删除.emacs 中(setenv "HOME" "D:/tools/emacs-23.2")
 2.解压cedet 和 ecb ，安装cedet
@@ -96,6 +97,9 @@ ecb-upgrade.el中的
     -- http://lifegoo.pluskid.org/wiki/EmacsCscope.html
     编译安装.emacs.d\install\csc145_win\cscope-15.8a.tar.gz
     将cscope-indexer拷贝到系统目录（usr/local/bin）
+15.set header of c++ in all-auto-complete-settings 
+    $ echo "" | g++ -v -x c++ -E -     to show the dir of header
+16.set erl-path in sierlang
 -----共同changelist：
 修改base.el中配置的字体
 删除了sicode.el                     auto-comple的配置，由于和windows c++有冲突，cedet 的补全alt+/更好(cedet补全此功能在windows下保存python时emacs 卡，生成.ropeproject后),但对于python auto-comple的补全更方便建议使用
