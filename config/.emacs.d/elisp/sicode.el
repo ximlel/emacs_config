@@ -3,16 +3,7 @@
 ;;==============================================================
 (setq gdb-many-windows t)
 
-;; YASnippet
-(require 'yasnippet)
-(yas/initialize)
-(yas/load-directory "~/.emacs.d/elisp/yasnippet-0.6.1c/snippets")
-
-;; windows config  下面的自动补齐更好alt+/
-;;auto-complete  delete by simon have problem in windows when edit c++
-(require 'auto-complete-config)
-(add-to-list 'ac-dictionary-directories "~/.emacs.d/elisp/ac-dict")
-(ac-config-default)
+(require 'all-auto-complete-settings)
 
 ;;cedet
 (require 'cedet)
