@@ -336,8 +336,9 @@ dired's usage
 http://lifegoo.pluskid.org/wiki/EnhanceDired.html
 
 TortoiseGit
-
+=============================================
 auto-complete about
+=============================================
 emacs中使用auto-complete的详细设置
 http://blog.csdn.net/winterttr/article/details/7524336      -- emacs中使用auto-complete的详细设置
 http://blog.csdn.net/cherylnatsu/article/details/7670445    -- Emacs+auto-complete+clang进行代码补全
@@ -355,8 +356,15 @@ http://blog.csdn.net/winterttr/article/details/7273283
              )))
 
 http://forever8tf.iteye.com/blog/1695400                    -- emacs 使用 auto-complete clang 实现 c++ 代码补全
-http://emacser.com/auto-complete_yasnippet.htm
+make clang support c++11
+    clang -stdlib=libc++ -std=c++11 -lc++ <sourcefile> -o[outfile]
+add header path for clang
+    $ echo "" | g++ -v -x c++ -E -
+Completion backend for irony-mode
+https://github.com/Sarcasm/company-irony
 
+http://emacser.com/auto-complete_yasnippet.htm
+=============================================
 dea
 https://code.google.com/p/dea/
 
