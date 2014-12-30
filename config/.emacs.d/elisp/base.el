@@ -1,3 +1,4 @@
+(require 'wttr-utils)
 ;; 在标题栏显示buffer的名字
 (setq frame-title-format "emacs@%b")
 
@@ -18,8 +19,12 @@
 (setq visible-bell t)
 
 ;; 设置默认字体
-;(set-default-font "Courier New-11") 	; windows
-(set-default-font "Monospace-11")	; linux
+; windows
+(if wttr/os:windowsp 
+    (set-default-font "Courier New-11"))
+; linux
+(if wttr/os:linuxp
+    (set-default-font "Monospace-11"))
 
 ;; 简化工具条
 (tool-bar-mode -1)
@@ -154,8 +159,10 @@
 (set-default-coding-systems 'utf-8)
 (set-selection-coding-system 'utf-8)
 (modify-coding-system-alist 'process "*" 'utf-8)
-;(setq default-process-coding-system '(utf-8 . utf-8))            ;windows 可以使用这个 
-(setq default-process-coding-system '(utf-8-unix . utf-8-unix)) ;进程输出输入编码 -- affect pdb on windows, linux 使用这个
+(if wttr/os:windowsp
+    (setq default-process-coding-system '(utf-8 . utf-8)))           ;windows 可以使用这个
+(if wttr/os:linuxp
+    (setq default-process-coding-system '(utf-8-unix . utf-8-unix))) ;进程输出输入编码 -- affect pdb on windows, linux 使用这个
 (setq-default pathname-coding-system 'utf-8)
 (set-file-name-coding-system 'utf-8-unix)                       ;文件名编码
 (setq default-sendmail-coding-system 'utf-8-unix)               ;发送邮件编码
@@ -205,18 +212,20 @@
 (setq time-stamp-active t)
 (setq time-stamp-warn-inactive t)
 (setq time-stamp-format "%:y-%02m-%02d %3a %02H:%02M:%02S chenyang")
-;;; 启动最大化窗口设置 - START    ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; 启动最大化窗口设置
 ;windows
-;    (defun w32-restore-frame ()
-;    "Restore a minimized frame"
-;    (interactive)
-;    (w32-send-sys-command 61728))
-;    (defun w32-maximize-frame ()
-;    "Maximize the current frame"
-;    (interactive)
-;    (w32-send-sys-command 61488))
-;    ;;;; Maximum Windows Frame
-;    (w32-maximize-frame)
-;;linux
-	(setq initial-frame-alist '((top . 0) (left . 0) (width . 1600) (height . 900)))
+(if wttr/os:windowsp
+    (defun w32-restore-frame ()
+    "Restore a minimized frame"
+    (interactive)
+    (w32-send-sys-command 61728))
+    (defun w32-maximize-frame ()
+    "Maximize the current frame"
+    (interactive)
+    (w32-send-sys-command 61488))
+    ;;;; Maximum Windows Frame
+    (w32-maximize-frame))
+;linux
+(if wttr/os:linuxp
+	(setq initial-frame-alist '((top . 0) (left . 0) (width . 1600) (height . 900))))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

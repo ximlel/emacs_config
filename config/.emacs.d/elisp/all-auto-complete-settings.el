@@ -58,16 +58,22 @@
 ;; clang
 (require 'auto-complete-clang)
 
+;; my-ac-config 
+(defun my-ac-config () 
+  (setq-default ac-sources '(ac-source-abbrev ac-source-dictionary ac-source-words-in-same-mode-buffers)) 
+  (add-hook 'emacs-lisp-mode-hook 'ac-emacs-lisp-mode-setup) 
+  (add-hook 'c-mode-common-hook 'ac-cc-mode-setup) 
+  (add-hook 'ruby-mode-hook 'ac-ruby-mode-setup) 
+  (add-hook 'css-mode-hook 'ac-css-mode-setup) 
+  (add-hook 'auto-complete-mode-hook 'ac-common-setup) 
+  (global-auto-complete-mode t)) 
+
 (defun wttr/cc-mode:auto-complete-setup ()
   (make-local-variable 'ac-auto-start)
   (setq ac-auto-start t)              ;auto complete using clang is CPU sensitive
   ;(setq ac-sources (append '(ac-source-clang ac-source-yasnippet) ac-sources)))
-  (setq ac-sources (append '(ac-source-clang))))  ;; change by simon, if not will can get info when input code, and only get info after "."
-  ;;some test
-  ;(make-local-variable 'ac-sources_tmp)
-  ;(setq ac-sources_tmp (append '(ac-source)))
-  ;(setq ac-sources (append '(ac-source-clang ac-source-yasnippet)))
-  ;(setq ac-sources (append '(ac-sources_tmp) ac-sources)))
+  (setq ac-sources (append '(ac-source-clang ac-source-yasnippet))))  ;; change by simon, if not will can get info when input code, and only get info after "."
+
 ;(add-hook 'c-mode-hook 'wttr/cc-mode:auto-complete-setup)
 ;(add-hook 'c++-mode-hook 'wttr/cc-mode:auto-complete-setup)
 (add-hook 'c-mode-common-hook 'wttr/cc-mode:auto-complete-setup)  

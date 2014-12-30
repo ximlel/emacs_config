@@ -344,7 +344,7 @@ http://blog.csdn.net/winterttr/article/details/7524336      -- emacs中使用aut
 http://blog.csdn.net/cherylnatsu/article/details/7670445    -- Emacs+auto-complete+clang进行代码补全
 http://blog.csdn.net/winterttr/article/details/7273345      -- emacs下使用clang补全C++,windows ok, 
         example https://github.com/winterTTr
-http://blog.csdn.net/winterttr/article/details/7273283
+http://blog.csdn.net/winterttr/article/details/7273283      -- emacs调用外部命令的环境设置
     添加执行目录，on windows， 函数在wttr-utils.el
     (mapc #'wttr/prepend-to-exec-path  
           (reverse   
@@ -356,17 +356,35 @@ http://blog.csdn.net/winterttr/article/details/7273283
              )))
 
 http://forever8tf.iteye.com/blog/1695400                    -- emacs 使用 auto-complete clang 实现 c++ 代码补全
+
 make clang support c++11
     clang -stdlib=libc++ -std=c++11 -lc++ <sourcefile> -o[outfile]
 add header path for clang
     $ echo "" | g++ -v -x c++ -E -
+
+replace auto-complete-clang to auto-complete-clang-async 
+http://www.cnblogs.com/rex-tech/p/3483137.html              -- Emacs及扩展配置
+https://github.com/Golevka/emacs-clang-complete-async
+
 Completion backend for irony-mode
 https://github.com/Sarcasm/company-irony
 
 http://emacser.com/auto-complete_yasnippet.htm
 =============================================
+cedet semantic
+http://blog.csdn.net/meteor1113/article/details/4349266
+http://logicbaby.wordpress.com/2011/10/04/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0emacs-cedet-cc%E8%87%AA%E5%8A%A8%E8%A1%A5%E5%85%A8/
+http://forum.ubuntu.org.cn/viewtopic.php?p=404715
+http://itlab.idcquan.com/c/ccjq/773139.html
+https://linuxtoy.org/archives/big-changes-llvm-clang-libcxx-lldb.html
+http://www.educity.cn/develop/126501.html
+http://www.csdn123.com/html/blogs/20130801/46088.htm
+http://blog.csdn.net/winterttr/article/details/7348279      grep
+=============================================
+=============================================
 dea
 https://code.google.com/p/dea/
+http://blog.csdn.net/hnhbdss/article/details/6832130
 
 cedet
 http://blog.sina.com.cn/s/blog_66b005600101637l.html
