@@ -214,17 +214,17 @@
 (setq time-stamp-format "%:y-%02m-%02d %3a %02H:%02M:%02S chenyang")
 ;; 启动最大化窗口设置
 ;windows
-(if wttr/os:windowsp
-    (defun w32-restore-frame ()
-    "Restore a minimized frame"
-    (interactive)
-    (w32-send-sys-command 61728))
-    (defun w32-maximize-frame ()
-    "Maximize the current frame"
-    (interactive)
-    (w32-send-sys-command 61488))
-    ;;;; Maximum Windows Frame
-    (w32-maximize-frame))
+;(if wttr/os:windowsp
+;    (defun w32-restore-frame ()
+;    "Restore a minimized frame"
+;    (interactive)
+;    (w32-send-sys-command 61728))
+;    (defun w32-maximize-frame ()
+;    "Maximize the current frame"
+;    (interactive)
+;    (w32-send-sys-command 61488))
+;    ;;;; Maximum Windows Frame
+;    (w32-maximize-frame))
 ;linux
 (if wttr/os:linuxp
 	(setq initial-frame-alist '((top . 0) (left . 0) (width . 1600) (height . 900))))
