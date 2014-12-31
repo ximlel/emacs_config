@@ -3,15 +3,15 @@
 
 ;; Enabling Semantic (code-parsing, smart completion) feature, Select one of the following:
 ;;最低要求
-(semantic-load-enable-minimum-features)
+;(semantic-load-enable-minimum-features)
 ;;主要是加了一个imenu菜单(不过这个菜单在windows和mac上都显示不出来)
-;;(semantic-load-enable-code-helpers)
+(semantic-load-enable-code-helpers)
 ;;加入了一些用处不大的功能，比如在第一行显示当前的函数等（这个命令已经不建议使用了）
 ;; (semantic-load-enable-guady-code-helpers)
 ;;加了在mode line显示当前函数名的功能，也没多大用
- (semantic-load-enable-excessive-code-helpers)
+;;(semantic-load-enable-excessive-code-helpers)
 ;;用于调试 semantic本身
- (semantic-load-enable-semantic-debugging-helpers)
+;;(semantic-load-enable-semantic-debugging-helpers)
 
 ;; gcc setup
 (require 'semantic-gcc)
