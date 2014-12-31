@@ -374,12 +374,14 @@ http://emacser.com/auto-complete_yasnippet.htm
 cedet semantic
 http://blog.csdn.net/meteor1113/article/details/4349266
 http://logicbaby.wordpress.com/2011/10/04/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0emacs-cedet-cc%E8%87%AA%E5%8A%A8%E8%A1%A5%E5%85%A8/
-http://forum.ubuntu.org.cn/viewtopic.php?p=404715
 http://itlab.idcquan.com/c/ccjq/773139.html
-https://linuxtoy.org/archives/big-changes-llvm-clang-libcxx-lldb.html
 http://www.educity.cn/develop/126501.html
 http://www.csdn123.com/html/blogs/20130801/46088.htm
 http://blog.csdn.net/winterttr/article/details/7348279      grep
+
+example
+https://gist.github.com/alexott/3930120
+https://github.com/alexott/emacs-configs/blob/master/rc/emacs-rc-cedet.el
 =============================================
 =============================================
 dea

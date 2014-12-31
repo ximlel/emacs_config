@@ -67,7 +67,7 @@
   (add-hook 'css-mode-hook 'ac-css-mode-setup) 
   (add-hook 'auto-complete-mode-hook 'ac-common-setup) 
   (global-auto-complete-mode t)) 
-
+(my-ac-config)
 (defun wttr/cc-mode:auto-complete-setup ()
   (make-local-variable 'ac-auto-start)
   (setq ac-auto-start t)              ;auto complete using clang is CPU sensitive

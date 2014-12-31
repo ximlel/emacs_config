@@ -1,3 +1,4 @@
+(require 'wttr-utils)
 ;;(global-set-key (kbd "C-x q") 'switch-major-mode)
 ;;(global-set-key (kbd "C-x m") 'get-mode-name)
 ;;(define-key global-map (kbd "C-x M-c") 'describe-char)
@@ -204,9 +205,15 @@ that was stored with ska-point-to-register."
 (require 'session)
   (add-hook 'after-init-hook 'session-initialize)
 ;; desktop
-(load "desktop") 
-(desktop-load-default) 
-(desktop-read)
+(load "desktop")
+(desktop-save-mode t)
+;;;当emacs退出时保存文件打开状态
+;(add-hook 'kill-emacs-hook
+;          '(lambda()(desktop-save "~/")))
+(desktop-load-default)
+(setq desktop-path '("~/.emacs.d/"))
+(setq desktop-dirname "~/.emacs.d/")
+(setq desktop-file-name ".emacs.desktop")
 ;;M-x desktop-save
 ;;M-x desktop-clear
 
