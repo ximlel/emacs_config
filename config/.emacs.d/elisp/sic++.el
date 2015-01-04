@@ -18,6 +18,8 @@
         ("m" . ("h"))
         ("mm" . ("h"))))
 (defun si-c-mode-common-hook()
+  (setq-default indent-tabs-mode nil)
+  (setq tab-width 4)
   ;; 输入";{}"等字符是自动开始一行并缩进， C-c C-a开关
   ;(c-toggle-auto-hungry-state 1)
   ;; key setting
