@@ -69,6 +69,8 @@
   (global-auto-complete-mode t)) 
 (my-ac-config)
 (defun wttr/cc-mode:auto-complete-setup ()
+  (setq-default indent-tabs-mode nil)
+  (setq tab-width 4)
   (make-local-variable 'ac-auto-start)
   (setq ac-auto-start t)              ;auto complete using clang is CPU sensitive
   ;(setq ac-sources (append '(ac-source-clang ac-source-yasnippet) ac-sources)))

@@ -26,6 +26,8 @@ interpreter-mode-alist))
 ;(setq ropemacs-enable-autoimport t)
 (eval-after-load "python-mode"
   '(progn
+     (setq-default indent-tabs-mode nil)
+     (setq tab-width 4)
      (setq pymacs-python-command py-python-command)
      (autoload 'pymacs-apply "pymacs")
      (autoload 'pymacs-call "pymacs")

@@ -50,10 +50,10 @@
 ;; 把fill-column设为60
 (setq default-fill-column 60)
 
-;; 不使用tab缩进
+;; 默认tab缩进
 ;;;;; 设置tab为4个空格的宽度 
 (setq c-basic-offset 4) 
-(setq-default indent-tabs-mode nil) 
+(setq-default indent-tabs-mode t) 
 (setq default-tab-width 4) 
 (setq tab-width 4) 
 (setq tab-stop-list ()) 
@@ -62,8 +62,6 @@
 
 ;;(setq-default indent-tabs-mode nil)
 ;;(setq indent-tabs-mode nil)
-;;(setq default-tab-width 4)   
-;;(setq tab-width 4)
 ;; 询问时的 yes or no 改为 y/n，减少输入量
 (fset 'yes-or-no-p 'y-or-n-p)
 
