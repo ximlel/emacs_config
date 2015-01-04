@@ -24,8 +24,8 @@
 ;;是调用semantic的分析结果智能补全，不弹出菜单
 ;; (global-set-key [(control tab)] 'semantic-ia-complete-symbol)
 ;;也是调用semantic的结果，不过会弹出一个选择菜单
-;  (local-set-key [(meta ?/)] 'semantic-ia-complete-symbol-menu))
-  (local-set-key [(control tab)] 'semantic-ia-complete-symbol-menu)
+(local-set-key [(meta ?/)] 'semantic-ia-complete-symbol-menu)
+;(local-set-key [(control tab)] 'semantic-ia-complete-symbol-menu)
 
 ;(local-set-key "\C-c>" ‘semantic-complete-analyze-inline)
 ;(local-set-key (kbd "M-/") ‘semantic-complete-analyze-inline)
@@ -39,21 +39,66 @@
   )
 
 (add-hook 'c-mode-common-hook 'si-semantic-C++-hook)
-
+;(autoload 'senator-try-expand-semantic "senator")               ;优先调用了senator的分析结果
 ;; semantic 检索范围
+(if wttr/os:linuxp
 (setq semanticdb-project-roots
       (list
-       (expand-file-name "/")))
+       (expand-file-name "/"))))
+(if wttr/os:windowsp
+    (setq semanticdb-project-roots
+      (list
+       (expand-file-name "D:/MinGW"))))
 ;;设置semantic cache path
 (setq semanticdb-default-save-directory "~/.emacs.d/")
+;; cannot work on windows for std(eg. vector)
+;; http://stackoverflow.com/questions/2434499/emacs-c-code-completion-for-vectors
+;; This is a known problem with the Semantic analyzer. I currently cannot deal with Template Specialization, 
+;; which is used in the gcc STL (your problem stems from such a specialization in allocator.h). This has 
+;; been discussed on the mailing list:
+;; http://thread.gmane.org/gmane.emacs.semantic/2137/focus=2147
 
+(require 'semantic-decorate-include)
+(require 'semanticdb)
+(require 'semantic-ia)
+(require 'semantic-gcc)
+(global-srecode-minor-mode 1)
+(setq-mode-local c-mode semanticdb-find-default-throttle
+                 '(project local unloaded system recursive))
+(setq-mode-local c-mode semanticdb-find-default-throttle
+                 '(local unloaded system recursive))
+(setq-mode-local c++-mode semanticdb-find-default-throttle
+                 '(project local unloaded system recursive))
+;(semanticdb-enable-gnu-global-databases 'c-mode)
+;(semanticdb-enable-gnu-global-databases 'c++-mode)
 (if wttr/os:windowsp
-    (semantic-add-system-include "D:/mingw/lib/gcc/mingw32/4.8.1/include/c++" 'c++-mode)
-    (semantic-add-system-include "D:/mingw/lib/gcc/mingw32/4.8.1/include/c++/mingw32" 'c++-mode)
-    (semantic-add-system-include "D:/mingw/lib/gcc/mingw32/4.8.1/include/c++/backward" 'c++-mode)
-    (semantic-add-system-include "D:/mingw/lib/gcc/mingw32/4.8.1/include" 'c++-mode)
-    (semantic-add-system-include "D:/mingw/include" 'c++-mode)
-    (semantic-add-system-include "D:/mingw/lib/gcc/mingw32/4.8.1/include-fixed" 'c++-mode)
-    (semantic-add-system-include "D:/mingw/mingw32/include" 'c++-mode))
+(eval-after-load "semantic-c"
+'(dolist (d (list "D:/MinGW/lib/gcc/mingw32/4.8.1/include/c++"
+                  "D:/MinGW/lib/gcc/mingw32/4.8.1/include/c++/mingw32"
+                  "D:/MinGW/lib/gcc/mingw32/4.8.1/include/c++/backward"
+                  "D:/MinGW/lib/gcc/mingw32/4.8.1/include"
+                  "D:/MinGW/include"
+                  "D:/MinGW/lib/gcc/mingw32/4.8.1/include-fixed"
+                  "D:/MinGW/mingw32/include"
+))
+(semantic-add-system-include d))))
+;; I don't why, 
+;(if wttr/os:windowsp
+;    (message "%s" system-type)
+;因为semantic的大部分功能是autoload的，如果不在这儿load semantic-c，那打开一个c文件时会自动load semantic-c，它会把semantic-dependency-system-include-path重设为/usr/include，结果就造成前面自定义的include路径丢失了
+;    (require 'semantic-c nil 'noerror) 
+;    (semantic-add-system-include "D:/MinGW/lib/gcc/mingw32/4.8.1/include/c++" 'c++-mode)
+;    (semantic-add-system-include "D:/MinGW/lib/gcc/mingw32/4.8.1/include/c++/mingw32" 'c++-mode)
+;    (semantic-add-system-include "D:/MinGW/lib/gcc/mingw32/4.8.1/include/c++/backward" 'c++-mode)
+;    (semantic-add-system-include "D:/MinGW/lib/gcc/mingw32/4.8.1/include" 'c++-mode)
+;    (semantic-add-system-include "D:/MinGW/include" 'c++-mode)
+;    (semantic-add-system-include "D:/MinGW/lib/gcc/mingw32/4.8.1/include-fixed" 'c++-mode)
+;    (semantic-add-system-include "D:/MinGW/mingw32/include" 'c++-mode))
 
+;; for auto-complete
+;(defun my-c-mode-cedet-hook ()
+;	(add-to-list 'ac-source 'ac-source-gtags)
+;	(add-to-list 'ac-source 'ac-source-semantic)
+;	(add-to-list 'ac-source 'ac-source-semantic-raw))
+;(add-hook 'c-mode-common-hook 'my-c-mode-cedet-hook)
 (provide 'semantic-settings)

@@ -368,10 +368,12 @@ https://github.com/Golevka/emacs-clang-complete-async
 
 Completion backend for irony-mode
 https://github.com/Sarcasm/company-irony
-
+company-mode补全
+http://www.emacswiki.org/emacs/CompanyMode
 http://emacser.com/auto-complete_yasnippet.htm
 =============================================
-cedet semantic
+cedet semantic -- can work on windows
+=============================================
 http://blog.csdn.net/meteor1113/article/details/4349266
 http://logicbaby.wordpress.com/2011/10/04/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0emacs-cedet-cc%E8%87%AA%E5%8A%A8%E8%A1%A5%E5%85%A8/
 http://itlab.idcquan.com/c/ccjq/773139.html
@@ -379,9 +381,10 @@ http://www.educity.cn/develop/126501.html
 http://www.csdn123.com/html/blogs/20130801/46088.htm
 http://blog.csdn.net/winterttr/article/details/7348279      grep
 
-example
-https://gist.github.com/alexott/3930120
-https://github.com/alexott/emacs-configs/blob/master/rc/emacs-rc-cedet.el
+usage cedet 的用法讲解
+http://blog.csdn.net/hnhbdss/article/details/6831846
+http://blog.sina.com.cn/s/blog_66b005600101637l.html
+http://blog.163.com/madahah@126/blog/static/1704992252010102972050351/  -- less
 =============================================
 =============================================
 dea
@@ -407,3 +410,35 @@ http://tangtong.iteye.com/blog/280464
 rpm
 http://pkgs.org/
 www.rpmfind.net
+
+(require 'eassist)  ;;这个工具不错   ;h, cpp文件跳转函数, 支持即时按键选择 http://www.emacswiki.org/emacs/EAssist
+
+;;自动下载插件的插件 autoinstall
+;;;http://www.emacswiki.org/emacs/auto-install.el
+;;http://www.emacswiki.org/emacs/AutoInstall
+(require 'auto-install)
+(setq auto-install-directory "~/.emacs.d/auto-install/");;设置插件下载目录
+
+;;doxymacs注释工具
+(require 'doxymacs)
+
+;;emacs中管理多个终端的工具
+;;http://www.emacswiki.org/emacs/MultiTerm
+(require 'multi-term)
+(setq multi-term-program "/bin/bash")
+
+;超强恢复 http://www.emacswiki.org/emacs/BrowseKillRing
+(require 'browse-kill-ring)
+
+;;xCscope配置
+;;;http://www.emacswiki.org/emacs/CScopeAndEmacs
+(require 'xcscope)
+(require 'xcscope+);;cscope的插件扩展  http://www.emacswiki.org/emacs/xcscope+.el
+(setq cscope-do-not-update-database t)
+=============================================
+    example
+=============================================
+http://blog.csdn.net/fhq1989312/article/details/7314354
+https://github.com/alexott/emacs-configs/blob/master/rc/emacs-rc-cedet.el
+https://gist.github.com/alexott/3930120
+http://tuhdo.github.io/c-ide.html   **

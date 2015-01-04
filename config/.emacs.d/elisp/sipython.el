@@ -26,8 +26,6 @@ interpreter-mode-alist))
 ;(setq ropemacs-enable-autoimport t)
 (eval-after-load "python-mode"
   '(progn
-     (setq-default indent-tabs-mode nil)
-     (setq tab-width 4)
      (setq pymacs-python-command py-python-command)
      (autoload 'pymacs-apply "pymacs")
      (autoload 'pymacs-call "pymacs")
@@ -39,5 +37,8 @@ interpreter-mode-alist))
      (message  "loading repomacs")
      (pymacs-load "ropemacs" "rope-")
      (setq ropemacs-enable-autoimport t)))
-
+(defun si-python-mode-hook ()
+     (setq-default indent-tabs-mode nil)
+     (setq tab-width 4))
+(add-hook 'python-mode-hook 'si-python-mode-hook)
 (setq gud-pdb-marker-regexp "^> \\([-axx-zA-Z0-9_/.:\\]*\\|<string>\\)(\\([0-9]+\\))\\([a-zA-Z0-9_]*\\|\\?\\|<module>\\)()\\(->[^\n\r]*\\)?[\n\r]")
