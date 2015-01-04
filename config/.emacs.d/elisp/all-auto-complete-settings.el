@@ -146,6 +146,6 @@
 ;;(require 'auto-insert-settings)
 
 ;; 超强的snippet
-;;(require 'yasnippet-settings)
+(require 'yasnippet-settings)
 
 (provide 'all-auto-complete-settings)

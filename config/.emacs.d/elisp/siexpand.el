@@ -163,30 +163,6 @@ occurence of CHAR."
 
 (define-key global-map (kbd "C-c a") 'wy-go-to-char)
 
-;; 临时标记 两点跳转 C-.  C-,
-
-(defun ska-point-to-register()
-  "Store cursorposition _fast_ in a register. 
-Use ska-jump-to-register to jump back to the stored 
-position."
-  (interactive)
-  (setq zmacs-region-stays t)
-  (point-to-register 8))
-
-(defun ska-jump-to-register()
-  "Switches between current cursorposition and position
-that was stored with ska-point-to-register."
-  (interactive)
-  (setq zmacs-region-stays t)
-  (let ((tmp (point-marker)))
-        (jump-to-register 8)
-        (set-register 8 tmp)))
-(global-set-key [(control ?\.)] 'ska-point-to-register)
-(global-set-key [(control ?\,)] 'ska-jump-to-register)
-;;(global-set-key (kbd "C-\.") 'ska-point-to-register) ;; ok
-;;(global-set-key (kbd "C-\,") 'ska-jump-to-register)
-;;
-
 ;; 在括号间跳转 括号前作用
 (global-set-key "%" 'match-paren)
 (defun match-paren (arg)
@@ -219,3 +195,30 @@ that was stored with ska-point-to-register."
 
 ;;eshell setting
 (load-file "~/.emacs.d/elisp/eshell_setting.el")
+
+;;历史编辑中跳转
+(require 'goto-chg)
+(global-set-key [(control ?.)] 'goto-last-change)
+(global-set-key [(control ?,)] 'goto-last-change-reverse)
+
+;; 临时标记 两点跳转 C-.  C-,
+;(defun ska-point-to-register()
+;  "Store cursorposition _fast_ in a register. 
+;Use ska-jump-to-register to jump back to the stored 
+;position."
+;  (interactive)
+;  (setq zmacs-region-stays t)
+;  (point-to-register 8))
+
+;(defun ska-jump-to-register()
+;  "Switches between current cursorposition and position
+;that was stored with ska-point-to-register."
+;  (interactive)
+;  (setq zmacs-region-stays t)
+;  (let ((tmp (point-marker)))
+;        (jump-to-register 8)
+;        (set-register 8 tmp)))
+;(global-set-key [(control ?\.)] 'ska-point-to-register)
+;(global-set-key [(control ?\,)] 'ska-jump-to-register)
+;;;(global-set-key (kbd "C-\.") 'ska-point-to-register)
+;;;(global-set-key (kbd "C-\,") 'ska-jump-to-register)
