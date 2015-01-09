@@ -154,7 +154,18 @@ cscope (read xcscope.el)
     C-c s t(text)               find text string
     C-c s f(file)               find a file
     C-c s i                     find the files #inlcude a file
-    
+    //
+    C-c s e find egrep pattern
+    C-c s s find symbol 
+    // jump in result
+    C-c s b Display *cscope* buffer
+    C-c s B Auto display *cscope* buffer toggle
+    C-c s n Next symbol
+    C-c s N Next file
+    C-c s p Previous symbol
+    C-c s P previous file
+    C-c s u Pop mark
+
     C-c s W(where)              locate this buffer's cscope directory
           S(show)
           T(Tell)
@@ -435,6 +446,11 @@ www.rpmfind.net
 (require 'xcscope)
 (require 'xcscope+);;cscope的插件扩展  http://www.emacswiki.org/emacs/xcscope+.el
 (setq cscope-do-not-update-database t)
+
+;;slime
+
+;; find
+http://blog.csdn.net/pfanaya/article/details/7013742
 =============================================
     example
 =============================================
