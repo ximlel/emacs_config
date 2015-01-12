@@ -91,6 +91,7 @@
                              "-ID:/mingw/mingw32/include"
                              "-D__MSVCRT__=")))
 ;;linux
+;; you can get the path , throug "$ echo "" | g++ -v -x c++ -E -"
 (if wttr/os:linuxp
     (setq ac-clang-flags  
         (mapcar(lambda (item)(concat "-I" item))  

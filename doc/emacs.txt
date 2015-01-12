@@ -383,7 +383,7 @@ company-mode补全
 http://www.emacswiki.org/emacs/CompanyMode
 http://emacser.com/auto-complete_yasnippet.htm
 =============================================
-cedet semantic -- can work on windows
+cedet semantic -- cann't work on windows but linux
 =============================================
 http://blog.csdn.net/meteor1113/article/details/4349266
 http://logicbaby.wordpress.com/2011/10/04/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0emacs-cedet-cc%E8%87%AA%E5%8A%A8%E8%A1%A5%E5%85%A8/
@@ -458,3 +458,30 @@ http://blog.csdn.net/fhq1989312/article/details/7314354
 https://github.com/alexott/emacs-configs/blob/master/rc/emacs-rc-cedet.el
 https://gist.github.com/alexott/3930120
 http://tuhdo.github.io/c-ide.html   **
+
+=============================================
+    group
+=============================================
+https://groups.google.com/forum/#!forum/cn.bbs.comp.emacs
+http://article.gmane.org/gmane.emacs.semantic/1933
+
+=============================================
+    linux
+=============================================
+/usr/lib/libstdc++.so.6: version `GLIBCXX_3.4.14' not found
+strings /usr/lib/libstdc++.so.6 | grep GLIBCXX
+GLIBCXX_3.4
+...
+GLIBCXX_FORCE_NEW  
+GLIBCXX_DEBUG_MESSAGE_LENGTH
+没有动态库要求的GLIBCXX_3.4.14
+所以需要升级一下GCC 版本， 下载新的版本替换原来的GCC lib即可，此问题类似于windows的side by side， 编译器版本不同造成的
+http://blog.csdn.net/xiaolong2w/article/details/23915171
+
+
+程序 pos 输出结果        使用的动态库                     对应的动态库搜索路径指定方式
+./                      ./libpos.so                     编译目标代码时指定的动态库搜索路径
+/root/test/env/lib      /root/test/env/lib/libpos.so    环境变量 LD_LIBRARY_PATH 指定的动态库搜索路径
+/root/test/conf/lib     /root/test/conf/lib/libpos.so   配置文件 /etc/ld.so.conf 中指定的动态库搜索路径
+/lib                    /lib/libpos.so                  默认的动态库搜索路径 /lib
+/usr/lib                /usr/lib/libpos.so              默认的动态库搜索路径 /usr/lib
