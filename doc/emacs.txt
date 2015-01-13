@@ -500,3 +500,14 @@ http://blog.csdn.net/xiaolong2w/article/details/23915171
 /root/test/conf/lib     /root/test/conf/lib/libpos.so   配置文件 /etc/ld.so.conf 中指定的动态库搜索路径
 /lib                    /lib/libpos.so                  默认的动态库搜索路径 /lib
 /usr/lib                /usr/lib/libpos.so              默认的动态库搜索路径 /usr/lib
+
+software source
+http://blog.51osos.com/linux/rhel-centos-fedora-epel-remi-rpmforge-rpmfusion/
+EPEL源
+http://fedoraproject.org/wiki/EPEL
+Remi源
+http://rpms.famillecollet.com/
+RPMForge源
+http://repoforge.org/
+RPMFusion源
+http://rpmfusion.org/
