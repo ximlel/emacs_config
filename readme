@@ -56,6 +56,7 @@ ecb-upgrade.el中的
     (setq find-program "D:/MinGW/msys/1.0/bin/find.exe")
 16.use clang on windows
     unzip .emacs.d/exec_bin/clang.zip
+    set header of c++ in all-auto-complete-settings 
 17.set erl-path in sierlang
 -----linux：
 1.删除.emacs 中(setenv "HOME" "D:/tools/emacs-23.2")
@@ -95,11 +96,14 @@ ecb-upgrade.el中的
 13.emacs24 需使用相应python-mode(将相应的python-mode拷备到elisp)
 14.安装Cscope
     -- http://lifegoo.pluskid.org/wiki/EmacsCscope.html
-    编译安装.emacs.d\install\csc145_win\cscope-15.8a.tar.gz
+    编译安装.emacs.d\install\csc145_win\cscope-15.8a.tar.gz 或直接使用cscope_linux_15.8a目录下
     将cscope-indexer拷贝到系统目录（usr/local/bin）
-15.set header of c++ in all-auto-complete-settings 
+15.安装clang(http://llvm.org/releases/download.html)
+    set header of c++ in all-auto-complete-settings 
     $ echo "" | g++ -v -x c++ -E -     to show the dir of header
 16.set erl-path in sierlang
+*17. 终端模式下complete 不可弹出菜单,可以使用semantic-complete-anlyze-inline创建一个buffer显示不全列表
+*18. 终端模式下应屏蔽代码折叠功能
 -----共同changelist：
 修改base.el中配置的字体
 删除了sicode.el                     auto-comple的配置，由于和windows c++有冲突，cedet 的补全alt+/更好(cedet补全此功能在windows下保存python时emacs 卡，生成.ropeproject后),但对于python auto-comple的补全更方便建议使用

@@ -71,17 +71,38 @@
                  '(project local unloaded system recursive))
 ;(semanticdb-enable-gnu-global-databases 'c-mode)
 ;(semanticdb-enable-gnu-global-databases 'c++-mode)
-(if wttr/os:windowsp
-(eval-after-load "semantic-c"
-'(dolist (d (list "D:/MinGW/lib/gcc/mingw32/4.8.1/include/c++"
+(defconst cedet-user-include-dirs
+  (list ".." "../include" "../inc" "../common" "../public"
+        "../.." "../../include" "../../inc" "../../common" "../../public"))
+(defconst cedet-win32-include-dirs
+  (list           "D:/MinGW/lib/gcc/mingw32/4.8.1/include/c++"
                   "D:/MinGW/lib/gcc/mingw32/4.8.1/include/c++/mingw32"
                   "D:/MinGW/lib/gcc/mingw32/4.8.1/include/c++/backward"
                   "D:/MinGW/lib/gcc/mingw32/4.8.1/include"
                   "D:/MinGW/include"
                   "D:/MinGW/lib/gcc/mingw32/4.8.1/include-fixed"
                   "D:/MinGW/mingw32/include"
-))
-(semantic-add-system-include d))))
+           ))
+(require 'semantic-c nil 'noerror)
+(let ((include-dirs cedet-user-include-dirs))
+  (when (eq system-type 'windows-nt)
+    (setq include-dirs (append include-dirs cedet-win32-include-dirs)))
+  (mapc (lambda (dir)
+          (semantic-add-system-include dir 'c++-mode)
+          (semantic-add-system-include dir 'c-mode))
+        include-dirs))
+;; ok on windows
+;(if wttr/os:windowsp
+;(eval-after-load "semantic-c"
+;'(dolist (d (list "D:/MinGW/lib/gcc/mingw32/4.8.1/include/c++"
+;                  "D:/MinGW/lib/gcc/mingw32/4.8.1/include/c++/mingw32"
+;                  "D:/MinGW/lib/gcc/mingw32/4.8.1/include/c++/backward"
+;                  "D:/MinGW/lib/gcc/mingw32/4.8.1/include"
+;                  "D:/MinGW/include"
+;                  "D:/MinGW/lib/gcc/mingw32/4.8.1/include-fixed"
+;                  "D:/MinGW/mingw32/include"
+;))
+;(semantic-add-system-include d))))
 ;; I don't why, 
 ;(if wttr/os:windowsp
 ;    (message "%s" system-type)

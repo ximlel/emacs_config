@@ -87,8 +87,19 @@
                              "-ID:/mingw/include"
                              "-ID:/mingw/lib/gcc/mingw32/4.8.1/include-fixed"
                              "-ID:/mingw/mingw32/include"
+                             "-I.."
+                             "-I../include"
+                             "-I../inc"
+                             "-I../common"
+                             "-I../public"
+                             "-I../.."
+                             "-I../../include"
+                             "-I../../inc"
+                             "-I../../common"
+                             "-I../../public"
                              "-D__MSVCRT__=")))
 ;;linux
+;; you can get the path , throug "$ echo "" | g++ -v -x c++ -E -"
 (if wttr/os:linuxp
     (setq ac-clang-flags  
         (mapcar(lambda (item)(concat "-I" item))  
@@ -100,6 +111,16 @@
                     /usr/lib/gcc/x86_64-redhat-linux/4.7.2/include
                     /usr/local/include
                     /usr/include
+                    ..
+                    ../include
+                    ../inc
+                    ../common
+                    ../public
+                    ../..
+                    ../../include
+                    ../../inc
+                    ../../common
+                    ../../public
                     "))))
 
 ;; reference !!!
