@@ -392,10 +392,25 @@ http://www.educity.cn/develop/126501.html
 http://www.csdn123.com/html/blogs/20130801/46088.htm
 http://blog.csdn.net/winterttr/article/details/7348279      grep
 
-usage cedet 的用法讲解
+*emacs 使用 之 cedet
 http://blog.csdn.net/hnhbdss/article/details/6831846
+A Gentle introduction to CEDET
+http://alexott.net/en/writings/emacs-devenv/EmacsCedet.html
+cedet 的定制（译文）
 http://blog.sina.com.cn/s/blog_66b005600101637l.html
+这样使用emacs －cedet(2)  
 http://blog.163.com/madahah@126/blog/static/1704992252010102972050351/  -- less
+
+cedet doc
+http://www.randomsample.de/cedetdocs/
+
+ede doc
+ede-proj-regenerate 生成makefile
+C-c . C make project
+C-c . s 
+ede-mew create new project
+http://www.randomsample.de/cedetdocs/ede/
+http://www.gnu.org/software/emacs/manual/html_mono/ede.html#EDE-Project-Concepts
 =============================================
 =============================================
 dea
