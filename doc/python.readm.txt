@@ -1,0 +1,61 @@
+1.
+    MRO & super
+    http://blog.csdn.net/seizef/article/details/5310107#reference
+    print "MRO:", [x.__name__ for x in F.__mro__]
+    class A(object):
+          def __init__(self):
+              print "enter A"
+              print "leave A"
+
+    class B(object):
+          def __init__(self):
+              print "enter B"
+              print "leave B"
+
+    class C(A):
+          def __init__(self):
+              print "enter C"
+              super(C, self).__init__()
+              print "leave C"
+    python中调用super(C, self).__init__() 实际上是调用MRO中签一个class的init函数，多重继承是会看到不同（与c++ 不同）
+
+2.
+    Python中*args 和**kwargs的用法
+    http://blog.csdn.net/chenjinyu_tang/article/details/8136841
+3.
+    python 中class 的'.'操作实际上是调用的函数 class.__getattr__
+    def __getattr__(self, name):
+        if hasattr(self.element, name):         #非成员调用.操作时会点用这个函数见下
+            return getattr(self.element, name)
+
+        if name in self.element.keys():         #自定义查找某个成员是否有这个属性（lxml）
+            return self.element.get(name)
+
+        subelements = self.element.findall(self.xmlns + name) #查找某个成员是否有这个子节点（lxml）
+        if subelements:
+            return [ColladaNode(ele) for ele in subelements]
+     可以在运行是添加类成员**
+     e.q
+        class A(object):
+              def __init__(self):
+                  self.first = 1
+                  self.second = 2
+              def __getattr__(self. name):
+                  return None
+              def addthird:
+                  self.third = 3
+        a = A()
+        a.first
+        a.second
+        a.third         # 此时会调用 __getattr__函数
+        a.addthird()    # python 可以在函数中添加属性，调用后会添加third属性
+        a.third         # 注意此时不会调用__getattr__ 函数
+4.
+    dir(class_name)
+    显示一个类的所有的成员
+5.
+    if not None:
+       print "OK"
+
+6.
+    lxml中的元素tag 包含xml 的namespacs， 即xmlns
