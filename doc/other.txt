@@ -1,0 +1,12 @@
+about usage of git 
+issue:
+    You asked to pull from the remote 'origin', but did not specify
+    a branch. Because this is not the default configured remote
+    for your current branch, you must specify a branch on the command line
+    
+    add config to .git/config
+        [branch "master"]
+        remote = origin
+        merge = refs/heads/master
+
+reference : http://blog.csdn.net/forever_wind/article/details/37506389
