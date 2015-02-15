@@ -134,6 +134,7 @@ M-% ori_string RET replace_string RET
 =============================================
 cscope 查看代码
 cscope (read xcscope.el)
+    --C-c(cscope) s (search) [command]--
    *C-c s a                     set root dir of code
     C-c s A                     unset root dir
    *C-c s I                     create cscope.out from cscope.files amd *.files

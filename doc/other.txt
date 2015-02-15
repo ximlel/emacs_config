@@ -10,3 +10,25 @@ issue:
         merge = refs/heads/master
 
 reference : http://blog.csdn.net/forever_wind/article/details/37506389
+==========
+about linux config
+      #在PATH中找到可执行文件程序的路径。
+      export PATH =$PATH:$HOME/bin
+      #gcc找到头文件的路径
+      export C_INCLUDE_PATH=/usr/include/libxml2:/MyLib
+      #g++找到头文件的路径
+      export CPLUS_INCLUDE_PATH=$CPLUS_INCLUDE_PATH:/usr/include/libxml2:/MyLib
+      #找到动态链接库的路径
+      export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/MyLib
+      #找到静态库的路径
+      export LIBRARY_PATH=$LIBRARY_PATH:/MyLib
+
+=============================================
+    c++
+=============================================
+搜索技术博客－淘宝
+http://ju.outofmemory.cn/feed/75/
+
+===========
+C++插件中使用静态指针变量引起的内存泄露问题
+(dlopen/dlclose)不会释放static 指针， singleton mode
