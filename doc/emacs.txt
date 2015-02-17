@@ -137,8 +137,8 @@ cscope (read xcscope.el)
     --C-c(cscope) s (search) [command]--
    *C-c s a                     set root dir of code
     C-c s A                     unset root dir
-   *C-c s I                     create cscope.out from cscope.files amd *.files
-    C-c s L                     create cscope.files
+   *C-c s I(index)              create cscope.out from cscope.files amd *.files
+    C-c s L(list)               create cscope.files
     
    *C-c s d
     C-c s g(global define)      find function or var define
@@ -414,6 +414,12 @@ C-c . s
 ede-mew create new project
 http://www.randomsample.de/cedetdocs/ede/
 http://www.gnu.org/software/emacs/manual/html_mono/ede.html#EDE-Project-Concepts
+
+括号跳转
+C-[ C-n
+C-[ C-p
+头文件和实现跳转
+C-M-f12 
 =============================================
 =============================================
 dea

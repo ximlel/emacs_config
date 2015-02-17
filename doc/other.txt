@@ -1,3 +1,6 @@
+==========
+git usage
+==========
 about usage of git 
 issue:
     You asked to pull from the remote 'origin', but did not specify
@@ -10,6 +13,27 @@ issue:
         merge = refs/heads/master
 
 reference : http://blog.csdn.net/forever_wind/article/details/37506389
+
+恢复单个文件版本的修改
+    git reset commit_id <file> (撤销add，添加到缓存的操作，如果没有add可以省去此操作)
+    git checkout -- <file>     (取消对文件的修改)
+修改上次提交的提交信息
+    git commit --amend
+退回所有内容到上一版本
+    git reset HEAD^
+    git reset HEAD^ <file>
+回退到指定版本
+    git reset 057d  
+#回退到上一次提交的状态，按照某一次的commit完全反向的进行一次commit.(代码回滚到上个版本，并提交git)
+    git revert HEAD
+恢复指定版本
+    git reset --hard commit_id
+
+取消本所有的修改(备份只备份.git用此命令还原)
+    git checkout .
+git reset --hard HASH 返回某一节点，不保留修改
+git reset --soft HASH 返回某一节点，保留修改
+git stash             所有修改暂时存到stash，可用git stash pop取回
 ==========
 about linux config
       #在PATH中找到可执行文件程序的路径。
