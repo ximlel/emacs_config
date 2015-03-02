@@ -52,7 +52,3 @@ about linux config
 =============================================
 搜索技术博客－淘宝
 http://ju.outofmemory.cn/feed/75/
-
-===========
-C++插件中使用静态指针变量引起的内存泄露问题
-(dlopen/dlclose)不会释放static 指针， singleton mode
