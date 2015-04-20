@@ -175,6 +175,11 @@ set this, if not, you cann't change the buffer after jump to the code
 (setq buffer-read-only nil) 
 (setq inhibit-read-only t) 
 cscope使用
+        cscope-indexer -r
+        (setq cscope-do-not-update-database t)
+        cscope-indexer
+            cscope -b -i ==> cscope -q -b -i
+        http://www.360doc.com/content/12/0531/10/5962017_214928550.shtml
 vim     http://os.chinaunix.net/a2006/0707/963/000000963869.shtml
         http://blog.csdn.net/intrepyd/article/details/4202312
 
