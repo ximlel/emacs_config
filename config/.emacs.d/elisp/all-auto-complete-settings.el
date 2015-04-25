@@ -50,10 +50,10 @@
 
     (global-auto-complete-mode t) 
 ;; 使用Ctrl+enter按键触发自动补全  
-;(define-key ac-mode-map  [(control return)] 'auto-complete)  
+(define-key ac-mode-map  [(control return)] 'auto-complete)  
 ;; 自动触发
 ;(setq ac-clang-auto-save t)  
-(setq ac-auto-start t)
+(setq ac-auto-start nil)
 
 ;; clang
 (require 'auto-complete-clang)
@@ -70,9 +70,9 @@
 (my-ac-config)
 (defun wttr/cc-mode:auto-complete-setup ()
   (make-local-variable 'ac-auto-start)
-  (setq ac-auto-start t)              ;auto complete using clang is CPU sensitive
-  ;(setq ac-sources (append '(ac-source-clang ac-source-yasnippet) ac-sources)))
-  (setq ac-sources (append '(ac-source-clang ac-source-yasnippet))))  ;; change by simon, if not will can get info when input code, and only get info after "."
+  (setq ac-auto-start nil)              ;auto complete using clang is CPU sensitive
+  (setq ac-sources (append '(ac-source-clang ac-source-yasnippet) ac-sources)))
+  ;(setq ac-sources (append '(ac-source-clang ac-source-yasnippet))))  ;; change by simon, if not will can get info when input code, and only get info after "."
 
 ;(add-hook 'c-mode-hook 'wttr/cc-mode:auto-complete-setup)
 ;(add-hook 'c++-mode-hook 'wttr/cc-mode:auto-complete-setup)
