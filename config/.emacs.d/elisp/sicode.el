@@ -34,12 +34,13 @@
 ;; 语法加亮
 ;; add these lines if you like color-based syntax highlighting
 (global-font-lock-mode t)
-(setq font-lock-maximum-decoration t)
+(setq font-lock-maximum-decoration t) 
 
 ;;==========================================================
 ;;加载cscope
 ;;==========================================================
 (require 'xcscope)
+(setq cscope-do-not-update-database t) ;; cahnge by simon 2015, make auto update database disable.
 ;;==========================================================
 ;;加载git-emacs
 ;;==========================================================
