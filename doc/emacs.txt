@@ -272,6 +272,16 @@ C-c a x   -----移动光标到制定字符
 browse-kill-ring   ----- 所有的剪切板
 desktop-save/clear ----- 保存桌面，清除桌面
 =============================================
+ECB
+C-c . m d   dir
+C-c . m s   source
+C-c . m m   methods
+C-c . m h   history
+C-c . m a   analy
+C-c . \     clear error msg
+C-c . g d/s/m/h/a
+
+=============================================
 git-emacs
 c   commit
     C-c C-c 提交
