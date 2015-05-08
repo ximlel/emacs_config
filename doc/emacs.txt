@@ -7,6 +7,7 @@
   C-x C-s  保存当前buffer
   C-x C-w 另存为
   C-x s  保存所有buffer
+  C-x C-q 切换只读和读写模式
 2) 屏幕分割相关，emacs可以在同一个窗口中看到多个buffer。
   C-x 2  垂直分割当前子窗口
   C-x 3 水平分割当前子窗口
@@ -99,7 +100,7 @@ M-f M-b 前后词
 C-a C-e 行首位
 M-a M-e 前后句
 M-{ M-} 前后段
-C-V M-V 屏幕上下卷
+C-v M-v 屏幕上下卷
 C-x ]   前移一页
 C-x [   后移一页 
 M-< M-> 移到文件头尾
@@ -192,6 +193,8 @@ y yes
 s save to filex
 t toggle mark
 g refresh
+o open the file on other windows
+
 -filter-
 //      show all the buffer
 /f      show the buffer which file name is string
@@ -208,15 +211,18 @@ occur
 http://www.emacswiki.org/emacs/OccurMode
 =============================================
 dired
+v       view doc
+q       quit from view mode
 t       mark/unmark
 m       mark
 u       unmark
-d       delet
+!       对光标所在的文件执行SHELL命令（× 代表标记的文件，？在每一个标记的文件上执行）
 C(c)    copy
 R       move
 ^       进入上级目录
-D       删除所有标记文件
-d       删除标记文件
+D       删除当前文件
+d       标记当前文件为删除
+x       执行
 r       进入编辑模式
         C-c C-c 退出编辑模式
 +       创建目录
@@ -334,6 +340,16 @@ gdb(f6)       gdb
 
               Emacs gdb 配置和使用
               http://blog.csdn.net/cctvzxxz1/article/details/8604114
+              http://emacser.com/emacs-gdb.htm
+              M-x gdb GDB排错
+              M-x dbx DBX排错
+              M-x xdb XDB排错
+              M-x sdb SDB排错
+=============================================
+issue
+=============================================
+C-q TAB 键入一个TAB
+M-x revert-buffer   重新载入文件
 =============================================
 			RESOURCE
 =============================================
