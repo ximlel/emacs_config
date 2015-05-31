@@ -8,6 +8,9 @@
   C-x C-w 另存为
   C-x s  保存所有buffer
   C-x C-q 切换只读和读写模式
+  C-M-v   滚动另一个buffer
+  C-v	  滚动当前buffer
+  C-x 4 b(f) 在另外一个窗口选择(查找一个文件)buffer
 2) 屏幕分割相关，emacs可以在同一个窗口中看到多个buffer。
   C-x 2  垂直分割当前子窗口
   C-x 3 水平分割当前子窗口
@@ -84,7 +87,7 @@ M-x woman 的命令可以高亮的察看manpage
 M-x info 的命令可以察看man所提供的所有命令并且以层次形式提供
 
 =============================================
-书签
+bookmark
 C-x r m 添加书签
 C-x r b 跳到某个书签
 M-x list-bookmarks 显示所有书签，在里面d标记删除，u取消，r重命名，x执行操作   ==》 C+F12
@@ -286,7 +289,7 @@ C-c . m h   history
 C-c . m a   analy
 C-c . \     clear error msg
 C-c . g d/s/m/h/a
-
+C-c . r     build var and fun
 =============================================
 git-emacs
 c   commit
