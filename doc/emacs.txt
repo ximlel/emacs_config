@@ -8,9 +8,12 @@
   C-x C-w 另存为
   C-x s  保存所有buffer
   C-x C-q 切换只读和读写模式
-  C-M-v   滚动另一个buffer
-  C-v	  滚动当前buffer
+  C-M-v   滚动另一个buffer 向下
+  C-M-shift-v   滚动另一个buffer 向上
+  C-v	  滚动当前buffer 向下
+  M-v     滚动当前buffer 向上
   C-x 4 b(f) 在另外一个窗口选择(查找一个文件)buffer
+  将当前行置于屏幕中间：C-l.  2次 C-l 置于屏幕首，3次 C-l 置于屏幕末
 2) 屏幕分割相关，emacs可以在同一个窗口中看到多个buffer。
   C-x 2  垂直分割当前子窗口
   C-x 3 水平分割当前子窗口

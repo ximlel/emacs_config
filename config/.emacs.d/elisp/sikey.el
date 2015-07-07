@@ -1,3 +1,4 @@
+(global-unset-key (kbd "C-z"))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;代码折叠
 ;需要cedet
 ;;http://blog.csdn.net/pfanaya/article/details/6939310
