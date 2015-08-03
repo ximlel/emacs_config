@@ -192,6 +192,7 @@ vim     http://os.chinaunix.net/a2006/0707/963/000000963869.shtml
 
 =============================================
 ibuffer
+C-h m 查看帮助
 d delete
 u undo
 x exec
@@ -205,6 +206,7 @@ o open the file on other windows
 //      show all the buffer
 /f      show the buffer which file name is string
 /n      show the buffer which name is string
+/p      remove a filter
 O       (occur)show the line mathc string in buffers marked
 U       (replace)
 Q       (query replace)
