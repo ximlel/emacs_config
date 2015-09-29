@@ -88,7 +88,10 @@ M-x list-bookmarks 显示所有书签，在里面d标记删除，u取消，r重�
 =============================================
 M-x woman 的命令可以高亮的察看manpage
 M-x info 的命令可以察看man所提供的所有命令并且以层次形式提供
-
+C-x C-+ 字体变大
+C-x C-- 字体变小
+C-c M-H 高亮
+C-c M-R 取消高亮
 =============================================
 bookmark
 C-x r m 添加书签
@@ -192,7 +195,7 @@ vim     http://os.chinaunix.net/a2006/0707/963/000000963869.shtml
 
 =============================================
 ibuffer
-C-h m 查看帮助
+C-h m 查看帮助**
 d delete
 u undo
 x exec
@@ -202,15 +205,31 @@ t toggle mark
 g refresh
 o open the file on other windows
 
--filter-
+-filter buffer-
 //      show all the buffer
 /f      show the buffer which file name is string
 /n      show the buffer which name is string
 /p      remove a filter
+/c      show the buffer which include string
+/s      save the filter
+/e		filter by predicate
+/r      switch to saved filters
+g       update content
+
+-search in buffer-
+m		mark buffer
+u		unmark buffer
+t		reverse selection
 O       (occur)show the line mathc string in buffers marked
 U       (replace)
 Q       (query replace)
-/c      show the buffer which include string
+I		query replace regexp
+
+
+/t      反选
+
+f		show the doc in current windows
+o		show the doc in other windows
 http://emacser.com/ann77/Emacs/EmacsIbuffer.html
 正则
 http://dsec.pku.edu.cn/~rli/WiKi/EmacsRegexp.html
@@ -285,6 +304,7 @@ C-. C-,   -----临时标记，两点间跳转
 C-c a x   -----移动光标到制定字符
 browse-kill-ring   ----- 所有的剪切板
 desktop-save/clear ----- 保存桌面，清除桌面
+M-x untabify 全选后用space替换tab
 =============================================
 ECB
 C-c . m d   dir

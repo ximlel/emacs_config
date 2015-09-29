@@ -24,7 +24,8 @@
 ;;是调用semantic的分析结果智能补全，不弹出菜单
 ;; (global-set-key [(control tab)] 'semantic-ia-complete-symbol)
 ;;也是调用semantic的结果，不过会弹出一个选择菜单
-(local-set-key [(meta ?/)] 'semantic-ia-complete-symbol-menu)
+;(local-set-key [(meta ?/)] 'semantic-complete-analyze-inline) ;for console
+(local-set-key [(meta ?/)] 'semantic-ia-complete-symbol-menu)  ; for xwindows
 ;(local-set-key [(control tab)] 'semantic-ia-complete-symbol-menu)
 
 ;(local-set-key "\C-c>" ‘semantic-complete-analyze-inline)

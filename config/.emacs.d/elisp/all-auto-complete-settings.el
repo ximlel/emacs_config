@@ -33,7 +33,7 @@
 (setq ac-dwim t)                        
 
 ;; give a key to trigger ac when it is not automatically triggered
-(ac-set-trigger-key "<C-return>")
+(ac-set-trigger-key "<C-return>") ;; same to (define-key ac-mode-map  [(meta =)] 'auto-complete)
 
 ;; make del also trigger the ac
 ; (setq ac-trigger-commands (cons 'backward-delete-char-untabify ac-trigger-commands))
@@ -50,7 +50,9 @@
 
     (global-auto-complete-mode t) 
 ;; 使用Ctrl+enter按键触发自动补全  
-(define-key ac-mode-map  [(control return)] 'auto-complete)  
+(define-key ac-mode-map  [(meta =)] 'auto-complete)
+;(define-key ac-mode-map  [(control return)] 'auto-complete) ;; only xwindows
+;;(define-key ac-mode-map  [(meta ?/)] 'auto-complete)  
 ;; 自动触发
 ;(setq ac-clang-auto-save t)  
 (setq ac-auto-start nil)
