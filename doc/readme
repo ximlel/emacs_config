@@ -59,9 +59,12 @@ ecb-upgrade.el中的
     set header of c++ in all-auto-complete-settings 
 17.set erl-path in sierlang
 -----linux：
+:: 编译时如果在命令行中使用 ./configure  --without-x (--with-x=no (--help 查询)),否则不能使用或是python mode不能使用
+;; fedora 22 只能安装emacs-23-3b
+:: 编译时安装ncurses
 1.删除.emacs 中(setenv "HOME" "D:/tools/emacs-23.2")
-2.解压cedet 和 ecb ，安装cedet
-3.修改base.el 中关于编码的设置
+2.解压install下cedet(1.0 23;1.1 24) 和 ecb ，安装cedet(进入 make)
+3.修改base.el 中关于编码的设置 (跳过 已添加系统判断)
     (setq default-process-coding-system '(utf-8 . utf-8))            ;windows 可以使用这个 
     (setq default-process-coding-system '(utf-8-unix . utf-8-unix))  ;进程输出输入编码 -- affect pdb on windows,linux 可以使用这个 
 5.python-mode 一些插件需要安装 python的插件才能生效
