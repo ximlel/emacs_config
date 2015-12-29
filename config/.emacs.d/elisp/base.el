@@ -27,7 +27,7 @@
     (set-default-font "Monospace-11"))
 
 ;; 简化工具条
-(tool-bar-mode -1)
+(tool-bar-mode -1) ;for console
 
 ;; 显示时间
 ;(display-time)

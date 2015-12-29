@@ -61,21 +61,21 @@ ecb-upgrade.el中的
 -----linux：
 :: 编译时如果在命令行中使用 ./configure  --without-x (--with-x=no (--help 查询)),否则不能使用或是python mode不能使用
 ;; fedora 22 只能安装emacs-23-3b
-:: 编译时安装ncurses
-1.删除.emacs 中(setenv "HOME" "D:/tools/emacs-23.2")
-2.解压install下cedet(1.0 23;1.1 24) 和 ecb ，安装cedet(进入 make)
+;; 编译时安装ncurses
+1.删除.emacs 中(setenv "HOME" "D:/tools/emacs-23.2")(跳过)
+2.解压install下cedet(1.0 23;1.1 24) 和 ecb ，安装cedet(only make)
 3.修改base.el 中关于编码的设置 (跳过 已添加系统判断)
     (setq default-process-coding-system '(utf-8 . utf-8))            ;windows 可以使用这个 
     (setq default-process-coding-system '(utf-8-unix . utf-8-unix))  ;进程输出输入编码 -- affect pdb on windows,linux 可以使用这个 
-5.python-mode 一些插件需要安装 python的插件才能生效
+5.python-mode 一些插件需要安装 python的插件才能生效(only python 2.7)
 6.为适应ecb和cedet(make) 使用emacs 23.2
-7.(setq default-directory "~/workspace")
-8.base.el 初始最大化
-9.修改 base.el 中 set-default-font
+7.(setq default-directory "~/workspace") (.emacs.el)
+8.base.el 初始最大化(跳过)
+9.修改 base.el 中 set-default-font (跳过)
 10.安装erlang， 设置sierlang.erl 中 erlang 相关目录
                 load_path, erlang-root-dir, exec-path, erlang-man-root-path
 11.将plug-in\for_erlang\tools-2.6.13 拷贝到/usr/local/lib/erlang/lib 中，其中的tools 版本较老
-12.emacs24 需要下载cedet1.1, 修改ecb 关于版本的检测的文件安装
+12.emacs24 需要下载cedet1.1, 修改ecb 关于版本的检测的文件安装(跳过 不能使用emacs24)
 	(https://github.com/alexott/ecb/downloads
 	http://blog.csdn.net/a593796769/article/details/9000055)
 	ecb-upgrade.el中的
@@ -96,20 +96,26 @@ ecb-upgrade.el中的
 	;;                                    cedet-required-version-str-max
 	;;                                    "]")))
     !!! but exit issue in emacs24 using cedet 1.1, compile emacs23.3b
-13.emacs24 需使用相应python-mode(plug-in/emacs24下)(将相应的python-mode拷备到elisp)
+13.emacs24 需使用相应python-mode(plug-in/emacs24下)(将相应的python-mode拷备到elisp)(跳过不能emacs24)
 14.安装Cscope
     -- http://lifegoo.pluskid.org/wiki/EmacsCscope.html
     编译安装.emacs.d\install\cscope-15.8a.tar.gz 或直接使用cscope_linux_15.8a目录下
     将cscope-indexer拷贝到系统目录（usr/local/bin）
 15.安装clang(http://llvm.org/releases/download.html)
     set header of c++ in all-auto-complete-settings 
-    $ echo "" | g++ -v -x c++ -E -     to show the dir of header
+    $ echo "" | g++ -v -x c++ -E -     to show the dir of header	
+	修改clang代码探测路径及clang位置 (in all-auto-complete-settgings.el)
 16.set erl-path in sierlang
-*17. 终端模式下complete 不可弹出菜单,可以使用semantic-complete-anlyze-inline创建一个buffer显示不全列表 (in semantic-settings.el)
-*18. 终端模式下应屏蔽代码折叠功能 (in sikey.el)
-*19. 终端模式下可以取消屏蔽ctrl+z的代码 (in sikey.el)
-20. 修改clang代码探测路径及clang位置 (in all-auto-complete-settgings.el)
---21. 修改semantic 配置仅参考-- enzo26的ChinaUnix博客 http://blog.chinaunix.net/uid-21977330-id-3265905.html
+*17. semantic-settings.el
+	 终端模式下complete 不可弹出菜单,可以使用semantic-complete-anlyze-inline创建一个buffer显示不全列表
+*18. sikey.el
+	 终端模式下
+	 应屏蔽代码折叠功能 
+	 可以取消屏蔽ctrl+z的代码 
+	 修改F5快捷键 
+*19.*终端下注释;(tool-bar-mode -1) (base.el)
+--20. 修改semantic 配置仅参考-- enzo26的ChinaUnix博客 http://blog.chinaunix.net/uid-21977330-id-3265905.html
+
 -----共同changelist：
 修改base.el中配置的字体
 删除了sicode.el                     auto-comple的配置，由于和windows c++有冲突，cedet 的补全alt+/更好(cedet补全此功能在windows下保存python时emacs 卡，生成.ropeproject后),但对于python auto-comple的补全更方便建议使用
@@ -297,4 +303,4 @@ HKEY_CLASSES_ROOT\*\shell\Edit with Emacs\command
 "path\to\emacsclientw.exe" --no-wait --alternate-editor="path\to\runemacs.exe" "%1"
 
 4.cedet 补全需要配置目录
-
+0
