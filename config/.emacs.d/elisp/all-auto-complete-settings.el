@@ -1,5 +1,6 @@
 (require 'wttr-utils)
-(wttr/prepend-to-exec-path "~/bin/clang")
+(wttr/prepend-to-exec-path "/usr/local/bin") ; only for mac
+;(wttr/prepend-to-exec-path "~/bin/clang")
 ;; YASnippet
 (require 'yasnippet)
 (yas/initialize)

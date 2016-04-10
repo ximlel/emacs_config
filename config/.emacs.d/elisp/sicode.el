@@ -8,8 +8,6 @@
 ;;cedet
 (require 'cedet)
 (global-ede-mode 1)                      ; Enable the Project management system
-;; Enable code helpers.
-(semantic-load-enable-code-helpers)      ; Enable prototype help and smart completion 
 (global-srecode-minor-mode 1)            ; Enable template insertion menu
 (global-semantic-mru-bookmark-mode 1)
 (semantic-load-enable-minimum-features)
