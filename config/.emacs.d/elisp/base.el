@@ -1,4 +1,5 @@
 (require 'wttr-utils)
+(wttr/prepend-to-exec-path "/usr/local/bin") ; only for mac
 ;; 在标题栏显示buffer的名字
 (setq frame-title-format "emacs@%b")
 
