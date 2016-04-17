@@ -17,7 +17,7 @@
 (tabbar-mode)
 
 ;; 关闭提示音
-(setq visible-bell t)
+(setq visible-bell nil); for mac
 
 ;; 设置默认字体
 ; windows
