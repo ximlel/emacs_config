@@ -1,16 +1,16 @@
-(global-unset-key (kbd "C-z")) ; for xwindows
+;(global-unset-key (kbd "C-z")) ; for xwindows
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;代码折叠
 ;需要cedet
 ;;http://blog.csdn.net/pfanaya/article/details/6939310
 ;;;代码折叠
 ;(require 'semantic-tag-folding nil 'noerror)
-(global-semantic-tag-folding-mode 1) ; for xwindows
+;(global-semantic-tag-folding-mode 1) ; for xwindows
 ;;折叠和打开整个buffer的所有代码
-(define-key semantic-tag-folding-mode-map (kbd "C--") 'semantic-tag-folding-fold-all) ; for xwindows
-(define-key semantic-tag-folding-mode-map (kbd "C-=") 'semantic-tag-folding-show-all) ; for xwindows
+;(define-key semantic-tag-folding-mode-map (kbd "C--") 'semantic-tag-folding-fold-all) ; for xwindows
+;(define-key semantic-tag-folding-mode-map (kbd "C-=") 'semantic-tag-folding-show-all) ; for xwindows
 ;;折叠和打开单个buffer的所有代码
-(define-key semantic-tag-folding-mode-map (kbd "C-_") 'semantic-tag-folding-fold-block) ; for xwindows
-(define-key semantic-tag-folding-mode-map (kbd "C-+") 'semantic-tag-folding-show-block) ; for xwindows
+;(define-key semantic-tag-folding-mode-map (kbd "C-_") 'semantic-tag-folding-fold-block) ; for xwindows
+;(define-key semantic-tag-folding-mode-map (kbd "C-+") 'semantic-tag-folding-show-block) ; for xwindows
 
 (global-set-key [f1] 'manual-entry)
 (global-set-key [C-f1] 'info )
@@ -21,9 +21,9 @@
 (global-set-key [M-f3] 'kill-this-buffer)
 
 ;;F5显示/隐藏工具栏 方便调试
-(global-set-key [f5] 'tool-bar-mode) ; for xwindows
-;(global-set-key [f4] 'ska-point-to-register) ;for console
-;(global-set-key [f5] 'ska-jump-to-register)  ;for console
+;(global-set-key [f5] 'tool-bar-mode) ; for xwindows
+(global-set-key [f4] 'ska-point-to-register) ;for console
+(global-set-key [f5] 'ska-jump-to-register)  ;for console
 
 
 ;;ctrl-F5显示/隐藏菜单栏 ;; M-x menu-bar-open
