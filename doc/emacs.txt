@@ -485,6 +485,14 @@ C-[ C-p
 头文件和实现跳转
 C-M-f12 
 =============================================
+python
+=============================================
+sicode.el 中有两个补全的配置
+(require 'all-auto-complete-settings)   // ac form clang  alt + =
+(require 'semantic-settings)            // cedet          alt + /
+python 不使用上面的配置，默认使用 alt + /补全， 由于与c++的模式不同不冲突 
+python 是存文本解析，所以很多不能解析出来， 不能推导类型， 直接声明和包方法可以提示出来(e.g. form os import 可以补充)
+=============================================
 =============================================
 dea
 https://code.google.com/p/dea/
