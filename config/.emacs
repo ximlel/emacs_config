@@ -80,3 +80,4 @@
 (load-file "~/.emacs.d/elisp/sipython.el")
 (load-file "~/.emacs.d/elisp/sierlang.el")
 (load-file "~/.emacs.d/elisp/sic++.el")
+(load-file "~/.emacs.d/elisp/silua.el")
