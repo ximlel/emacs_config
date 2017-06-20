@@ -325,6 +325,12 @@ C-c . h     ecb help
 进入左侧ecb 窗口 输入字母进入node搜索状态
 delete 删除最后字母
 home 清楚搜索框
+
+Mac 下
+fn键+左方向键是HOME
+fn键+右方向键是END
+fn+上方向键是page up
+fn+下方向键是page down
 =============================================
 git-emacs
 c   commit
