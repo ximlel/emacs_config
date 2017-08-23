@@ -83,6 +83,13 @@ M-x list-bookmarks 显示所有书签，在里面d标记删除，u取消，r重�
 (setq bookmark-save-flag 1)
 这会把书签保存到~/.emacs.bmk 
 
+7) code
+firstly C-c C-h to read the help
+beginning-of-defun(C-M-a)
+end-of-defun(C-M-e)
+mark-defun(C-M-h)
+narrow-to-defun(C-x n d)
+unarrow-to-defun(C-x n p)
 =============================================
 			COMMAND
 =============================================
@@ -145,6 +152,8 @@ M-% ori_string RET replace_string RET
     C-r   edit mode
     C-M-c quit edit mode
 
+M-x replace-string
+M-x replace-regexp
 =============================================
 cscope 查看代码
 cscope (read xcscope.el)
@@ -504,6 +513,18 @@ sicode.el 中有两个补全的配置
 (require 'semantic-settings)            // cedet          alt + /
 python 不使用上面的配置，默认使用 alt + /补全， 由于与c++的模式不同不冲突 
 python 是存文本解析，所以很多不能解析出来， 不能推导类型， 直接声明和包方法可以提示出来(e.g. form os import 可以补充)
+=============================================
+golang
+=============================================
+http://www.cnblogs.com/lienhua34/p/5838166.html
+
+go-goto-imports(C-c C-f i)
+go-import-add(C-c C-a)
+go-remove-unused-imports
+
+godef-describe(C-c C-d)
+godef-jump(C-c C-j)
+godef-jump-other-window(C-x 4 C-c C-j)
 =============================================
 =============================================
 dea

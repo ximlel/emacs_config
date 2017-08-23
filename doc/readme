@@ -116,6 +116,18 @@ ecb-upgrade.el中的
 *19.*终端下注释;(tool-bar-mode -1) (base.el)
 --20. 修改semantic 配置仅参考-- enzo26的ChinaUnix博客 http://blog.chinaunix.net/uid-21977330-id-3265905.html
 
+21. for go config
+    get go from https://storage.googleapis.com/golang
+        example wget https://storage.googleapis.com/golang/go1.8.linux-amd64.tar.gz
+    tar xzvf *** -C /home/yu/local
+    export GOROOT=/home/yu/local/go
+    export GOPATH=/home/yu/local/go_bin
+    export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+    install godef
+        go get github.com/rogpeppe/godef 
+
+remark : 
+the step with "*", can been skiped
 -----共同changelist：
 修改base.el中配置的字体
 删除了sicode.el                     auto-comple的配置，由于和windows c++有冲突，cedet 的补全alt+/更好(cedet补全此功能在windows下保存python时emacs 卡，生成.ropeproject后),但对于python auto-comple的补全更方便建议使用

@@ -88,7 +88,8 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 echo "*************************************"
-echo "please remove erlang config if don't need"
+echo "please remove erlang config from base.el if don't need"
+echo "please remove sigo config from base.el if don't need"
 echo "please copy these path to all-auto-complete-settgings.el for clang"
 echo "*************************************"
 echo "" | g++ -v -x c++ -E -
