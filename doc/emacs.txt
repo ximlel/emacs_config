@@ -1,3 +1,4 @@
+任何时候C-c C-h 查看当前绑定的快捷键
 1) Buffer相关。emacs可以同时打开多个文件，每一个文件是一个buffer。
   在X下可以用C-mouse1来选择当前活动哪个buffer
   C-x C-b  可以得到一个buffer列表并从中选择哪个buffer打开
