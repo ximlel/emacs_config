@@ -80,6 +80,8 @@ fi
 cd ..
 rm -rf ecb-2.40
 unzip ecb-2.40.zip
+#update highlight
+cp ecb-face.el ecb-2.40  
 
 echo "clang ..."
 sudo yum install clang -y
