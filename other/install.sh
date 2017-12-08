@@ -2,7 +2,7 @@
 HOME=~
 EMACS_CONF_HOME=~/.emacs.d
 PYTHON_PACKET_PATH=`python -c "from distutils.sysconfig import get_python_lib; print get_python_lib()"`
-CMD_PATH=`pwd`
+CMD_PATH=`pwd`/../
 cd ~
 HOME=`pwd`
 EMACS_CONF_HOME=$HOME/.emacs.d
@@ -20,15 +20,17 @@ if [ $? -ne 0 ]; then
 fi
 
 echo "download emacs..."
-cd $CMD_PATH
-wget http://ftp.gnu.org/pub/gnu/emacs/emacs-23.3b.tar.gz
+cd $CMD_PATH/../
+#wget http://ftp.gnu.org/pub/gnu/emacs/emacs-23.3b.tar.gz
+git clone git@github.com:simon-rock/emacs-23.3b.git
 if [ $? -ne 0 ]; then
     echo "Error: failed!"
     exit 1
 fi
-rm -rf emacs-23.2
-tar xzvf emacs-23.2b.tar.gz
-cd emacs-23.2
+#rm -rf emacs-23.2
+#tar xzvf emacs-23.2b.tar.gz
+#cd emacs-23.2
+cd emacs-23.3b
 ./configure --with-x=no
 make
 sudo make install 
@@ -38,7 +40,7 @@ if [ $? -ne 0 ]; then
 fi
 
 echo "install plug-in"
-cd ../..
+cd $CMD_PATH
 cp -fr config/.emacs.d $HOME/
 cp -fr config/.emacs $HOME/
 
