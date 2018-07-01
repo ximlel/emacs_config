@@ -82,3 +82,11 @@
 (load-file "~/.emacs.d/elisp/sic++.el")
 (load-file "~/.emacs.d/elisp/silua.el")
 (load-file "~/.emacs.d/elisp/sigo.el")
+
+(load-file "~/.emacs.d/elisp/cmake-mode.el")
+(require 'cmake-mode)
+(setq auto-mode-alist
+      (append '(("CMakeLists\\.txt\\'" . cmake-mode)
+                ("\\.cmake\\'" . cmake-mode))
+              auto-mode-alist))
+
