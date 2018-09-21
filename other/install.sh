@@ -18,7 +18,11 @@ if [ $? -ne 0 ]; then
     echo "Error: failed!"
     exit 1
 fi
-
+sudo yum install unzip -y
+if [ $? -ne 0 ]; then
+    echo "Error: failed!"
+    exit 1
+fi
 echo "download emacs..."
 cd $CMD_PATH/../
 #wget http://ftp.gnu.org/pub/gnu/emacs/emacs-23.3b.tar.gz
@@ -92,8 +96,8 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 echo "*************************************"
-echo "please remove erlang config from base.el if don't need"
-echo "please remove sigo config from base.el if don't need"
+echo "please remove erlang config from .emacs if don't need"
+echo "please remove sigo config from .emacs if don't need"
 echo "please copy these path to all-auto-complete-settgings.el for clang"
 echo "*************************************"
 echo "" | g++ -v -x c++ -E -
