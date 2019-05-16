@@ -221,6 +221,7 @@ s save to filex
 t toggle mark
 g refresh
 o open the file on other windows
+e open the file on this windows
 
 -filter buffer-
 //      show all the buffer
