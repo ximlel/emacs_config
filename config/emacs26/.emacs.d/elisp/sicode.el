@@ -8,18 +8,18 @@
 ;;cedet
 (require 'cedet)
 (global-ede-mode 1)                      ; Enable the Project management system
-;(global-srecode-minor-mode 1)            ; Enable template insertion menu    // remove by simon
-;(global-semantic-mru-bookmark-mode 1)    // remvoe by simon
-;(semantic-load-enable-minimum-features)  // remove by simon
-;(semantic-load-enable-semantic-debugging-helpers) // remove by simon
-;(global-semantic-tag-folding-mode 1)     // remove by simon
+(global-srecode-minor-mode 1)            ; Enable template insertion menu
+(global-semantic-mru-bookmark-mode 1)
+(semantic-load-enable-minimum-features)
+(semantic-load-enable-semantic-debugging-helpers)
+(global-semantic-tag-folding-mode 1)
 
 ;;ecb
-;(require 'ecb)   // remvoe by simon
+(require 'ecb)
 ;;==============================================================
 ;;cc mode 自动提示 alt+/
 ;;==============================================================
-;(require 'semantic-settings)  // remove
+(require 'semantic-settings)
 ;;=========
 
 ;; 代码折叠 使用cedet的

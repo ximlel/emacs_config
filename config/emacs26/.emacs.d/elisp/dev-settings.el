@@ -214,7 +214,7 @@
                  ;; 高亮引用的函数和变量
                  zjl-hl-settings
                  ;; 把speedbar放到当前frame里面
-                 ;sr-speedbar-settings // remove by simon
+                 sr-speedbar-settings
                  codepilot-settings
 ;;                 perl-settings
                  ;; 实现程序变量的自动对齐

@@ -107,12 +107,12 @@
         (mapcar(lambda (item)(concat "-I" item))  
                (split-string  
                     "  
-		  /usr/lib/gcc/x86_64-redhat-linux/9/../../../../include/c++/9
- /usr/lib/gcc/x86_64-redhat-linux/9/../../../../include/c++/9/x86_64-redhat-linux
- /usr/lib/gcc/x86_64-redhat-linux/9/../../../../include/c++/9/backward
- /usr/lib/gcc/x86_64-redhat-linux/9/include
- /usr/local/include
- /usr/include
+                    /usr/lib/gcc/x86_64-redhat-linux/4.7.2/../../../../include/c++/4.7.2
+                    /usr/lib/gcc/x86_64-redhat-linux/4.7.2/../../../../include/c++/4.7.2/x86_64-redhat-linux
+                    /usr/lib/gcc/x86_64-redhat-linux/4.7.2/../../../../include/c++/4.7.2/backward
+                    /usr/lib/gcc/x86_64-redhat-linux/4.7.2/include
+                    /usr/local/include
+                    /usr/include
                     ..
                     ../include
                     ../inc
