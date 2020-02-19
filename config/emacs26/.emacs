@@ -62,11 +62,11 @@
 ;(add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
 
 ;;cedet
-(load-file "~/.emacs.d/install/cedet-1.0/common/cedet.el")
+;(load-file "~/.emacs.d/install/cedet-1.0/common/cedet.el")
 ;(require 'cedet)
 
 ;;ecb
-(add-to-list 'load-path "~/.emacs.d/install/ecb-2.40")
+;(add-to-list 'load-path "~/.emacs.d/install/ecb-2.40")
 ;(require 'ecb)
 
 ;;git-emacs
@@ -77,10 +77,10 @@
 (load-file "~/.emacs.d/elisp/siexpand.el")
 (load-file "~/.emacs.d/elisp/sicode.el")
 (load-file "~/.emacs.d/elisp/sikey.el")
-(load-file "~/.emacs.d/elisp/sipython.el")
-(load-file "~/.emacs.d/elisp/sierlang.el")
+;(load-file "~/.emacs.d/elisp/sipython.el")
+;(load-file "~/.emacs.d/elisp/sierlang.el")
 (load-file "~/.emacs.d/elisp/sic++.el")
-(load-file "~/.emacs.d/elisp/silua.el")
+;(load-file "~/.emacs.d/elisp/silua.el")
 (load-file "~/.emacs.d/elisp/sigo.el")
 
 (load-file "~/.emacs.d/elisp/cmake-mode.el")

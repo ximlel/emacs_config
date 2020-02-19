@@ -14,7 +14,8 @@
 (require 'eval-after-load)
 
 ;; ==============配色方案 包含所有的项目
-;(load "~/.emacs.d/elisp/si-color-theme/color-theme-molokai.el")
+(load "~/.emacs.d/elisp/si-color-theme/color-theme-molokai.el")  ; for fedora 31
+(color-theme-molokai)                                            ; for fedora 31
 ;(load "~/.emacs.d/elisp/si-color-theme/color-theme-arjen.el")
 ;(require 'color-theme)
 ;(eval-after-load "color-theme"
